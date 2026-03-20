@@ -9,6 +9,7 @@ Currently aiming for software engineering internships.
 
 🌱 Currently building: Local Relief & Donation Matchmaker
 
+- Link to Portfolio: [link](https://portfolio-seven-red-50.vercel.app)
 - Email: kajalsanwal777@gmail.com
 - LinkedIn: https://www.linkedin.com/in/kajalsanwall/
 
