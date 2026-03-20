@@ -13,6 +13,10 @@ Currently aiming for software engineering internships.
 - Email: kajalsanwal777@gmail.com
 - LinkedIn: https://www.linkedin.com/in/kajalsanwall/
 
+
+
+
+
 <p align="center">
   <img src="/Screenshot 2026-03-20 at 1.40.09 PM.png" width="600"/>
 </p>
