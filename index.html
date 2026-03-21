@@ -10,24 +10,28 @@
 html{scroll-behavior:smooth;}
 body{background:#000;color:#e8e0d4;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
 
-#cdot{position:fixed;pointer-events:none;z-index:9999;width:8px;height:8px;background:#e08a5a;border-radius:50%;transform:translate(-50%,-50%);transition:width .15s,height .15s,opacity .2s;}
-#cring{position:fixed;pointer-events:none;z-index:9998;width:30px;height:30px;border:1px solid rgba(224,138,90,.35);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+#cdot{position:fixed;pointer-events:none;z-index:9999;width:8px;height:8px;background:#e08a5a;border-radius:50%;transform:translate(-50%,-50%);transition:width .15s,height .15s;}
+#cring{position:fixed;pointer-events:none;z-index:9998;width:30px;height:30px;border:1px solid rgba(224,138,90,.3);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
 
 nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:center;padding:1.2rem 0;pointer-events:none;}
-.nav-pill{display:flex;align-items:center;background:rgba(20,14,10,.88);border:1px solid rgba(255,255,255,.08);border-radius:999px;backdrop-filter:blur(24px);padding:.55rem 1.4rem;min-width:640px;justify-content:space-between;pointer-events:all;transition:box-shadow .3s;}
-.nav-pill:hover{box-shadow:0 4px 40px rgba(224,138,90,.08);}
+.nav-pill{display:flex;align-items:center;background:rgba(20,14,10,.88);border:1px solid rgba(255,255,255,.08);border-radius:999px;backdrop-filter:blur(24px);padding:.55rem 1.4rem;min-width:640px;justify-content:space-between;pointer-events:all;}
 .nav-time{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(232,224,212,.5);font-weight:400;}
 .nav-right{display:flex;gap:.3rem;}
-.nav-right a{padding:.4rem .9rem;border-radius:999px;font-size:.82rem;color:rgba(232,224,212,.55);text-decoration:none;font-weight:400;transition:color .2s,background .2s;cursor:none;}
-.nav-right a:hover{color:#e8e0d4;background:rgba(255,255,255,.05);}
+.nav-right a{padding:.4rem .9rem;border-radius:999px;font-size:.82rem;color:rgba(232,224,212,.5);text-decoration:none;font-weight:400;transition:color .25s;cursor:none;}
+.nav-right a:hover{color:#e8e0d4;}
 .nav-right a.active{color:#e08a5a;font-weight:500;}
 
 #scroll-root{height:100vh;overflow-y:scroll;scroll-snap-type:y mandatory;scrollbar-width:none;}
 #scroll-root::-webkit-scrollbar{display:none;}
 .sect{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:always;position:relative;overflow:hidden;}
-.sect-inner{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease;}
-.sect.in-view .sect-inner{opacity:1;transform:none;}
+#experience{overflow-y:auto;}
 
+.sect-inner{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.sect.in-view .sect-inner{opacity:1;transform:none;}
+.reveal-item{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;}
+.reveal-item.revealed{opacity:1;transform:none;}
+
+/* HOME */
 #home{background:#000;}
 .map-bg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:48px 48px;opacity:.7;}
 .map-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:192px 192px;}
@@ -38,201 +42,176 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .home-role{font-size:1rem;color:rgba(232,224,212,.45);margin-bottom:2rem;font-weight:300;}
 .home-para{font-size:.95rem;line-height:1.85;color:rgba(232,224,212,.65);margin-bottom:1.2rem;max-width:650px;}
 .home-para b{color:#e8e0d4;font-weight:500;}
-.connect-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(232,224,212,.45);font-size:.88rem;text-decoration:none;margin-top:.5rem;transition:color .2s;cursor:none;}
+.connect-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(232,224,212,.4);font-size:.88rem;text-decoration:none;margin-top:.5rem;transition:color .25s;cursor:none;}
 .connect-link:hover{color:#e08a5a;}
 .home-right{flex-shrink:0;}
-.hero-img{width:300px;height:380px;border-radius:20px;object-fit:cover;object-position:center top;display:block;border:1px solid rgba(255,255,255,.08);transition:transform .4s ease,box-shadow .4s ease;}
-.hero-img:hover{transform:scale(1.025) translateY(-4px);box-shadow:0 24px 60px rgba(224,138,90,.15);}
+.hero-img{width:300px;height:380px;border-radius:20px;object-fit:cover;object-position:center top;display:block;border:1px solid rgba(255,255,255,.08);transition:transform .5s ease,box-shadow .5s ease;}
+.hero-img:hover{transform:scale(1.022) translateY(-4px);box-shadow:0 24px 60px rgba(224,138,90,.12);}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(232,224,212,.18);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;}
+.scroll-hint svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(4px);}}
 
-.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(232,224,212,.2);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;animation:bob 2.2s ease-in-out infinite;}
-.scroll-hint svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;}
-@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(5px);}}
-
+/* PROJECTS */
 #projects{background:#000;}
 .sec-head{max-width:1100px;margin:0 auto 2.5rem;}
 .sec-head h1{font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#e08a5a;margin-bottom:.8rem;}
 .sec-head p{font-size:.92rem;color:rgba(232,224,212,.5);line-height:1.7;max-width:760px;}
-
-.proj-scroll-wrap{max-width:1100px;margin:0 auto;padding:0;overflow-x:auto;scrollbar-width:none;}
+.proj-scroll-wrap{max-width:1100px;margin:0 auto;overflow-x:auto;scrollbar-width:none;}
 .proj-scroll-wrap::-webkit-scrollbar{display:none;}
 .proj-cards-row{display:flex;gap:1.4rem;width:max-content;padding-bottom:1.5rem;}
-
-/* ═══ PROJECT CARD — full illustration style ═══ */
-.pcard{
-  width:280px;flex-shrink:0;border-radius:22px;
-  display:flex;flex-direction:column;
-  position:relative;overflow:hidden;
-  cursor:none;
-  border:1px solid rgba(255,255,255,.09);
-  background:#0d0d14;
-  /* 3D tilt vars */
-  --rx:0deg;--ry:0deg;
-  transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
-  transition:transform .35s cubic-bezier(.22,.68,0,1.15),
-             box-shadow .35s ease,
-             border-color .35s ease;
-  will-change:transform;
-}
-
-/* glow border on hover */
-.pcard:hover{
-  transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(18px) translateY(-8px);
-  box-shadow:
-    0 30px 70px rgba(0,0,0,.8),
-    0 0 0 1px rgba(224,138,90,.3),
-    0 0 40px rgba(224,138,90,.1),
-    inset 0 0 30px rgba(255,255,255,.02);
-  border-color:rgba(224,138,90,.35);
-}
-
-/* illustration container */
-.pcard-img-wrap{
-  width:100%;height:200px;overflow:hidden;
-  position:relative;flex-shrink:0;
-}
-.pcard-img-wrap img{
-  width:100%;height:100%;object-fit:cover;object-position:top center;
-  display:block;
-  transition:transform .5s cubic-bezier(.22,.68,0,1.1),filter .35s ease;
-  filter:brightness(.92) saturate(1.05);
-}
-.pcard:hover .pcard-img-wrap img{
-  transform:scale(1.08);
-  filter:brightness(1.05) saturate(1.2);
-}
-
-/* shine sweep over image */
-.pcard-img-wrap::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(115deg,transparent 25%,rgba(255,255,255,.12) 50%,transparent 75%);
-  transform:translateX(-120%);
-  transition:transform .55s ease;
-  pointer-events:none;z-index:2;
-}
-.pcard:hover .pcard-img-wrap::after{transform:translateX(120%);}
-
-/* image-to-content gradient fade */
-.pcard-img-wrap::before{
-  content:'';position:absolute;bottom:0;left:0;right:0;height:60px;
-  background:linear-gradient(transparent,#0d0d14);
-  z-index:1;pointer-events:none;
-  transition:height .35s ease;
-}
-.pcard:hover .pcard-img-wrap::before{height:40px;}
-
-/* content area */
-.pcard-body{
-  padding:1rem 1.3rem 1.3rem;
-  display:flex;flex-direction:column;flex:1;
-  position:relative;z-index:2;
-}
-
-/* subtle ambient glow from card colour */
-.pcard-1 .pcard-img-wrap::before,.pcard-1:hover{--glow:rgba(200,120,220,.12);}
-.pcard-2 .pcard-img-wrap::before,.pcard-2:hover{--glow:rgba(80,120,255,.12);}
-.pcard-3 .pcard-img-wrap::before,.pcard-3:hover{--glow:rgba(60,220,150,.1);}
-.pcard-4 .pcard-img-wrap::before,.pcard-4:hover{--glow:rgba(150,80,255,.12);}
-.pcard-5 .pcard-img-wrap::before,.pcard-5:hover{--glow:rgba(255,160,60,.1);}
-.pcard-6 .pcard-img-wrap::before,.pcard-6:hover{--glow:rgba(60,180,255,.1);}
-.pcard-7 .pcard-img-wrap::before,.pcard-7:hover{--glow:rgba(255,120,80,.1);}
-.pcard-8 .pcard-img-wrap::before,.pcard-8:hover{--glow:rgba(180,80,255,.1);}
-
-.pcard:hover{box-shadow:0 30px 70px rgba(0,0,0,.8),0 0 0 1px rgba(224,138,90,.3),0 0 60px var(--glow,rgba(224,138,90,.1)),inset 0 0 30px rgba(255,255,255,.02);}
-
-.pcard-gh{
-  position:absolute;top:.9rem;right:.9rem;z-index:10;
-  width:28px;height:28px;border-radius:50%;
-  background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.15);
-  display:flex;align-items:center;justify-content:center;
-  text-decoration:none;
-  transition:background .2s,transform .2s,border-color .2s;cursor:none;
-  backdrop-filter:blur(8px);
-}
-.pcard-gh:hover{background:rgba(224,138,90,.3);transform:scale(1.15);border-color:rgba(224,138,90,.5);}
-.pcard-gh svg{width:13px;height:13px;fill:#e8e0d4;opacity:.85;}
-
-.pcard-name{
-  font-size:1.05rem;font-weight:600;color:#e08a5a;
-  margin-bottom:.45rem;line-height:1.2;
-  transition:color .2s;
-}
+.pcard-img-link{display:block;text-decoration:none;cursor:none;}
+.pcard{width:280px;flex-shrink:0;border-radius:22px;display:flex;flex-direction:column;position:relative;overflow:hidden;cursor:none;border:1px solid rgba(255,255,255,.09);background:#0d0d14;--rx:0deg;--ry:0deg;transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);transition:transform .65s cubic-bezier(.2,.6,0,1),box-shadow .6s ease,border-color .5s ease;will-change:transform;}
+.pcard:hover{transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(18px) translateY(-10px);box-shadow:0 28px 60px rgba(0,0,0,.75),0 0 0 1px rgba(224,138,90,.22),0 0 40px var(--glow,rgba(224,138,90,.07));border-color:rgba(224,138,90,.28);}
+.pcard-img-wrap{width:100%;height:200px;overflow:hidden;position:relative;flex-shrink:0;}
+.pcard-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s cubic-bezier(.2,.6,0,1),filter .5s ease;filter:brightness(.9) saturate(1.05);}
+.pcard:hover .pcard-img-wrap img{transform:scale(1.07);filter:brightness(1.04) saturate(1.15);}
+.pcard-img-wrap::before{content:'';position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(transparent,#0d0d14);z-index:1;pointer-events:none;}
+.pcard-body{padding:1rem 1.3rem 1.3rem;display:flex;flex-direction:column;flex:1;}
+.pcard-1:hover{--glow:rgba(200,120,220,.1);}.pcard-2:hover{--glow:rgba(80,120,255,.1);}.pcard-3:hover{--glow:rgba(60,220,150,.08);}.pcard-4:hover{--glow:rgba(150,80,255,.1);}.pcard-5:hover{--glow:rgba(255,160,60,.08);}.pcard-6:hover{--glow:rgba(60,180,255,.08);}.pcard-7:hover{--glow:rgba(255,120,80,.08);}.pcard-8:hover{--glow:rgba(180,80,255,.08);}
+.pcard-gh{position:absolute;top:.9rem;right:.9rem;z-index:10;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .25s,transform .25s;cursor:none;backdrop-filter:blur(8px);}
+.pcard-gh:hover{background:rgba(224,138,90,.28);transform:scale(1.12);}
+.pcard-gh svg{width:13px;height:13px;fill:#e8e0d4;opacity:.8;}
+.pcard-name{font-size:1.05rem;font-weight:600;color:#e08a5a;margin-bottom:.45rem;line-height:1.2;transition:color .3s;}
 .pcard:hover .pcard-name{color:#f4aa7a;}
 .pcard-desc{font-size:.78rem;line-height:1.68;color:rgba(232,224,212,.5);flex:1;}
-.pcard-meta{
-  margin-top:.9rem;font-size:.72rem;color:rgba(232,224,212,.3);
-  display:flex;align-items:center;gap:.4rem;
-  border-top:1px solid rgba(255,255,255,.05);
-  padding-top:.7rem;
-}
-.pcard-meta-dot{
-  width:6px;height:6px;border-radius:50%;
-  background:rgba(224,138,90,.6);flex-shrink:0;
-}
-
+.pcard-meta{margin-top:.9rem;font-size:.72rem;color:rgba(232,224,212,.28);display:flex;align-items:center;gap:.4rem;border-top:1px solid rgba(255,255,255,.05);padding-top:.7rem;}
+.pcard-meta-dot{width:5px;height:5px;border-radius:50%;background:rgba(224,138,90,.55);flex-shrink:0;}
 .scroll-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.2rem;max-width:1100px;margin-left:auto;margin-right:auto;}
-.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .3s,transform .3s;}
+.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.14);transition:background .3s,transform .3s;}
 .sdot.active{background:#e08a5a;transform:scale(1.3);}
 .see-all{max-width:1100px;margin:1.5rem auto 0;text-align:right;}
-.see-all a{font-size:.85rem;color:rgba(232,224,212,.4);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .2s;cursor:none;}
+.see-all a{font-size:.85rem;color:rgba(232,224,212,.35);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .25s;cursor:none;}
 .see-all a:hover{color:#e08a5a;}
 
-#experience{background:#000;padding:7rem 4vw 4rem;}
-.exp-page-wrap{max-width:1100px;margin:0 auto;}
-.exp-page-title{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:600;color:#e08a5a;text-align:center;margin-bottom:3.5rem;}
-.exp-block{margin-bottom:4.5rem;}
-.exp-block-label{display:flex;align-items:center;gap:.8rem;font-size:1.05rem;font-weight:600;color:#e8e0d4;margin-bottom:2rem;}
-.exp-block-label::before{content:'';width:4px;height:1.4rem;background:#e08a5a;border-radius:2px;flex-shrink:0;}
-.bento{display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto auto;gap:1rem;}
-.bento-main{background:rgba(30,18,12,.7);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:2rem;grid-row:span 1;transition:border-color .3s,box-shadow .3s;}
-.bento-main:hover{border-color:rgba(224,138,90,.15);box-shadow:0 8px 32px rgba(224,138,90,.05);}
-.bento-photo{border-radius:20px;overflow:hidden;grid-row:span 2;min-height:260px;}
-.bento-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:260px;}
-.bento-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
-.bento-tech{background:rgba(20,14,10,.8);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:1.5rem;transition:border-color .3s;}
-.bento-tech:hover{border-color:rgba(224,138,90,.12);}
-.bento-stat{background:rgba(20,14,10,.8);border:1px solid rgba(255,255,255,.06);border-radius:20px;padding:1.5rem;display:flex;flex-direction:column;justify-content:center;transition:border-color .3s,transform .3s;}
-.bento-stat:hover{border-color:rgba(224,138,90,.2);transform:translateY(-2px);}
-.bento-co-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.3rem;}
-.bento-co-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
-.bento-title{font-size:1.25rem;font-weight:600;color:#e08a5a;}
-.bento-subtitle{font-size:.78rem;color:rgba(232,224,212,.4);font-family:'Courier New',monospace;margin-bottom:1rem;}
-.bento-desc{font-size:.84rem;line-height:1.8;color:rgba(232,224,212,.6);}
-.bento-desc b{color:#e08a5a;font-weight:500;}
-.tech-icons{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:.3rem;}
-.tech-icon{width:42px;height:42px;border-radius:50%;background:rgba(40,35,30,.9);border:1px solid rgba(255,255,255,.07);display:flex;align-items:center;justify-content:center;font-size:1.1rem;transition:transform .2s,background .2s;cursor:default;}
-.tech-icon:hover{transform:scale(1.18) translateY(-2px);background:rgba(60,50,40,.9);}
-.stat-big{font-size:2.8rem;font-weight:700;color:#e8e0d4;line-height:1;}
-.stat-label-txt{font-size:.8rem;color:rgba(232,224,212,.45);margin-top:.4rem;font-weight:400;}
+/* ══════════════════════
+   EXPERIENCE — refined
+══════════════════════ */
+#experience{background:#000;}
+.exp-wrap{max-width:1100px;margin:0 auto;padding:4.5rem 4vw 4rem;}
+.exp-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:3rem;}
 
-#contact{background:#000;padding:7rem 4vw 4rem;display:flex;flex-direction:column;}
+.exp-entry{
+  display:grid;
+  grid-template-rows:auto auto;
+  grid-template-columns:1fr 1fr;
+  gap:.85rem;
+  margin-bottom:3rem;
+  padding-bottom:3rem;
+  border-bottom:1px solid rgba(255,255,255,.055);
+}
+.exp-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+
+/* info card */
+.exp-info{
+  background:rgba(16,11,7,.95);
+  border:1px solid rgba(255,255,255,.065);
+  border-radius:16px;
+  padding:1.7rem;
+  transition:border-color .5s ease;
+}
+.exp-info:hover{border-color:rgba(224,138,90,.1);}
+.exp-eyebrow{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#e08a5a;margin-bottom:.9rem;display:flex;align-items:center;gap:.55rem;}
+.exp-eyebrow::before{content:'';width:14px;height:1px;background:#e08a5a;flex-shrink:0;}
+.exp-role-title{font-size:1.18rem;font-weight:600;color:#e8e0d4;margin-bottom:.2rem;line-height:1.2;}
+.exp-subtitle{font-size:.72rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;margin-bottom:1rem;letter-spacing:.04em;}
+.exp-desc{font-size:.82rem;line-height:1.84;color:rgba(232,224,212,.56);}
+.exp-desc b{color:#dba96a;font-weight:500;}
+
+/* photo cards — slow zoom only */
+.exp-photo,.exp-photo2{
+  border-radius:16px;overflow:hidden;
+  position:relative;background:#0c0c0c;
+}
+.exp-photo img,.exp-photo2 img{
+  width:100%;height:100%;
+  object-fit:cover;object-position:center;
+  display:block;
+  transition:transform .85s cubic-bezier(.2,.55,0,1),filter .7s ease;
+  filter:brightness(.82) saturate(.9);
+  min-height:200px;
+}
+.exp-photo:hover img,.exp-photo2:hover img{
+  transform:scale(1.05);
+  filter:brightness(.95) saturate(1.0);
+}
+
+/* stat chip overlay on photos */
+.stat-chip{
+  position:absolute;bottom:.9rem;left:.9rem;
+  background:rgba(8,6,4,.8);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:9px;
+  padding:.45rem .8rem;
+  backdrop-filter:blur(14px);
+}
+.stat-chip-num{font-size:1.25rem;font-weight:700;color:#e8e0d4;line-height:1;}
+.stat-chip-lbl{font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(232,224,212,.38);margin-top:.1rem;}
+
+/* bottom row: tech names + photo2 */
+.exp-bottom{
+  grid-column:1/-1;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:.85rem;
+}
+
+/* floating tech name tags */
+.exp-tech{
+  background:rgba(16,11,7,.95);
+  border:1px solid rgba(255,255,255,.065);
+  border-radius:16px;
+  padding:1.5rem 1.7rem;
+  display:flex;flex-direction:column;justify-content:center;
+  transition:border-color .5s ease;
+}
+.exp-tech:hover{border-color:rgba(224,138,90,.08);}
+.exp-tech-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:1rem;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:.4rem .85rem;align-items:center;}
+.exp-tag{
+  font-size:.83rem;font-weight:300;
+  color:rgba(232,224,212,.5);
+  position:relative;
+  transition:color .35s ease;
+  cursor:default;
+  white-space:nowrap;
+  padding:.1rem 0;
+}
+.exp-tag::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;
+  height:1px;background:rgba(224,138,90,.5);
+  transform:scaleX(0);transform-origin:left;
+  transition:transform .4s ease;
+}
+.exp-tag:hover{color:#e8e0d4;}
+.exp-tag:hover::after{transform:scaleX(1);}
+
+/* CONTACT */
+#contact{background:#000;}
 .contact-inner{max-width:600px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 2vw;}
-.contact-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:2.5rem;border:1px solid rgba(255,255,255,.1);transition:transform .3s,box-shadow .3s;}
-.contact-avatar:hover{transform:scale(1.06);box-shadow:0 0 24px rgba(224,138,90,.2);}
+.contact-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:2.5rem;border:1px solid rgba(255,255,255,.1);transition:transform .45s ease,box-shadow .45s ease;}
+.contact-avatar:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(224,138,90,.16);}
 .contact-text{font-size:.95rem;line-height:1.8;color:rgba(232,224,212,.5);max-width:480px;margin-bottom:2.5rem;}
 .contact-icons{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;justify-content:center;}
-.cicon-btn{display:flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:.6rem 1.3rem;text-decoration:none;color:#e8e0d4;font-size:.85rem;font-weight:400;transition:background .2s,transform .2s,border-color .2s,box-shadow .2s;cursor:none;}
-.cicon-btn:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);border-color:rgba(224,138,90,.25);box-shadow:0 6px 20px rgba(0,0,0,.3);}
+.cicon-btn{display:flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:.6rem 1.3rem;text-decoration:none;color:#e8e0d4;font-size:.85rem;font-weight:400;transition:background .25s,transform .3s,border-color .25s;cursor:none;}
+.cicon-btn:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);border-color:rgba(224,138,90,.18);}
 .cicon-btn svg{width:18px;height:18px;flex-shrink:0;}
 .contact-divider{width:100%;height:1px;background:rgba(255,255,255,.07);margin:3rem 0 1.5rem;}
 footer{display:flex;justify-content:space-between;align-items:center;padding:0 4vw 1.5rem;max-width:1100px;margin:0 auto;width:100%;}
-footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
+footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
 
-.reveal-item{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
-.reveal-item.revealed{opacity:1;transform:none;}
-@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
 .fade-in{animation:fadeUp .6s ease forwards;}
 .fade-in-d1{animation:fadeUp .6s .1s ease both;}
 .fade-in-d2{animation:fadeUp .6s .2s ease both;}
 .fade-in-d3{animation:fadeUp .6s .3s ease both;}
 .fade-in-d4{animation:fadeUp .6s .4s ease both;}
 
-@media(max-width:780px){
+@media(max-width:820px){
   .nav-pill{min-width:unset;width:92vw;}
   .home-inner{flex-direction:column-reverse;gap:2rem;padding-top:5rem;}
   .hero-img{width:100%;height:260px;}
-  .bento{grid-template-columns:1fr;}
-  .bento-photo{display:none;}
-  .bento-row2{grid-template-columns:1fr;}
+  .exp-entry{grid-template-columns:1fr;}
+  .exp-bottom{grid-template-columns:1fr;}
   .pcard{width:250px;}
   footer{flex-direction:column;gap:.5rem;text-align:center;}
 }
@@ -278,7 +257,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
 
 <!-- PROJECTS -->
 <section class="sect" id="projects">
-  <div class="sect-inner" style="padding:7rem 4vw 4rem;min-height:100vh;">
+  <div class="sect-inner" style="padding:5rem 4vw 3rem;min-height:100vh;">
     <div class="sec-head reveal-item">
       <h1>Featured Projects</h1>
       <p>I build things to solve real problems — not just for show. I care about shipping projects that do something and have an impact on those who use them.</p>
@@ -287,83 +266,51 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
       <div class="proj-cards-row">
 
         <div class="pcard pcard-1 reveal-item">
-          <a href="https://notesphere-kohl.vercel.app" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="notesphere.png" alt="Notesphere"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">Notesphere</p>
-            <p class="pcard-desc">Full-stack Notes app with Next.js 14 App Router, MongoDB &amp; JWT auth. Admin approval workflow for public notes.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/fullstack-auth-nextjs" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://notesphere-kohl.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="notesphere.png" alt="Notesphere"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">Notesphere</p><p class="pcard-desc">Full-stack Notes app with Next.js 14 App Router, MongoDB &amp; JWT auth. Admin approval workflow for public notes.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript</p></div>
         </div>
 
         <div class="pcard pcard-2 reveal-item">
-          <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="saass.png" alt="SaaS Platform"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">SaaS Platform</p>
-            <p class="pcard-desc">AI-powered SaaS with Next.js, Prisma &amp; NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript · Prisma</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/saas-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="saass.png" alt="SaaS Platform"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">SaaS Platform</p><p class="pcard-desc">AI-powered SaaS with Next.js, Prisma &amp; NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript · Prisma</p></div>
         </div>
 
         <div class="pcard pcard-3 reveal-item">
           <a href="https://github.com/kajalsanwalll/vibecode-editor" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="vibecode.png" alt="vibecode-editor"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">vibecode-editor</p>
-            <p class="pcard-desc">Browser-based code editor with file explorer &amp; live playground. Next.js + Appwrite + Zustand.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · TypeScript</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/vibecode-editor" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="vibecode.png" alt="vibecode-editor"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">vibecode-editor</p><p class="pcard-desc">Browser-based code editor with file explorer &amp; live playground. Next.js + Appwrite + Zustand.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · TypeScript</p></div>
         </div>
 
         <div class="pcard pcard-4 reveal-item">
           <a href="https://github.com/kajalsanwalll/backend-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="backend.png" alt="backend-project"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">backend-project</p>
-            <p class="pcard-desc">RESTful API for collaborative project management — tasks, subtasks, notes, team coordination.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · JavaScript · Node.js</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/backend-project" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="backend.png" alt="backend-project"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">backend-project</p><p class="pcard-desc">RESTful API for collaborative project management — tasks, subtasks, notes, team coordination.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · JavaScript · Node.js</p></div>
         </div>
 
         <div class="pcard pcard-5 reveal-item">
           <a href="https://github.com/kajalsanwalll/stackoverflow-appwrite" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="so.png" alt="SO Clone"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">SO Clone</p>
-            <p class="pcard-desc">Full-stack Stack Overflow clone — auth, Q&amp;A, voting, Zustand state management, Appwrite backend.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · TypeScript</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/stackoverflow-appwrite" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="so.png" alt="SO Clone"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">SO Clone</p><p class="pcard-desc">Full-stack Stack Overflow clone — auth, Q&amp;A, voting, Zustand state management, Appwrite backend.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · TypeScript</p></div>
         </div>
 
         <div class="pcard pcard-6 reveal-item">
-          <a href="https://fastify-thumbnailing.vercel.app" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="thumbnail.png"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">fastify-thumbnailing</p>
-            <p class="pcard-desc">High-performance Fastify backend — plugin architecture, auth, file handling with Node.js streams.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · JavaScript · Fastify</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/fastify-thumbnailing" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://fastify-thumbnailing.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="thumbnail.png" alt="fastify-thumbnailing"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">fastify-thumbnailing</p><p class="pcard-desc">High-performance Fastify backend — plugin architecture, auth, file handling with Node.js streams.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · JavaScript · Fastify</p></div>
         </div>
 
         <div class="pcard pcard-7 reveal-item">
-          <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="dashboard.png" alt="My Dashboard"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">My Dashboard</p>
-            <p class="pcard-desc">Personal dashboard app demonstrating full-stack capability and clean UI design in a real-world context.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · JavaScript</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/my-dashboard" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="dashboard.png" alt="My Dashboard"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">My Dashboard</p><p class="pcard-desc">Personal dashboard app demonstrating full-stack capability and clean UI design in a real-world context.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · JavaScript</p></div>
         </div>
 
         <div class="pcard pcard-8 reveal-item">
-          <a href="https://birthday-pcciuuw6n-kajal-sanwals-projects.vercel.app" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <div class="pcard-img-wrap"><img src="bday.png" alt="Birthday Surprise"/></div>
-          <div class="pcard-body">
-            <p class="pcard-name">Birthday Surprise</p>
-            <p class="pcard-desc">Delightful interactive birthday experience showcasing creative front-end work and interactive design.</p>
-            <p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · HTML/CSS/JS</p>
-          </div>
+          <a href="https://github.com/kajalsanwalll/bday" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://birthday-pcciuuw6n-kajal-sanwals-projects.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="bday.png" alt="Birthday Surprise"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">Birthday Surprise</p><p class="pcard-desc">Delightful interactive birthday experience showcasing creative front-end work and interactive design.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · HTML/CSS/JS</p></div>
         </div>
 
       </div>
@@ -375,63 +322,94 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
 
 <!-- EXPERIENCE -->
 <section class="sect" id="experience">
-  <div class="sect-inner" style="padding:7rem 4vw 4rem;min-height:100vh;overflow-y:auto;">
-    <div class="exp-page-wrap">
+  <div class="sect-inner">
+    <div class="exp-wrap">
       <h1 class="exp-page-title reveal-item">Experience</h1>
-      <div class="exp-block reveal-item">
-        <div class="exp-block-label">BluArmor · Aug – Oct 2025</div>
-        <div class="bento">
-          <div class="bento-main">
-            <div class="bento-co-row"><div class="bento-co-icon">🔵</div><div><p class="bento-title">Project Intern</p></div></div>
-            <p class="bento-subtitle">Instrumentation Team</p>
-            <p class="bento-desc">Designed <b>automated RF/Bluetooth characterisation systems</b> using STM32 firmware, relay matrices, and ADC acquisition, reducing manual testing time by <b>15%</b>. Built Python-based calibration workflows improving measurement accuracy by <b>33%</b>. Developed GUI tools for RSSI testing, scaling throughput to <b>500 devices/day</b>. Improved RSSI stability by <b>55%</b> using RF shielding and EMA filtering. Automated headset pairing on Raspberry Pi 5 and nRF52840.</p>
-          </div>
-          <div class="bento-photo" style="background:linear-gradient(135deg,#1a1020,#2d1025);">
-            <div style="width:100%;height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;opacity:.5;">
-              <img src="/bluarmor.jpeg" alt="bluarmor" style="max-width:80%;max-height:160px;object-fit:contain;border-radius:12px;"/>
-              <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#e08a5a;">BluArmor</span>
-            </div>
-          </div>
-          <div class="bento-row2" style="grid-column:1;">
-            <div class="bento-tech">
-              <p style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,212,.35);margin-bottom:1rem;">Tech Used</p>
-              <div class="tech-icons">
-                <div class="tech-icon" title="Python">🐍</div><div class="tech-icon" title="STM32">🔧</div>
-                <div class="tech-icon" title="Raspberry Pi">🍓</div><div class="tech-icon" title="Bluetooth">📶</div>
-                <div class="tech-icon" title="RF">📡</div><div class="tech-icon" title="GUI">🖥️</div>
-                <div class="tech-icon" title="nRF52840">⚡</div>
-              </div>
-            </div>
-            <div class="bento-stat"><p class="stat-big">500+</p><p class="stat-label-txt">Devices Tested / Day</p></div>
+
+      <!-- BluArmor -->
+      <div class="exp-entry reveal-item">
+
+        <div class="exp-info">
+          <p class="exp-eyebrow">Aug – Oct 2025 · Pre-Placement Offer</p>
+          <p class="exp-role-title">Project Intern</p>
+          <p class="exp-subtitle">BluArmor — Instrumentation Team</p>
+          <p class="exp-desc">Designed <b>automated RF/Bluetooth characterisation systems</b> using STM32 firmware, relay matrices, and ADC acquisition, reducing manual testing time by <b>15%</b>. Built Python-based calibration workflows improving measurement accuracy by <b>33%</b>. Developed GUI tools for RSSI testing, scaling throughput to <b>500 devices/day</b>. Improved RSSI stability by <b>55%</b> using RF shielding and EMA filtering. Automated headset pairing on Raspberry Pi 5 and nRF52840.</p>
+        </div>
+
+        <div class="exp-photo">
+          <img src="/bluarmor.jpeg" alt="BluArmor internship"/>
+          <div class="stat-chip">
+            <div class="stat-chip-num">500+</div>
+            <div class="stat-chip-lbl">Devices / Day</div>
           </div>
         </div>
+
+        <div class="exp-bottom">
+          <div class="exp-tech">
+            <p class="exp-tech-label">Tech Used</p>
+            <div class="exp-tags">
+              <span class="exp-tag">Python</span>
+              <span class="exp-tag">STM32</span>
+              <span class="exp-tag">Raspberry Pi 5</span>
+              <span class="exp-tag">nRF52840</span>
+              <span class="exp-tag">Bluetooth / RF</span>
+              <span class="exp-tag">ADC Acquisition</span>
+              <span class="exp-tag">Relay Matrix</span>
+              <span class="exp-tag">Tkinter GUI</span>
+              <span class="exp-tag">EMA Filtering</span>
+            </div>
+          </div>
+          <div class="exp-photo2">
+            <img src="/blu.jpeg" alt="BluArmor lab work"/>
+            <div class="stat-chip">
+              <div class="stat-chip-num">↑55%</div>
+              <div class="stat-chip-lbl">RSSI Stability</div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <div class="exp-block reveal-item">
-        <div class="exp-block-label">IIT Madras · Ongoing</div>
-        <div class="bento">
-          <div class="bento-main">
-            <div class="bento-co-row"><div class="bento-co-icon">🎓</div><div><p class="bento-title">Teaching Assistant</p></div></div>
-            <p class="bento-subtitle">Embedded C &amp; Electronic Systems Labs</p>
-            <p class="bento-desc">Mentored <b>60+ students</b> in embedded C programming, microcontroller debugging, and low-level memory optimisation. Guided hands-on circuit design and system-level troubleshooting, improving lab performance and debugging efficiency across batches.</p>
-          </div>
-          <div class="bento-photo" style="background:linear-gradient(135deg,#0a1820,#0d2535);">
-            <div style="width:100%;height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;opacity:.5;">
-              <img src="/ta.png" alt="IIT Madras TA" style="max-width:80%;max-height:160px;object-fit:contain;border-radius:12px;"/>
-              <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#7abf9e;">IIT Madras</span>
-            </div>
-          </div>
-          <div class="bento-row2" style="grid-column:1;">
-            <div class="bento-tech">
-              <p style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,212,.35);margin-bottom:1rem;">Subjects Covered</p>
-              <div class="tech-icons">
-                <div class="tech-icon" title="Embedded C">💾</div><div class="tech-icon" title="Microcontrollers">🤖</div>
-                <div class="tech-icon" title="Circuits">⚡</div><div class="tech-icon" title="Debugging">🔍</div>
-                <div class="tech-icon" title="Hardware">🔩</div>
-              </div>
-            </div>
-            <div class="bento-stat"><p class="stat-big">60+</p><p class="stat-label-txt">Students Mentored</p></div>
+
+      <!-- IIT Madras -->
+      <div class="exp-entry reveal-item">
+
+        <div class="exp-info">
+          <p class="exp-eyebrow">Ongoing · IIT Madras</p>
+          <p class="exp-role-title">Teaching Assistant</p>
+          <p class="exp-subtitle">Embedded C &amp; Electronic Systems Labs</p>
+          <p class="exp-desc">Mentored <b>60+ students</b> in embedded C programming, microcontroller debugging, and low-level memory optimisation. Guided hands-on circuit design and system-level troubleshooting, improving lab performance and debugging efficiency across batches.</p>
+        </div>
+
+        <div class="exp-photo">
+          <img src="/ta.png" alt="IIT Madras teaching"/>
+          <div class="stat-chip">
+            <div class="stat-chip-num">60+</div>
+            <div class="stat-chip-lbl">Students Mentored</div>
           </div>
         </div>
+
+        <div class="exp-bottom">
+          <div class="exp-tech">
+            <p class="exp-tech-label">Subjects Covered</p>
+            <div class="exp-tags">
+              <span class="exp-tag">Embedded C</span>
+              <span class="exp-tag">Microcontrollers</span>
+              <span class="exp-tag">Circuit Design</span>
+              <span class="exp-tag">Memory Optimisation</span>
+              <span class="exp-tag">Debugging</span>
+              <span class="exp-tag">Hardware Systems</span>
+              <span class="exp-tag">Electronic Systems</span>
+            </div>
+          </div>
+          <div class="exp-photo2">
+            <img src="/ta2.png" alt="IIT Madras campus"/>
+            <div class="stat-chip">
+              <div class="stat-chip-num">8.32</div>
+              <div class="stat-chip-lbl">GPA / 10</div>
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -439,7 +417,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
 
 <!-- CONTACT -->
 <section class="sect" id="contact">
-  <div class="sect-inner" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 4vw 2rem;">
+  <div class="sect-inner" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:5rem 4vw 2rem;">
     <div class="contact-inner">
       <img src="/photo.jpeg" alt="Kajal Sanwal" class="contact-avatar reveal-item"/>
       <p class="contact-text reveal-item">Follow me on LinkedIn and GitHub to stay updated with my latest work, projects, and posts — feel free to reach out via email for collaboration or inquiries.</p>
@@ -451,7 +429,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
       </div>
       <div class="contact-divider"></div>
     </div>
-    <footer><p>© 2026 Kajal Sanwal</p><span style="font-size:1.1rem;opacity:.3;">✦</span></footer>
+    <footer><p>© 2026 Kajal Sanwal</p><span style="font-size:1.1rem;opacity:.2;">✦</span></footer>
   </div>
 </section>
 
@@ -460,19 +438,56 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
 <script>
 function tick(){const now=new Date();let h=now.getHours(),m=now.getMinutes(),ap=h>=12?'PM':'AM';h=h%12||12;document.getElementById('navtime').textContent=h+':'+(m<10?'0'+m:m)+' '+ap+' IST';}
 tick();setInterval(tick,10000);
+
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
 (function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
-document.querySelectorAll('a,button').forEach(el=>{el.addEventListener('mouseenter',()=>{dot.style.width='14px';dot.style.height='14px';ring.style.width='40px';ring.style.height='40px';});el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';ring.style.width='30px';ring.style.height='30px';});});
-const sects=document.querySelectorAll('.sect');
-const sectObs=new IntersectionObserver((entries)=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in-view');const id=e.target.id;document.querySelectorAll('.nav-right a').forEach(a=>{a.classList.toggle('active',a.dataset.target===id);});e.target.querySelectorAll('.reveal-item').forEach((el,i)=>{setTimeout(()=>el.classList.add('revealed'),i*80);});}});},{threshold:0.25});
-sects.forEach(s=>sectObs.observe(s));
-document.querySelectorAll('.nav-right a').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const id=a.dataset.target;const target=document.getElementById(id);if(target)target.scrollIntoView({behavior:'smooth'});});});
-document.querySelector('.connect-link').addEventListener('click',e=>{e.preventDefault();document.getElementById('contact').scrollIntoView({behavior:'smooth'});});
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{dot.style.width='13px';dot.style.height='13px';ring.style.width='38px';ring.style.height='38px';});
+  el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';ring.style.width='30px';ring.style.height='30px';});
+});
+
+const sectObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+      const id=e.target.id;
+      document.querySelectorAll('.nav-right a').forEach(a=>a.classList.toggle('active',a.dataset.target===id));
+      e.target.querySelectorAll('.reveal-item').forEach((el,i)=>setTimeout(()=>el.classList.add('revealed'),i*90));
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.sect').forEach(s=>sectObs.observe(s));
+
+document.querySelectorAll('.nav-right a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.getElementById(a.dataset.target)?.scrollIntoView({behavior:'smooth'});
+  });
+});
+document.querySelector('.connect-link').addEventListener('click',e=>{
+  e.preventDefault();
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+});
+
 const sw=document.querySelector('.proj-scroll-wrap');
-if(sw){sw.addEventListener('scroll',()=>{const pct=sw.scrollLeft/(sw.scrollWidth-sw.clientWidth);document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('active',Math.round(pct*2)===i));});}
-document.querySelectorAll('.pcard').forEach(card=>{card.addEventListener('mousemove',e=>{const r=card.getBoundingClientRect();const x=(e.clientX-r.left)/r.width-0.5;const y=(e.clientY-r.top)/r.height-0.5;card.style.setProperty('--rx',(-y*9)+'deg');card.style.setProperty('--ry',(x*9)+'deg');});card.addEventListener('mouseleave',()=>{card.style.setProperty('--rx','0deg');card.style.setProperty('--ry','0deg');});});
+if(sw){sw.addEventListener('scroll',()=>{
+  const pct=sw.scrollLeft/(sw.scrollWidth-sw.clientWidth);
+  document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('active',Math.round(pct*2)===i));
+});}
+
+document.querySelectorAll('.pcard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--rx',(-(e.clientY-r.top)/r.height-.5)*5+'deg');
+    card.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*5+'deg');
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.setProperty('--rx','0deg');
+    card.style.setProperty('--ry','0deg');
+  });
+});
 </script>
 </body>
 </html>
