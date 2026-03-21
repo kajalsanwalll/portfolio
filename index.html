@@ -18,95 +18,96 @@ body{
   -webkit-font-smoothing:antialiased;
 }
 
-/* cursor */
-#cdot{position:fixed;pointer-events:none;z-index:9999;width:8px;height:8px;background:#e08a5a;border-radius:50%;transform:translate(-50%,-50%);transition:width .15s,height .15s;}
+/* ── CURSOR ── */
+#cdot{position:fixed;pointer-events:none;z-index:9999;width:8px;height:8px;background:#e08a5a;border-radius:50%;transform:translate(-50%,-50%);transition:width .15s,height .15s,opacity .2s;}
 #cring{position:fixed;pointer-events:none;z-index:9998;width:30px;height:30px;border:1px solid rgba(224,138,90,.35);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
 
 /* ── NAV ── */
 nav{
   position:fixed;top:0;left:0;right:0;z-index:500;
   display:flex;justify-content:center;padding:1.2rem 0;
+  pointer-events:none;
 }
 .nav-pill{
-  display:flex;align-items:center;gap:0;
-  background:rgba(20,14,10,.85);
-  border:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;
+  background:rgba(20,14,10,.88);
+  border:1px solid rgba(255,255,255,.08);
   border-radius:999px;
-  backdrop-filter:blur(20px);
+  backdrop-filter:blur(24px);
   padding:.55rem 1.4rem;
   min-width:640px;
   justify-content:space-between;
+  pointer-events:all;
+  transition:box-shadow .3s;
 }
-.nav-time{
-  display:flex;align-items:center;gap:.5rem;
-  font-size:.8rem;color:rgba(232,224,212,.5);
-  font-weight:400;
-}
+.nav-pill:hover{box-shadow:0 4px 40px rgba(224,138,90,.08);}
+.nav-time{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(232,224,212,.5);font-weight:400;}
 .nav-right{display:flex;gap:.3rem;}
 .nav-right a{
   padding:.4rem .9rem;border-radius:999px;
   font-size:.82rem;color:rgba(232,224,212,.55);
   text-decoration:none;font-weight:400;
   transition:color .2s,background .2s;
+  cursor:none;
 }
-.nav-right a:hover{color:#e8e0d4;}
+.nav-right a:hover{color:#e8e0d4;background:rgba(255,255,255,.05);}
 .nav-right a.active{color:#e08a5a;font-weight:500;}
 
+/* ── SCROLL CONTAINER ── */
+#scroll-root{
+  /* each .sect is 100vh, scroll snaps */
+  height:100vh;
+  overflow-y:scroll;
+  scroll-snap-type:y mandatory;
+  scrollbar-width:none;
+}
+#scroll-root::-webkit-scrollbar{display:none;}
+
 /* ── SECTIONS ── */
-section{position:relative;z-index:1;}
-.page{min-height:100vh;display:none;padding:7rem 4vw 4rem;}
-.page.active{display:block;}
+.sect{
+  min-height:100vh;
+  scroll-snap-align:start;
+  scroll-snap-stop:always;
+  position:relative;
+  overflow:hidden;
+}
+
+/* entry animation */
+.sect-inner{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .65s ease,transform .65s ease;
+}
+.sect.in-view .sect-inner{opacity:1;transform:none;}
 
 /* ── HOME ── */
-#home{
-  display:none;
-  background:#000;
-  position:relative;overflow:hidden;
-}
-#home.active{display:block;}
-
-/* map grid bg */
+#home{background:#000;}
 .map-bg{
   position:absolute;inset:0;z-index:0;
   background-image:
-    linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-  background-size:48px 48px;
-  opacity:.6;
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:48px 48px;opacity:.7;
 }
-/* faint city-like thicker lines */
 .map-bg::after{
   content:'';position:absolute;inset:0;
   background-image:
-    linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(255,255,255,.06) 1px,transparent 1px);
+    linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);
   background-size:192px 192px;
 }
-
 .home-inner{
   position:relative;z-index:2;
   max-width:1100px;margin:0 auto;
-  padding:0 2vw;
-  min-height:calc(100vh - 7rem);
-  display:flex;align-items:center;
+  padding:7rem 4vw 4rem;
+  min-height:100vh;
+  display:flex;align-items:center;gap:5rem;
 }
-.home-left{flex:1;padding-right:3rem;}
+.home-left{flex:1;}
 .sparkle{font-size:2.8rem;display:block;margin-bottom:1.2rem;line-height:1;}
-.home-name{
-  font-size:clamp(2.8rem,5vw,4.2rem);
-  font-weight:600;color:#e08a5a;
-  line-height:1.05;margin-bottom:.5rem;letter-spacing:-.01em;
-}
-.home-role{
-  font-size:1rem;color:rgba(232,224,212,.45);
-  margin-bottom:2rem;font-weight:300;
-}
-.home-para{
-  font-size:.95rem;line-height:1.85;color:rgba(232,224,212,.65);
-  margin-bottom:1.2rem;max-width:520px;
-}
+.home-name{font-size:clamp(2.8rem,5vw,4.2rem);font-weight:600;color:#e08a5a;line-height:1.05;margin-bottom:.5rem;letter-spacing:-.01em;}
+.home-role{font-size:1rem;color:rgba(232,224,212,.45);margin-bottom:2rem;font-weight:300;}
+.home-para{font-size:.95rem;line-height:1.85;color:rgba(232,224,212,.65);margin-bottom:1.2rem;max-width:650px;}
 .home-para b{color:#e8e0d4;font-weight:500;}
-.home-para a{color:#e08a5a;text-decoration:none;}
 .connect-link{
   display:inline-flex;align-items:center;gap:.4rem;
   color:rgba(232,224,212,.45);font-size:.88rem;
@@ -114,46 +115,66 @@ section{position:relative;z-index:1;}
   transition:color .2s;cursor:none;
 }
 .connect-link:hover{color:#e08a5a;}
-
 .home-right{flex-shrink:0;}
 .hero-img{
-  width:300px;height:380px;
-  border-radius:20px;
-  object-fit:cover;object-position:center top;
-  display:block;
+  width:300px;height:380px;border-radius:20px;
+  object-fit:cover;object-position:center top;display:block;
   border:1px solid rgba(255,255,255,.08);
+  transition:transform .4s ease,box-shadow .4s ease;
 }
+.hero-img:hover{transform:scale(1.025) translateY(-4px);box-shadow:0 24px 60px rgba(224,138,90,.15);}
+
+/* scroll hint arrow */
+.scroll-hint{
+  position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);
+  display:flex;flex-direction:column;align-items:center;gap:.4rem;
+  color:rgba(232,224,212,.2);font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;
+  animation:bob 2.2s ease-in-out infinite;
+}
+.scroll-hint svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2;}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(5px);}}
 
 /* ── PROJECTS ── */
-#projects{background:#000;display:none;}
-#projects.active{display:block;}
-.proj-header{max-width:1100px;margin:0 auto;padding:0 2vw;margin-bottom:2.5rem;}
-.proj-header h1{font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#e08a5a;margin-bottom:.8rem;}
-.proj-header p{font-size:.92rem;color:rgba(232,224,212,.5);line-height:1.7;max-width:760px;}
+#projects{background:#000;padding:7rem 4vw 4rem;}
+.sec-head{max-width:1100px;margin:0 auto 2.5rem;}
+.sec-head h1{font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#e08a5a;margin-bottom:.8rem;}
+.sec-head p{font-size:.92rem;color:rgba(232,224,212,.5);line-height:1.7;max-width:760px;}
 
-.proj-scroll-wrap{
-  max-width:1100px;margin:0 auto;padding:0 2vw;
-  overflow-x:auto;
-  scrollbar-width:none;
-}
+.proj-scroll-wrap{max-width:1100px;margin:0 auto;padding:0;overflow-x:auto;scrollbar-width:none;}
 .proj-scroll-wrap::-webkit-scrollbar{display:none;}
-.proj-cards-row{
-  display:flex;gap:1.2rem;
-  width:max-content;
-  padding-bottom:1.5rem;
-}
+.proj-cards-row{display:flex;gap:1.2rem;width:max-content;padding-bottom:1.5rem;}
 
+/* ── PROJECT CARD with shine + lift ── */
 .pcard{
-  width:290px;flex-shrink:0;
-  border-radius:20px;
+  width:290px;flex-shrink:0;border-radius:20px;
   padding:1.8rem 1.5rem 1.5rem;
   display:flex;flex-direction:column;
-  position:relative;
+  position:relative;overflow:hidden;
   cursor:none;
-  transition:transform .25s ease;
   border:1px solid rgba(255,255,255,.07);
+  transition:transform .3s cubic-bezier(.22,.68,0,1.2),
+             box-shadow .3s ease,
+             border-color .3s ease;
+  /* tilt vars */
+  --rx:0deg; --ry:0deg;
+  transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);
 }
-.pcard:hover{transform:translateY(-4px);}
+.pcard::before{
+  /* shine sweep */
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(115deg,transparent 30%,rgba(255,255,255,.09) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform .5s ease;
+  z-index:1;pointer-events:none;border-radius:20px;
+}
+.pcard:hover::before{transform:translateX(100%);}
+.pcard:hover{
+  transform:perspective(900px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(14px) translateY(-6px);
+  box-shadow:0 24px 60px rgba(0,0,0,.7),0 0 0 1px rgba(224,138,90,.18),0 0 30px rgba(224,138,90,.07);
+  border-color:rgba(224,138,90,.25);
+}
+
 .pcard-1{background:linear-gradient(145deg,#1a1020 0%,#2d1a2e 100%);}
 .pcard-2{background:linear-gradient(145deg,#0e1530 0%,#1e2550 100%);}
 .pcard-3{background:linear-gradient(145deg,#0a2018 0%,#0d3526 100%);}
@@ -164,215 +185,127 @@ section{position:relative;z-index:1;}
 .pcard-8{background:linear-gradient(145deg,#1a1530 0%,#2a2045 100%);}
 
 .pcard-gh{
-  position:absolute;top:1.1rem;right:1.1rem;
+  position:absolute;top:1.1rem;right:1.1rem;z-index:2;
   width:28px;height:28px;border-radius:50%;
   background:rgba(255,255,255,.08);
   display:flex;align-items:center;justify-content:center;
-  text-decoration:none;transition:background .2s;
+  text-decoration:none;transition:background .2s,transform .2s;cursor:none;
 }
-.pcard-gh:hover{background:rgba(255,255,255,.18);}
+.pcard-gh:hover{background:rgba(255,255,255,.22);transform:scale(1.15);}
 .pcard-gh svg{width:14px;height:14px;fill:#e8e0d4;opacity:.7;}
-
 .pcard-icon{
-  width:68px;height:68px;margin-bottom:1.4rem;
-  border-radius:16px;
+  width:68px;height:68px;margin-bottom:1.4rem;border-radius:16px;
   display:flex;align-items:center;justify-content:center;
-  font-size:2rem;
-  background:rgba(255,255,255,.06);
+  font-size:2rem;background:rgba(255,255,255,.06);
+  transition:transform .3s ease;position:relative;z-index:2;
 }
-.pcard-name{
-  font-size:1.05rem;font-weight:600;color:#e08a5a;
-  margin-bottom:.6rem;line-height:1.2;
-}
-.pcard-desc{
-  font-size:.8rem;line-height:1.7;color:rgba(232,224,212,.55);
-  flex:1;
-}
-.pcard-meta{
-  margin-top:1rem;
-  font-size:.75rem;color:rgba(232,224,212,.35);
-  display:flex;align-items:center;gap:.4rem;
-}
+.pcard:hover .pcard-icon{transform:scale(1.08) translateY(-2px);}
+.pcard-name{font-size:1.05rem;font-weight:600;color:#e08a5a;margin-bottom:.6rem;line-height:1.2;position:relative;z-index:2;transition:color .2s;}
+.pcard:hover .pcard-name{color:#f4aa7a;}
+.pcard-desc{font-size:.8rem;line-height:1.7;color:rgba(232,224,212,.55);flex:1;position:relative;z-index:2;}
+.pcard-meta{margin-top:1rem;font-size:.75rem;color:rgba(232,224,212,.35);display:flex;align-items:center;gap:.4rem;position:relative;z-index:2;}
 
-.see-all{
-  max-width:1100px;margin:1.5rem auto 0;padding:0 2vw;
-  text-align:right;
-}
-.see-all a{
-  font-size:.85rem;color:rgba(232,224,212,.4);
-  text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;
-  transition:color .2s;cursor:none;
-}
+.scroll-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.2rem;max-width:1100px;margin-left:auto;margin-right:auto;}
+.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15);transition:background .3s,transform .3s;}
+.sdot.active{background:#e08a5a;transform:scale(1.3);}
+.see-all{max-width:1100px;margin:1.5rem auto 0;text-align:right;}
+.see-all a{font-size:.85rem;color:rgba(232,224,212,.4);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .2s;cursor:none;}
 .see-all a:hover{color:#e08a5a;}
 
 /* ── EXPERIENCE ── */
-#experience{background:#000;display:none;}
-#experience.active{display:block;}
-.exp-page-wrap{max-width:1100px;margin:0 auto;padding:0 2vw;}
-.exp-page-title{
-  font-size:clamp(2.2rem,4.5vw,3.5rem);
-  font-weight:600;color:#e08a5a;
-  text-align:center;margin-bottom:3.5rem;
-}
-
+#experience{background:#000;padding:7rem 4vw 4rem;}
+.exp-page-wrap{max-width:1100px;margin:0 auto;}
+.exp-page-title{font-size:clamp(2.2rem,4.5vw,3.5rem);font-weight:600;color:#e08a5a;text-align:center;margin-bottom:3.5rem;}
 .exp-block{margin-bottom:4.5rem;}
-.exp-block-label{
-  display:flex;align-items:center;gap:.8rem;
-  font-size:1.05rem;font-weight:600;color:#e8e0d4;
-  margin-bottom:2rem;
-  padding-left:.1rem;
-}
-.exp-block-label::before{
-  content:'';width:4px;height:1.4rem;
-  background:#e08a5a;border-radius:2px;flex-shrink:0;
-}
+.exp-block-label{display:flex;align-items:center;gap:.8rem;font-size:1.05rem;font-weight:600;color:#e8e0d4;margin-bottom:2rem;}
+.exp-block-label::before{content:'';width:4px;height:1.4rem;background:#e08a5a;border-radius:2px;flex-shrink:0;}
 
-/* bento grid */
-.bento{
-  display:grid;
-  grid-template-columns:1fr 380px;
-  grid-template-rows:auto auto;
-  gap:1rem;
-}
+.bento{display:grid;grid-template-columns:1fr 380px;grid-template-rows:auto auto;gap:1rem;}
 .bento-main{
-  background:rgba(30,18,12,.7);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:20px;padding:2rem;
-  grid-row:span 1;
+  background:rgba(30,18,12,.7);border:1px solid rgba(255,255,255,.06);
+  border-radius:20px;padding:2rem;grid-row:span 1;
+  transition:border-color .3s,box-shadow .3s;
 }
-.bento-photo{
-  border-radius:20px;overflow:hidden;
-  grid-row:span 2;
-  min-height:260px;
-}
-.bento-photo img{
-  width:100%;height:100%;
-  object-fit:cover;object-position:center top;
-  display:block;min-height:260px;
-}
-.bento-row2{
-  display:grid;grid-template-columns:1fr 1fr;gap:1rem;
-}
+.bento-main:hover{border-color:rgba(224,138,90,.15);box-shadow:0 8px 32px rgba(224,138,90,.05);}
+.bento-photo{border-radius:20px;overflow:hidden;grid-row:span 2;min-height:260px;}
+.bento-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;min-height:260px;}
+.bento-row2{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
 .bento-tech{
-  background:rgba(20,14,10,.8);
-  border:1px solid rgba(255,255,255,.06);
+  background:rgba(20,14,10,.8);border:1px solid rgba(255,255,255,.06);
   border-radius:20px;padding:1.5rem;
+  transition:border-color .3s;
 }
+.bento-tech:hover{border-color:rgba(224,138,90,.12);}
 .bento-stat{
-  background:rgba(20,14,10,.8);
-  border:1px solid rgba(255,255,255,.06);
+  background:rgba(20,14,10,.8);border:1px solid rgba(255,255,255,.06);
   border-radius:20px;padding:1.5rem;
   display:flex;flex-direction:column;justify-content:center;
+  transition:border-color .3s,transform .3s;
 }
+.bento-stat:hover{border-color:rgba(224,138,90,.2);transform:translateY(-2px);}
 
-.bento-co-row{
-  display:flex;align-items:center;gap:.8rem;margin-bottom:.3rem;
-}
-.bento-co-icon{
-  width:36px;height:36px;border-radius:8px;
-  background:rgba(255,255,255,.08);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.2rem;flex-shrink:0;
-}
+.bento-co-row{display:flex;align-items:center;gap:.8rem;margin-bottom:.3rem;}
+.bento-co-icon{width:36px;height:36px;border-radius:8px;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
 .bento-title{font-size:1.25rem;font-weight:600;color:#e08a5a;}
-.bento-subtitle{font-size:.78rem;color:rgba(232,224,212,.4);font-family:'DM Mono','Courier New',monospace;margin-bottom:1rem;}
+.bento-subtitle{font-size:.78rem;color:rgba(232,224,212,.4);font-family:'Courier New',monospace;margin-bottom:1rem;}
 .bento-desc{font-size:.84rem;line-height:1.8;color:rgba(232,224,212,.6);}
 .bento-desc b{color:#e08a5a;font-weight:500;}
-
-.tech-icons{
-  display:flex;flex-wrap:wrap;gap:.65rem;margin-top:.3rem;
-}
+.tech-icons{display:flex;flex-wrap:wrap;gap:.65rem;margin-top:.3rem;}
 .tech-icon{
   width:42px;height:42px;border-radius:50%;
-  background:rgba(40,35,30,.9);
-  border:1px solid rgba(255,255,255,.07);
-  display:flex;align-items:center;justify-content:center;
-  font-size:1.1rem;
+  background:rgba(40,35,30,.9);border:1px solid rgba(255,255,255,.07);
+  display:flex;align-items:center;justify-content:center;font-size:1.1rem;
+  transition:transform .2s,background .2s;cursor:default;
 }
-
-.stat-big{
-  font-size:2.8rem;font-weight:700;color:#e8e0d4;line-height:1;
-}
-.stat-label-txt{
-  font-size:.8rem;color:rgba(232,224,212,.45);margin-top:.4rem;font-weight:400;
-}
-
-/* IIT block — simpler since no photo */
-.bento-single{
-  background:rgba(30,18,12,.7);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:20px;padding:2rem;
-}
+.tech-icon:hover{transform:scale(1.18) translateY(-2px);background:rgba(60,50,40,.9);}
+.stat-big{font-size:2.8rem;font-weight:700;color:#e8e0d4;line-height:1;}
+.stat-label-txt{font-size:.8rem;color:rgba(232,224,212,.45);margin-top:.4rem;font-weight:400;}
 
 /* ── CONTACT ── */
-#contact{background:#000;display:none;}
-#contact.active{display:block;}
-.contact-inner{
-  max-width:600px;margin:0 auto;
-  display:flex;flex-direction:column;align-items:center;
-  text-align:center;
-  padding:4rem 2vw 2rem;
-}
-.contact-avatar{
-  width:80px;height:80px;border-radius:50%;
-  object-fit:cover;object-position:center top;
-  margin-bottom:2.5rem;
-  border:1px solid rgba(255,255,255,.1);
-}
-.contact-text{
-  font-size:.95rem;line-height:1.8;color:rgba(232,224,212,.5);
-  max-width:480px;margin-bottom:2.5rem;
-}
-.contact-icons{
-  display:flex;gap:1.5rem;align-items:center;
-  flex-wrap:wrap;justify-content:center;
-}
+#contact{background:#000;padding:7rem 4vw 4rem;display:flex;flex-direction:column;}
+.contact-inner{max-width:600px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 2vw;}
+.contact-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:2.5rem;border:1px solid rgba(255,255,255,.1);transition:transform .3s,box-shadow .3s;}
+.contact-avatar:hover{transform:scale(1.06);box-shadow:0 0 24px rgba(224,138,90,.2);}
+.contact-text{font-size:.95rem;line-height:1.8;color:rgba(232,224,212,.5);max-width:480px;margin-bottom:2.5rem;}
+.contact-icons{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;justify-content:center;}
 .cicon-btn{
   display:flex;align-items:center;gap:.55rem;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:999px;
-  padding:.6rem 1.3rem;
-  text-decoration:none;color:#e8e0d4;
-  font-size:.85rem;font-weight:400;
-  transition:background .2s;cursor:none;
+  background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.09);
+  border-radius:999px;padding:.6rem 1.3rem;
+  text-decoration:none;color:#e8e0d4;font-size:.85rem;font-weight:400;
+  transition:background .2s,transform .2s,border-color .2s,box-shadow .2s;cursor:none;
 }
-.cicon-btn:hover{background:rgba(255,255,255,.15);}
+.cicon-btn:hover{background:rgba(255,255,255,.15);transform:translateY(-2px);border-color:rgba(224,138,90,.25);box-shadow:0 6px 20px rgba(0,0,0,.3);}
 .cicon-btn svg{width:18px;height:18px;flex-shrink:0;}
-
-.contact-divider{
-  width:100%;height:1px;background:rgba(255,255,255,.07);margin:3rem 0 1.5rem;
-}
-
-/* ── FOOTER ── */
-footer{
-  position:relative;z-index:1;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:1.2rem 4vw;
-  max-width:1100px;margin:0 auto;
-}
+.contact-divider{width:100%;height:1px;background:rgba(255,255,255,.07);margin:3rem 0 1.5rem;}
+footer{display:flex;justify-content:space-between;align-items:center;padding:0 4vw 1.5rem;max-width:1100px;margin:0 auto;width:100%;}
 footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
 
-/* ── ANIMATIONS ── */
-@keyframes fadeIn{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
-.fade-in{animation:fadeIn .55s ease forwards;}
-.fade-in-d1{animation:fadeIn .55s .1s ease both;}
-.fade-in-d2{animation:fadeIn .55s .2s ease both;}
-.fade-in-d3{animation:fadeIn .55s .3s ease both;}
-.fade-in-d4{animation:fadeIn .55s .4s ease both;}
+/* ── STAGGER reveal for cards ── */
+.reveal-item{opacity:0;transform:translateY(20px);transition:opacity .5s ease,transform .5s ease;}
+.reveal-item.revealed{opacity:1;transform:none;}
 
-/* scrollbar dots for project row */
-.scroll-dots{
-  display:flex;justify-content:center;gap:.5rem;
-  margin-top:1.2rem;
+/* ── ANIMATIONS ── */
+@keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:none;}}
+.fade-in{animation:fadeUp .6s ease forwards;}
+.fade-in-d1{animation:fadeUp .6s .1s ease both;}
+.fade-in-d2{animation:fadeUp .6s .2s ease both;}
+.fade-in-d3{animation:fadeUp .6s .3s ease both;}
+.fade-in-d4{animation:fadeUp .6s .4s ease both;}
+
+/* page transition overlay */
+.page-overlay{
+  position:fixed;inset:0;z-index:800;
+  background:#000;
+  pointer-events:none;
+  opacity:0;
+  transition:opacity .25s ease;
 }
-.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.15);}
-.sdot.active{background:#e08a5a;}
+.page-overlay.flash{opacity:.35;}
 
 @media(max-width:780px){
   .nav-pill{min-width:unset;width:92vw;}
-  .home-inner{flex-direction:column-reverse;gap:2rem;align-items:flex-start;padding-top:1rem;}
-  .home-left{padding-right:0;}
+  .home-inner{flex-direction:column-reverse;gap:2rem;padding-top:5rem;}
   .hero-img{width:100%;height:260px;}
   .bento{grid-template-columns:1fr;}
   .bento-photo{display:none;}
@@ -386,6 +319,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
 
 <div id="cdot"></div>
 <div id="cring"></div>
+<div class="page-overlay" id="overlay"></div>
 
 <!-- NAV -->
 <nav>
@@ -395,287 +329,281 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.25);}
       <span id="navtime"></span>
     </div>
     <div class="nav-right">
-      <a href="#" class="active" onclick="showPage('home',this)">Home</a>
-      <a href="#" onclick="showPage('projects',this)">Projects</a>
-      <a href="#" onclick="showPage('experience',this)">Experience</a>
-      <a href="#" onclick="showPage('contact',this)">Contact</a>
+      <a href="#home"  class="active" data-target="home">Home</a>
+      <a href="#projects" data-target="projects">Projects</a>
+      <a href="#experience" data-target="experience">Experience</a>
+      <a href="#contact" data-target="contact">Contact</a>
     </div>
   </div>
 </nav>
 
-<!-- ═══ HOME ═══ -->
-<section id="home" class="page active">
-  <div class="map-bg"></div>
-  <div class="home-inner">
-    <div class="home-left">
-      <span class="sparkle fade-in">✦</span>
-      <h1 class="home-name fade-in-d1">Kajal Sanwal</h1>
-      <p class="home-role fade-in-d2">Full-Stack Developer · Backend Engineer</p>
+<!-- ═══ SCROLL ROOT ═══ -->
+<div id="scroll-root">
 
-      <p class="home-para fade-in-d3">
-        Hey there! I'm an undergrad at <b>IIT Madras</b> studying Electronic Systems,
-        building <b>scalable backends</b> and <b>full-stack apps</b> based in Chennai 🇮🇳
-      </p>
-      <p class="home-para fade-in-d3">
-        I've worked with hardware and software alike — from <b>STM32 firmware</b> and <b>RF characterisation systems</b>
-        at <b>BluArmor</b> where I received a <b>Pre-Placement Offer</b>, to full-stack products with
-        <b>Next.js</b>, <b>Node.js</b>, and <b>PostgreSQL</b>.
-      </p>
-      <p class="home-para fade-in-d4">
-        I've shipped SaaS products and REST APIs 🚀 and mentor <b>60+ students</b> as a Teaching Assistant at IIT Madras.
-        My toolkit includes <b>TypeScript</b>, <b>Python</b>, <b>Prisma</b>, and <b>Fastify</b>.
-      </p>
-
-      <a href="#" class="connect-link fade-in-d4" onclick="showPage('contact',document.querySelectorAll('.nav-right a')[3])">
-        Connect with me ↗
-      </a>
+  <!-- HOME -->
+  <section class="sect" id="home">
+    <div class="map-bg"></div>
+    <div class="home-inner sect-inner">
+      <div class="home-left">
+        <span class="sparkle fade-in">✦</span>
+        <h1 class="home-name fade-in-d1">Kajal Sanwal</h1>
+        <p class="home-role fade-in-d2">Full-Stack Developer · Software Engineer</p>
+        <p class="home-para fade-in-d3">
+  Hey there! I'm an undergrad at <b>IIT Madras</b> studying Electronic Systems,
+  interested in <b>software engineering</b> and <b>systems-oriented problem solving</b> 
+</p>
+<p class="home-para fade-in-d3">
+  I focus on <b>backend development</b>, <b>data structures & algorithms</b>, and <b>system design</b>,
+  building scalable applications and well-structured APIs using <b>Node.js</b>, <b>Next.js</b>, and <b>PostgreSQL</b>.
+</p>
+<p class="home-para fade-in-d4">
+  My work spans <b>full-stack development</b> with <b>React</b> and <b>Tailwind CSS</b>,
+  along with <b>database design</b>, <b>authentication systems</b>, and <b>SaaS-style architectures</b>.
+</p>
+        <a href="#contact" class="connect-link fade-in-d4">Connect with me ↗</a>
+      </div>
+      <div class="home-right fade-in-d2">
+        <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
+      </div>
     </div>
-    <div class="home-right fade-in-d2">
-      <img
-        src="/kajal.png"
-        alt="Kajal Sanwal"
-        class="hero-img"
-      />
+    <div class="scroll-hint">
+      <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>
+      scroll
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ PROJECTS ═══ -->
-<section id="projects" class="page">
-  <div class="proj-header fade-in">
-    <h1>Featured Projects</h1>
-    <p>I build things to solve real problems — not just for show. I care about shipping projects that do something and have an impact on those who use them.</p>
-  </div>
-
-  <div class="proj-scroll-wrap">
-    <div class="proj-cards-row">
-
-      <div class="pcard pcard-1 fade-in">
-        <a href="https://notesphere-kohl.vercel.app" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">📝</div>
-        <p class="pcard-name">Notesphere</p>
-        <p class="pcard-desc">Full-stack Notes app with Next.js 14 App Router, MongoDB & JWT auth. Admin approval workflow for public notes.</p>
-        <p class="pcard-meta">🌐 Live · TypeScript</p>
+  <!-- PROJECTS -->
+  <section class="sect" id="projects">
+    <div class="sect-inner" style="padding:7rem 4vw 4rem;min-height:100vh;">
+      <div class="sec-head reveal-item">
+        <h1>Featured Projects</h1>
+        <p>I build things to solve real problems — not just for show. I care about shipping projects that do something and have an impact on those who use them.</p>
       </div>
 
-      <div class="pcard pcard-2 fade-in-d1">
-        <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">🤖</div>
-        <p class="pcard-name">SaaS Platform</p>
-        <p class="pcard-desc">AI-powered SaaS with Next.js, Prisma & NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p>
-        <p class="pcard-meta">🌐 Live · TypeScript · Prisma</p>
-      </div>
+      <div class="proj-scroll-wrap">
+        <div class="proj-cards-row">
 
-      <div class="pcard pcard-3 fade-in-d2">
-        <a href="https://github.com/kajalsanwalll/vibecode-editor" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">💻</div>
-        <p class="pcard-name">vibecode-editor</p>
-        <p class="pcard-desc">Browser-based code editor with file explorer & live playground. Next.js + Appwrite + Zustand.</p>
-        <p class="pcard-meta">GitHub · TypeScript</p>
-      </div>
+          <div class="pcard pcard-1 reveal-item">
+            <a href="https://notesphere-kohl.vercel.app" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">📝</div>
+            <p class="pcard-name">Notesphere</p>
+            <p class="pcard-desc">Full-stack Notes app with Next.js 14 App Router, MongoDB & JWT auth. Admin approval workflow for public notes.</p>
+            <p class="pcard-meta">🌐 Live · TypeScript</p>
+          </div>
 
-      <div class="pcard pcard-4 fade-in-d3">
-        <a href="https://github.com/kajalsanwalll/backend-project" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">🔗</div>
-        <p class="pcard-name">backend-project</p>
-        <p class="pcard-desc">RESTful API for collaborative project management — tasks, subtasks, notes, team coordination.</p>
-        <p class="pcard-meta">GitHub · JavaScript · Node.js</p>
-      </div>
+          <div class="pcard pcard-2 reveal-item">
+            <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">🤖</div>
+            <p class="pcard-name">SaaS Platform</p>
+            <p class="pcard-desc">AI-powered SaaS with Next.js, Prisma & NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p>
+            <p class="pcard-meta">🌐 Live · TypeScript · Prisma</p>
+          </div>
 
-      <div class="pcard pcard-5 fade-in">
-        <a href="https://github.com/kajalsanwalll/stackoverflow-appwrite" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">❓</div>
-        <p class="pcard-name">SO Clone</p>
-        <p class="pcard-desc">Full-stack Stack Overflow clone — auth, Q&A, voting, Zustand state management, Appwrite backend.</p>
-        <p class="pcard-meta">GitHub · TypeScript</p>
-      </div>
+          <div class="pcard pcard-3 reveal-item">
+            <a href="https://github.com/kajalsanwalll/vibecode-editor" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">💻</div>
+            <p class="pcard-name">vibecode-editor</p>
+            <p class="pcard-desc">Browser-based code editor with file explorer & live playground. Next.js + Appwrite + Zustand.</p>
+            <p class="pcard-meta">GitHub · TypeScript</p>
+          </div>
 
-      <div class="pcard pcard-6 fade-in-d1">
-        <a href="https://fastify-thumbnailing.vercel.app" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">⚡</div>
-        <p class="pcard-name">fastify-thumbnailing</p>
-        <p class="pcard-desc">High-performance Fastify backend — plugin architecture, auth, file handling with Node.js streams.</p>
-        <p class="pcard-meta">🌐 Live · JavaScript · Fastify</p>
-      </div>
+          <div class="pcard pcard-4 reveal-item">
+            <a href="https://github.com/kajalsanwalll/backend-project" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">🔗</div>
+            <p class="pcard-name">backend-project</p>
+            <p class="pcard-desc">RESTful API for collaborative project management — tasks, subtasks, notes, team coordination.</p>
+            <p class="pcard-meta">GitHub · JavaScript · Node.js</p>
+          </div>
 
-      <div class="pcard pcard-7 fade-in-d2">
-        <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">📊</div>
-        <p class="pcard-name">My Dashboard</p>
-        <p class="pcard-desc">Personal dashboard app demonstrating full-stack capability and clean UI design in a real-world context.</p>
-        <p class="pcard-meta">🌐 Live · JavaScript</p>
-      </div>
+          <div class="pcard pcard-5 reveal-item">
+            <a href="https://github.com/kajalsanwalll/stackoverflow-appwrite" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">❓</div>
+            <p class="pcard-name">SO Clone</p>
+            <p class="pcard-desc">Full-stack Stack Overflow clone — auth, Q&A, voting, Zustand state management, Appwrite backend.</p>
+            <p class="pcard-meta">GitHub · TypeScript</p>
+          </div>
 
-      <div class="pcard pcard-8 fade-in-d3">
-        <a href="https://birthday-pcciuuw6n-kajal-sanwals-projects.vercel.app" target="_blank" class="pcard-gh">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        </a>
-        <div class="pcard-icon">🎂</div>
-        <p class="pcard-name">Birthday Surprise</p>
-        <p class="pcard-desc">Delightful interactive birthday experience showcasing creative front-end work and interactive design.</p>
-        <p class="pcard-meta">🌐 Live · HTML/CSS/JS</p>
-      </div>
+          <div class="pcard pcard-6 reveal-item">
+            <a href="https://fastify-thumbnailing.vercel.app" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">⚡</div>
+            <p class="pcard-name">fastify-thumbnailing</p>
+            <p class="pcard-desc">High-performance Fastify backend — plugin architecture, auth, file handling with Node.js streams.</p>
+            <p class="pcard-meta">🌐 Live · JavaScript · Fastify</p>
+          </div>
 
+          <div class="pcard pcard-7 reveal-item">
+            <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">📊</div>
+            <p class="pcard-name">My Dashboard</p>
+            <p class="pcard-desc">Personal dashboard app demonstrating full-stack capability and clean UI design in a real-world context.</p>
+            <p class="pcard-meta">🌐 Live · JavaScript</p>
+          </div>
+
+          <div class="pcard pcard-8 reveal-item">
+            <a href="https://birthday-pcciuuw6n-kajal-sanwals-projects.vercel.app" target="_blank" class="pcard-gh">
+              <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            </a>
+            <div class="pcard-icon">🎂</div>
+            <p class="pcard-name">Birthday Surprise</p>
+            <p class="pcard-desc">Delightful interactive birthday experience showcasing creative front-end work and interactive design.</p>
+            <p class="pcard-meta">🌐 Live · HTML/CSS/JS</p>
+          </div>
+
+        </div>
+      </div>
+      <div class="scroll-dots" id="sdots">
+        <div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div>
+      </div>
+      <div class="see-all">
+        <a href="https://github.com/kajalsanwalll" target="_blank">See all projects ↗</a>
+      </div>
     </div>
-  </div>
-  <div class="scroll-dots" id="sdots">
-    <div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div>
-  </div>
-  <div class="see-all">
-    <a href="https://github.com/kajalsanwalll" target="_blank">See all projects ↗</a>
-  </div>
-</section>
+  </section>
 
-<!-- ═══ EXPERIENCE ═══ -->
-<section id="experience" class="page">
-  <div class="exp-page-wrap">
-    <h1 class="exp-page-title fade-in">Experience</h1>
+  <!-- EXPERIENCE -->
+  <section class="sect" id="experience">
+    <div class="sect-inner" style="padding:7rem 4vw 4rem;min-height:100vh;overflow-y:auto;">
+      <div class="exp-page-wrap">
+        <h1 class="exp-page-title reveal-item">Experience</h1>
 
-    <!-- BluArmor -->
-    <div class="exp-block fade-in-d1">
-      <div class="exp-block-label">BluArmor · Aug – Oct 2025</div>
-      <div class="bento">
-        <div class="bento-main">
-          <div class="bento-co-row">
-            <div class="bento-co-icon">🔵</div>
-            <div>
-              <p class="bento-title">Project Intern</p>
+        <!-- BluArmor -->
+        <div class="exp-block reveal-item">
+          <div class="exp-block-label">BluArmor · Aug – Oct 2025</div>
+          <div class="bento">
+            <div class="bento-main">
+              <div class="bento-co-row">
+                <div class="bento-co-icon">🔵</div>
+                <div><p class="bento-title">Project Intern</p></div>
+              </div>
+              <p class="bento-subtitle">Instrumentation Team</p>
+              <p class="bento-desc">
+                Designed <b>automated RF/Bluetooth characterisation systems</b> using STM32 firmware, relay matrices, and ADC acquisition, reducing manual testing time by <b>15%</b>. Built Python-based calibration workflows improving measurement accuracy by <b>33%</b>. Developed GUI tools for RSSI testing, scaling throughput to <b>500 devices/day</b>. Improved RSSI stability by <b>55%</b> using RF shielding and EMA filtering. Automated headset pairing on Raspberry Pi 5 and nRF52840.
+              </p>
+            </div>
+            <div class="bento-photo" style="background:linear-gradient(135deg,#1a1020,#2d1025);">
+              <div style="width:100%;height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;opacity:.5;">
+                <img src="/bluarmor.jpeg" alt="bluarmor" style="max-width:80%;max-height:160px;object-fit:contain;border-radius:12px;"/>
+                <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#e08a5a;">BluArmor</span>
+              </div>
+            </div>
+            <div class="bento-row2" style="grid-column:1;">
+              <div class="bento-tech">
+                <p style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,212,.35);margin-bottom:1rem;">Tech Used</p>
+                <div class="tech-icons">
+                  <div class="tech-icon" title="Python">🐍</div>
+                  <div class="tech-icon" title="STM32">🔧</div>
+                  <div class="tech-icon" title="Raspberry Pi">🍓</div>
+                  <div class="tech-icon" title="Bluetooth">📶</div>
+                  <div class="tech-icon" title="RF">📡</div>
+                  <div class="tech-icon" title="GUI">🖥️</div>
+                  <div class="tech-icon" title="nRF52840">⚡</div>
+                </div>
+              </div>
+              <div class="bento-stat">
+                <p class="stat-big">500+</p>
+                <p class="stat-label-txt">Devices Tested / Day</p>
+              </div>
             </div>
           </div>
-          <p class="bento-subtitle">Instrumentation Team</p>
-          <p class="bento-desc">
-            Designed <b>automated RF/Bluetooth characterisation systems</b> using STM32 firmware, relay matrices, and ADC acquisition, reducing manual testing time by <b>15%</b>. Built Python-based calibration workflows improving measurement accuracy by <b>33%</b>. Developed GUI tools for RSSI testing, scaling throughput to <b>500 devices/day</b>. Improved RSSI stability by <b>55%</b> using RF shielding and EMA filtering. Automated headset pairing on Raspberry Pi 5 and nRF52840.
-          </p>
         </div>
-        <div class="bento-photo" style="background:linear-gradient(135deg,#1a1020,#2d1025);">
-          <!-- placeholder gradient since no internship photo -->
-          <div style="width:100%;height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;opacity:.4;">
-            <img
-              src="/bluarmor.jpeg"
-              alt ="bluarmor"
-    />
-            <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#e08a5a;">BluArmor</span>
-          </div>
-        </div>
-        <div class="bento-row2" style="grid-column:1;">
-          <div class="bento-tech">
-            <p style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,212,.35);margin-bottom:1rem;">Tech Used</p>
-            <div class="tech-icons">
-              <div class="tech-icon" title="Python">🐍</div>
-              <div class="tech-icon" title="STM32">🔧</div>
-              <div class="tech-icon" title="Raspberry Pi">🍓</div>
-              <div class="tech-icon" title="Bluetooth">📶</div>
-              <div class="tech-icon" title="RF">📡</div>
-              <div class="tech-icon" title="GUI">🖥️</div>
-              <div class="tech-icon" title="nRF52840">⚡</div>
+
+        <!-- IIT Madras -->
+        <div class="exp-block reveal-item">
+          <div class="exp-block-label">IIT Madras · Ongoing</div>
+          <div class="bento">
+            <div class="bento-main">
+              <div class="bento-co-row">
+                <div class="bento-co-icon">🎓</div>
+                <div><p class="bento-title">Teaching Assistant</p></div>
+              </div>
+              <p class="bento-subtitle">Embedded C & Electronic Systems Labs</p>
+              <p class="bento-desc">
+                Mentored <b>60+ students</b> in embedded C programming, microcontroller debugging, and low-level memory optimisation. Guided hands-on circuit design and system-level troubleshooting, improving lab performance and debugging efficiency across batches.
+              </p>
+            </div>
+            <div class="bento-photo" style="background:linear-gradient(135deg,#0a1820,#0d2535);">
+              <div style="width:100%;height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;opacity:.5;">
+                <img src="/ta.png" alt="IIT Madras TA" style="max-width:80%;max-height:160px;object-fit:contain;border-radius:12px;"/>
+                <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#7abf9e;">IIT Madras</span>
+              </div>
+            </div>
+            <div class="bento-row2" style="grid-column:1;">
+              <div class="bento-tech">
+                <p style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,212,.35);margin-bottom:1rem;">Subjects Covered</p>
+                <div class="tech-icons">
+                  <div class="tech-icon" title="Embedded C">💾</div>
+                  <div class="tech-icon" title="Microcontrollers">🤖</div>
+                  <div class="tech-icon" title="Circuits">⚡</div>
+                  <div class="tech-icon" title="Debugging">🔍</div>
+                  <div class="tech-icon" title="Hardware">🔩</div>
+                </div>
+              </div>
+              <div class="bento-stat">
+                <p class="stat-big">60+</p>
+                <p class="stat-label-txt">Students Mentored</p>
+              </div>
             </div>
           </div>
-          <div class="bento-stat">
-            <p class="stat-big">500+</p>
-            <p class="stat-label-txt">Devices Tested / Day</p>
-          </div>
         </div>
+
       </div>
     </div>
+  </section>
 
-    <!-- IIT Madras TA -->
-    <div class="exp-block fade-in-d2">
-      <div class="exp-block-label">IIT Madras · Ongoing</div>
-      <div class="bento">
-        <div class="bento-main">
-          <div class="bento-co-row">
-            <div class="bento-co-icon">🎓</div>
-            <div>
-              <p class="bento-title">Teaching Assistant</p>
-            </div>
-          </div>
-          <p class="bento-subtitle">Embedded C & Electronic Systems Labs</p>
-          <p class="bento-desc">
-            Mentored <b>60+ students</b> in embedded C programming, microcontroller debugging, and low-level memory optimisation. Guided hands-on circuit design and system-level troubleshooting, improving lab performance and debugging efficiency across batches.
-          </p>
+  <!-- CONTACT -->
+  <section class="sect" id="contact">
+    <div class="sect-inner" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:7rem 4vw 2rem;">
+      <div class="contact-inner">
+        <img src="/photo.jpeg" alt="Kajal Sanwal" class="contact-avatar reveal-item"/>
+        <p class="contact-text reveal-item">
+          Follow me on LinkedIn and GitHub to stay updated with my latest work, projects,
+          and posts — feel free to reach out via email for collaboration or inquiries.
+        </p>
+        <div class="contact-icons reveal-item">
+          <a href="mailto:kajalsanwal777@gmail.com" class="cicon-btn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            Mail
+          </a>
+          <a href="https://linkedin.com/in/kajalsanwall" target="_blank" class="cicon-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            LinkedIn
+          </a>
+          <a href="https://github.com/kajalsanwalll" target="_blank" class="cicon-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
+            GitHub
+          </a>
+          <a href="https://instagram.com/kajalsanwall" target="_blank" class="cicon-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            Instagram
+          </a>
         </div>
-        <div class="bento-photo" style="background:linear-gradient(135deg,#0a1820,#0d2535);">
-          <div style="width:100%;height:100%;min-height:260px;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:1rem;opacity:.4;">
-            <span style="font-size:3.5rem;"><img src="ta.png"></span>
-            <span style="font-size:.8rem;letter-spacing:.1em;text-transform:uppercase;color:#7abf9e;">IIT Madras</span>
-          </div>
-        </div>
-        <div class="bento-row2" style="grid-column:1;">
-          <div class="bento-tech">
-            <p style="font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(232,224,212,.35);margin-bottom:1rem;">Subjects Covered</p>
-            <div class="tech-icons">
-              <div class="tech-icon" title="Embedded C">💾</div>
-              <div class="tech-icon" title="Microcontrollers">🤖</div>
-              <div class="tech-icon" title="Circuits">⚡</div>
-              <div class="tech-icon" title="Debugging">🔍</div>
-              <div class="tech-icon" title="Hardware">🔩</div>
-            </div>
-          </div>
-          <div class="bento-stat">
-            <p class="stat-big">60+</p>
-            <p class="stat-label-txt">Students Mentored</p>
-          </div>
-        </div>
+        <div class="contact-divider"></div>
       </div>
+      <footer>
+        <p>© 2026 Kajal Sanwal</p>
+        <span style="font-size:1.1rem;opacity:.3;">✦</span>
+      </footer>
     </div>
+  </section>
 
-  </div>
-</section>
-
-<!-- ═══ CONTACT ═══ -->
-<section id="contact" class="page">
-  <div class="contact-inner fade-in">
-    <img
-      src="photo.jpeg"
-      alt="Kajal Sanwal"
-      class="contact-avatar"
-    />
-    <p class="contact-text">
-      Follow me on LinkedIn and GitHub to stay updated with my latest work, projects,
-      and posts — feel free to reach out via email for collaboration or inquiries.
-    </p>
-    <div class="contact-icons">
-      <a href="mailto:kajalsanwal777@gmail.com" class="cicon-btn">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-        Mail
-      </a>
-      <a href="https://linkedin.com/in/kajalsanwall" target="_blank" class="cicon-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-        LinkedIn
-      </a>
-      <a href="https://github.com/kajalsanwalll" target="_blank" class="cicon-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>
-        GitHub
-      </a>
-      <a href="https://instagram.com/kajalsanwall" target="_blank" class="cicon-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
-        Instagram
-      </a>
-    </div>
-    <div class="contact-divider"></div>
-  </div>
-  <footer>
-    <p>© 2026 Kajal Sanwal</p>
-    <span style="font-size:1.1rem;opacity:.3;">✦</span>
-  </footer>
-</section>
+</div><!-- end scroll-root -->
 
 <script>
-// clock
+/* ── CLOCK ── */
 function tick(){
   const now=new Date();
   let h=now.getHours(),m=now.getMinutes(),ap=h>=12?'PM':'AM';
@@ -684,17 +612,7 @@ function tick(){
 }
 tick(); setInterval(tick,10000);
 
-// page switching
-function showPage(id, el){
-  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
-  document.querySelectorAll('.nav-right a').forEach(a=>a.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  if(el) el.classList.add('active');
-  window.scrollTo(0,0);
-  return false;
-}
-
-// cursor
+/* ── CURSOR ── */
 const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
 let mx=0,my=0,rx=0,ry=0;
 document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
@@ -704,15 +622,67 @@ document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';ring.style.width='30px';ring.style.height='30px';});
 });
 
-// scroll dots for projects
+/* ── SCROLL OBSERVER — section in-view ── */
+const sects = document.querySelectorAll('.sect');
+const sectIds = ['home','projects','experience','contact'];
+
+const sectObs = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+      // update nav active
+      const id = e.target.id;
+      document.querySelectorAll('.nav-right a').forEach(a=>{
+        a.classList.toggle('active', a.dataset.target===id);
+      });
+      // trigger reveal-items inside
+      e.target.querySelectorAll('.reveal-item').forEach((el,i)=>{
+        setTimeout(()=>el.classList.add('revealed'), i*80);
+      });
+    }
+  });
+},{threshold:0.25});
+sects.forEach(s=>sectObs.observe(s));
+
+/* ── NAV CLICK → smooth scroll to section ── */
+document.querySelectorAll('.nav-right a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    const id = a.dataset.target;
+    const target = document.getElementById(id);
+    if(target) target.scrollIntoView({behavior:'smooth'});
+  });
+});
+
+/* connect-link */
+document.querySelector('.connect-link').addEventListener('click',e=>{
+  e.preventDefault();
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+});
+
+/* ── SCROLL DOTS for projects ── */
 const sw=document.querySelector('.proj-scroll-wrap');
 if(sw){
   sw.addEventListener('scroll',()=>{
     const pct=sw.scrollLeft/(sw.scrollWidth-sw.clientWidth);
-    const dots=document.querySelectorAll('.sdot');
-    dots.forEach((d,i)=>d.classList.toggle('active',Math.round(pct*2)===i));
+    document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('active',Math.round(pct*2)===i));
   });
 }
+
+/* ── 3D TILT on project cards ── */
+document.querySelectorAll('.pcard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width  - 0.5; // -0.5 to 0.5
+    const y=(e.clientY-r.top) /r.height - 0.5;
+    card.style.setProperty('--rx', (-y*8)+'deg');
+    card.style.setProperty('--ry', ( x*8)+'deg');
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.setProperty('--rx','0deg');
+    card.style.setProperty('--ry','0deg');
+  });
+});
 </script>
 </body>
 </html>
