@@ -72,8 +72,19 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .connect-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(232,224,212,.4);font-size:.88rem;text-decoration:none;margin-top:.5rem;transition:color .25s;cursor:none;}
 .connect-link:hover{color:#e08a5a;}
 .home-right{flex-shrink:0;}
-.hero-img{width:300px;height:380px;border-radius:20px;object-fit:cover;object-position:center top;display:block;border:1px solid rgba(255,255,255,.08);transition:transform .5s ease,box-shadow .5s ease;}
-.hero-img:hover{transform:scale(1.022) translateY(-4px);box-shadow:0 24px 60px rgba(224,138,90,.12);}
+.hero-img{width:250px;height:300px;border-radius:20px;object-fit:cover;object-position:center top;display:block;border:1px solid rgba(255,255,255,.08);transition:box-shadow .5s ease;}
+
+@keyframes shake{
+  0%,100%{transform:translateX(0);}
+  25%{transform:translateX(-3px);}
+  50%{transform:translateX(3px);}
+  75%{transform:translateX(-2px);}
+}
+
+.hero-img:hover{
+  animation: shake .5s ease;
+  box-shadow: 0 24px 60px rgba(224,138,90,.12);
+}
 
 .sect-separator{
   position:absolute;
