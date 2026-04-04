@@ -268,7 +268,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
       <a href="#projects" data-target="projects">Projects</a>
       <a href="#experience" data-target="experience">Experience</a>
       <a href="#education" data-target="education">Education</a>
-      <a href="#coding" data-target="coding">Coding</a>
+      <!-- <a href="#coding" data-target="coding">Coding</a> -->
       <a href="#resume" data-target="resume">Resume</a>
       <a href="#contact" data-target="contact">Contact</a>
     </div>
@@ -487,8 +487,10 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
   <div class="sect-separator"></div>
 </section>
 
-<!-- CODING STATS -->
-<section class="sect" id="coding">
+
+
+<!-- 
+ <section class="sect" id="coding">
   <div class="sect-inner">
     <div class="coding-wrap">
       <h1 class="coding-page-title reveal-item">Coding Stats</h1>
@@ -500,10 +502,10 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
       <div id="lc-error" style="display:none;color:rgba(224,90,90,.7);font-size:.85rem;padding:1rem 0;"></div>
 
       <div id="lc-content" style="display:none;">
-        <!-- Top row -->
+        
         <div class="lc-top">
 
-          <!-- Profile card -->
+          
           <div class="lc-card reveal-item">
             <p class="lc-label">Profile</p>
             <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
@@ -521,7 +523,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
             <a href="https://codolio.com/profile/kajalsanwall" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;font-size:.75rem;color:rgba(224,138,90,.6);text-decoration:none;cursor:none;">View on Codolio ↗</a>
           </div>
 
-          <!-- Donut / solved -->
+          
           <div class="lc-card reveal-item">
             <p class="lc-label">Problems Solved</p>
             <div style="display:flex;align-items:center;gap:1.4rem;">
@@ -545,7 +547,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
             </div>
           </div>
 
-          <!-- Streak + badges -->
+          
           <div class="lc-card reveal-item">
             <p class="lc-label">Activity</p>
             <div style="font-size:3rem;font-weight:700;color:#e8e0d4;line-height:1;margin-bottom:.2rem;" id="lc-streak">—</div>
@@ -554,10 +556,10 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
           </div>
         </div>
 
-        <!-- Bottom row -->
+        
         <div class="lc-bottom">
 
-          <!-- Difficulty bars -->
+          
           <div class="lc-card reveal-item">
             <p class="lc-label">Difficulty Breakdown</p>
             <div style="margin-bottom:.8rem;">
@@ -575,7 +577,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
             <div style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:rgba(232,224,212,.25);">Acceptance rate: <span id="lc-accept" style="color:rgba(232,224,212,.5);">—</span></div>
           </div>
 
-          <!-- Contest + heatmap -->
+          
           <div class="lc-card reveal-item">
             <p class="lc-label">Contest · Heatmap</p>
             <div style="display:flex;gap:1.5rem;margin-bottom:1rem;">
@@ -593,7 +595,9 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     </div>
   </div>
   <div class="sect-separator"></div>
-</section>
+ </section>
+ 
+ -->
 
 <!-- RESUME -->
 <section class="sect" id="resume">
@@ -759,6 +763,7 @@ if(tt){
 }
 
 // ── LeetCode Stats via /api/leetcode ──────────────────
+/*
 (async function lcStats(){
   try {
     const res  = await fetch('/api/leetcode');
@@ -843,6 +848,8 @@ if(tt){
     document.getElementById('lc-error').style.display='block';
   }
 })();
+
+*/
 </script>
 </body>
 </html>
