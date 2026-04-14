@@ -63,9 +63,55 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .connect-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(232,224,212,.4);font-size:.88rem;text-decoration:none;margin-top:.5rem;transition:color .25s;cursor:none;}
 .connect-link:hover{color:#e08a5a;}
 .home-right{flex-shrink:0;}
-.hero-img{width:250px;height:300px;border-radius:20px;object-fit:cover;object-position:center top;display:block;border:1px solid rgba(255,255,255,.08);transition:box-shadow .5s ease;}
-@keyframes shake{0%,100%{transform:translateX(0);}25%{transform:translateX(-3px);}50%{transform:translateX(3px);}75%{transform:translateX(-2px);}}
-.hero-img:hover{animation:shake .5s ease;box-shadow:0 24px 60px rgba(224,138,90,.12);}
+.hero-img-wrap {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .5s cubic-bezier(.2,.6,0,1), box-shadow .5s ease;
+}
+.hero-img-wrap:hover .hero-img {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 24px 50px rgba(224,138,90,.14);
+}
+.hero-reveal {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 36px;
+  background: rgba(20,12,7,.82);
+  border-top: 1px solid rgba(224,138,90,.35);
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.2,.6,0,1);
+  backdrop-filter: blur(8px);
+}
+.hero-img-wrap:hover .hero-reveal { transform: translateY(0); }
+.hero-reveal-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #3ecf4a;
+  flex-shrink: 0;
+}
+.hero-reveal-text {
+  font-size: .72rem;
+  color: rgba(232,224,212,.75);
+  letter-spacing: .06em;
+}
 
 .sect-separator{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,138,90,.15),transparent);z-index:3;}
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(232,224,212,.18);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;}
@@ -291,7 +337,13 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
       <a href="#contact" class="connect-link fade-in-d4">Connect with me ↗</a>
     </div>
     <div class="home-right fade-in-d2">
-      <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
+      <div class="hero-img-wrap">
+    <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
+    <div class="hero-reveal">
+      <div class="hero-reveal-dot"></div>
+      <span class="hero-reveal-text">open to work</span>
+    </div>
+  </div>
     </div>
   </div>
   <div class="sect-separator"></div>
