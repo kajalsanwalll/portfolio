@@ -8,7 +8,7 @@ I love working with full-stack technologies and solving real-world problems thro
 Currently aiming for software engineering internships.
 
 
-- Link to Portfolio: [link](https://portfolio-seven-red-50.vercel.app)
+- Link to Portfolio: [link](https://portfolio-4kgimqk6y-kajal-sanwals-projects.vercel.app)
 - Email: kajalsanwal777@gmail.com
 - LinkedIn: https://www.linkedin.com/in/kajalsanwall/
 
