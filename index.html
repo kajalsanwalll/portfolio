@@ -64,13 +64,55 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .connect-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(232,224,212,.4);font-size:.88rem;text-decoration:none;margin-top:.5rem;transition:color .25s;cursor:none;}
 .connect-link:hover{color:#e08a5a;}
 .home-right{flex-shrink:0;}
-.hero-img-wrap{position:relative;width:250px;height:300px;border-radius:20px;overflow:hidden;flex-shrink:0;}
-.hero-img{width:100%;height:100%;border-radius:20px;object-fit:cover;object-position:center top;display:block;border:1px solid rgba(255,255,255,.08);transition:transform .5s cubic-bezier(.2,.6,0,1),box-shadow .5s ease;}
-.hero-img-wrap:hover .hero-img{transform:translateY(-10px) scale(1.02);box-shadow:0 24px 50px rgba(224,138,90,.14);}
-.hero-reveal{position:absolute;bottom:0;left:0;right:0;height:36px;background:rgba(20,12,7,.82);border-top:1px solid rgba(224,138,90,.35);border-radius:0 0 20px 20px;display:flex;align-items:center;justify-content:center;gap:6px;transform:translateY(100%);transition:transform .4s cubic-bezier(.2,.6,0,1);backdrop-filter:blur(8px);}
-.hero-img-wrap:hover .hero-reveal{transform:translateY(0);}
-.hero-reveal-dot{width:6px;height:6px;border-radius:50%;background:#3ecf4a;flex-shrink:0;}
-.hero-reveal-text{font-size:.72rem;color:rgba(232,224,212,.75);letter-spacing:.06em;}
+.hero-img-wrap {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .5s cubic-bezier(.2,.6,0,1), box-shadow .5s ease;
+}
+.hero-img-wrap:hover .hero-img {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 24px 50px rgba(224,138,90,.14);
+}
+.hero-reveal {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 36px;
+  background: rgba(20,12,7,.82);
+  border-top: 1px solid rgba(224,138,90,.35);
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.2,.6,0,1);
+  backdrop-filter: blur(8px);
+}
+.hero-img-wrap:hover .hero-reveal { transform: translateY(0); }
+.hero-reveal-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #3ecf4a;
+  flex-shrink: 0;
+}
+.hero-reveal-text {
+  font-size: .72rem;
+  color: rgba(232,224,212,.75);
+  letter-spacing: .06em;
+}
 
 .sect-separator{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,138,90,.15),transparent);z-index:3;}
 .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(232,224,212,.18);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;}
@@ -167,25 +209,30 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .edu-stat-lbl{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);}
 .edu-badge{position:absolute;top:1.1rem;right:1.3rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(224,138,90,.5);font-weight:500;background:rgba(224,138,90,.07);border:1px solid rgba(224,138,90,.12);border-radius:999px;padding:.22rem .7rem;}
 
-/* CODING / GITHUB */
+/* ══════════════════════
+   CODING STATS
+══════════════════════ */
 #coding{background:#000;}
 .coding-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
 .coding-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
-.gh-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.4rem 1.6rem;transition:border-color .4s;}
-.gh-card:hover{border-color:rgba(224,138,90,.18);}
-.gh-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
-.gh-label::before{content:'';width:14px;height:1px;background:#e08a5a;}
-.gh-date-range{font-size:.68rem;color:rgba(232,224,212,.25);margin-bottom:.6rem;font-family:'Courier New',monospace;}
-.gh-stats-row{display:flex;gap:2rem;align-items:center;margin-top:1.2rem;flex-wrap:wrap;}
-.gh-stat{display:flex;align-items:center;gap:.5rem;font-size:.85rem;color:rgba(232,224,212,.5);}
-.gh-stat strong{color:#e8e0d4;font-size:1rem;font-weight:600;}
-.gh-stat-num{font-size:2rem;font-weight:700;color:#3ecf4a;line-height:1;}
-.gh-legend{display:flex;align-items:center;gap:.4rem;font-size:.72rem;color:rgba(232,224,212,.3);margin-left:auto;}
-.gh-legend-box{width:10px;height:10px;border-radius:2px;flex-shrink:0;}
-.gh-loading{display:flex;align-items:center;gap:.7rem;color:rgba(232,224,212,.35);font-size:.85rem;padding:3rem 0;}
-.gh-spinner{width:16px;height:16px;border:2px solid rgba(224,138,90,.2);border-top-color:#e08a5a;border-radius:50%;animation:spin .8s linear infinite;}
+
+.lc-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.4rem 1.6rem;transition:border-color .4s;}
+.lc-card:hover{border-color:rgba(224,138,90,.18);}
+.lc-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
+.lc-label::before{content:'';width:14px;height:1px;background:#e08a5a;}
+.lc-badge{font-size:.68rem;padding:.22rem .65rem;border-radius:999px;background:rgba(224,138,90,.1);border:1px solid rgba(224,138,90,.2);color:rgba(224,138,90,.8);}
+
+.lc-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem;}
+.lc-bottom{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+
+.lc-loading{display:flex;align-items:center;gap:.7rem;color:rgba(232,224,212,.35);font-size:.85rem;padding:3rem 0;}
+.lc-spinner{width:16px;height:16px;border:2px solid rgba(224,138,90,.2);border-top-color:#e08a5a;border-radius:50%;animation:spin .8s linear infinite;}
 @keyframes spin{to{transform:rotate(360deg);}}
-#gh-canvas{display:block;max-width:100%;}
+
+@media(max-width:820px){
+  .lc-top{grid-template-columns:1fr;}
+  .lc-bottom{grid-template-columns:1fr;}
+}
 
 /* RESUME */
 #resume{background:#000;}
@@ -268,7 +315,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
       <a href="#projects" data-target="projects">Projects</a>
       <a href="#experience" data-target="experience">Experience</a>
       <a href="#education" data-target="education">Education</a>
-      <a href="#coding" data-target="coding">GitHub</a>
+      <!-- <a href="#coding" data-target="coding">Coding</a> -->
       <a href="#resume" data-target="resume">Resume</a>
       <a href="#contact" data-target="contact">Contact</a>
     </div>
@@ -292,12 +339,12 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     </div>
     <div class="home-right fade-in-d2">
       <div class="hero-img-wrap">
-        <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
-        <div class="hero-reveal">
-          <div class="hero-reveal-dot"></div>
-          <span class="hero-reveal-text">open to work</span>
-        </div>
-      </div>
+    <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
+    <div class="hero-reveal">
+      <div class="hero-reveal-dot"></div>
+      <span class="hero-reveal-text">open to work</span>
+    </div>
+  </div>
     </div>
   </div>
   <div class="sect-separator"></div>
@@ -321,7 +368,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
         </div>
 
         <div class="pcard pcard-2 reveal-item">
-          <a href="https://github.com/kajalsanwalll/saas-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://github.com/kajalsanwalll/saas-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
           <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="aii.png" alt="SaaS Platform"/></div></a>
           <div class="pcard-body"><p class="pcard-name">SaaS Platform</p><p class="pcard-desc">AI-powered SaaS with Next.js, Prisma &amp; NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript · Prisma</p></div>
         </div>
@@ -493,52 +540,117 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
   <div class="sect-separator"></div>
 </section>
 
-<!-- GITHUB HEATMAP -->
-<section class="sect" id="coding">
+
+
+<!-- 
+ <section class="sect" id="coding">
   <div class="sect-inner">
     <div class="coding-wrap">
-      <h1 class="coding-page-title reveal-item">GitHub Activity</h1>
+      <h1 class="coding-page-title reveal-item">Coding Stats</h1>
 
-      <div class="gh-card reveal-item">
-        <p class="gh-label">Contribution Heatmap · kajalsanwalll</p>
+      <div id="lc-loading" class="lc-loading reveal-item">
+        <div class="lc-spinner"></div>
+        <span>Fetching live stats from LeetCode…</span>
+      </div>
+      <div id="lc-error" style="display:none;color:rgba(224,90,90,.7);font-size:.85rem;padding:1rem 0;"></div>
 
-        <div class="gh-loading" id="gh-loading">
-          <div class="gh-spinner"></div>
-          <span>Fetching contributions…</span>
-        </div>
+      <div id="lc-content" style="display:none;">
+        
+        <div class="lc-top">
 
-        <div id="gh-content" style="display:none;">
-          <p class="gh-date-range" id="gh-date-range"></p>
-          <canvas id="gh-canvas"></canvas>
-          <div class="gh-stats-row">
-            <div class="gh-stat">
-              <span class="gh-stat-num" id="gh-total">—</span>
-              <span>contributions</span>
+          
+          <div class="lc-card reveal-item">
+            <p class="lc-label">Profile</p>
+            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
+              <div style="width:44px;height:44px;border-radius:50%;background:rgba(224,138,90,.15);border:1px solid rgba(224,138,90,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:600;color:#e08a5a;flex-shrink:0;">KS</div>
+              <div>
+                <div style="font-size:.95rem;font-weight:600;color:#e8e0d4;">Kajal Sanwal</div>
+                <div style="font-size:.72rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;">@kajalsanwall</div>
+              </div>
             </div>
-            <div class="gh-stat">⭐ <strong id="gh-stars">—</strong></div>
-            <div class="gh-stat" style="color:rgba(224,138,90,.7)">↳ <strong id="gh-repos">—</strong> repos</div>
-            <div class="gh-legend">
-              Less
-              <div class="gh-legend-box" style="background:rgba(255,255,255,.07)"></div>
-              <div class="gh-legend-box" style="background:#1a4a1a"></div>
-              <div class="gh-legend-box" style="background:#2d7a2d"></div>
-              <div class="gh-legend-box" style="background:#3ecf4a"></div>
-              <div class="gh-legend-box" style="background:#5bff69"></div>
-              More
+            <div style="display:flex;align-items:baseline;gap:.5rem;">
+              <span style="font-size:1.5rem;font-weight:700;color:#e8e0d4;" id="lc-ranking">—</span>
+              <span style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);">Global Rank</span>
             </div>
+            <a href="https://leetcode.com/u/kajalsanwall/" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;margin-top:.7rem;font-size:.75rem;color:rgba(224,138,90,.6);text-decoration:none;cursor:none;">View on LeetCode ↗</a><br>
+            <a href="https://codolio.com/profile/kajalsanwall" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;font-size:.75rem;color:rgba(224,138,90,.6);text-decoration:none;cursor:none;">View on Codolio ↗</a>
+          </div>
+
+          
+          <div class="lc-card reveal-item">
+            <p class="lc-label">Problems Solved</p>
+            <div style="display:flex;align-items:center;gap:1.4rem;">
+              <div style="position:relative;width:100px;height:100px;flex-shrink:0;">
+                <svg width="100" height="100" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="10"/>
+                  <circle id="donut-easy" cx="50" cy="50" r="38" fill="none" stroke="#4ade80" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 239" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"/>
+                  <circle id="donut-med"  cx="50" cy="50" r="38" fill="none" stroke="#fbbf24" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 239" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"/>
+                  <circle id="donut-hard" cx="50" cy="50" r="38" fill="none" stroke="#f87171" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 239" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"/>
+                </svg>
+                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
+                  <span style="font-size:1.6rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-total">—</span>
+                  <span style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);">solved</span>
+                </div>
+              </div>
+              <div style="display:flex;flex-direction:column;gap:.55rem;">
+                <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;"></div><span style="font-size:.72rem;color:rgba(232,224,212,.45);flex:1;">Easy</span><span style="font-size:.8rem;font-weight:600;color:#e8e0d4;" id="lc-easy">—</span></div>
+                <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:7px;height:7px;border-radius:50%;background:#fbbf24;flex-shrink:0;"></div><span style="font-size:.72rem;color:rgba(232,224,212,.45);flex:1;">Medium</span><span style="font-size:.8rem;font-weight:600;color:#e8e0d4;" id="lc-medium">—</span></div>
+                <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:7px;height:7px;border-radius:50%;background:#f87171;flex-shrink:0;"></div><span style="font-size:.72rem;color:rgba(232,224,212,.45);flex:1;">Hard</span><span style="font-size:.8rem;font-weight:600;color:#e8e0d4;" id="lc-hard">—</span></div>
+              </div>
+            </div>
+          </div>
+
+          
+          <div class="lc-card reveal-item">
+            <p class="lc-label">Activity</p>
+            <div style="font-size:3rem;font-weight:700;color:#e8e0d4;line-height:1;margin-bottom:.2rem;" id="lc-streak">—</div>
+            <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-bottom:.9rem;">day streak</div>
+            <div style="display:flex;flex-wrap:wrap;gap:.4rem;" id="lc-badges"></div>
           </div>
         </div>
 
-        <div id="gh-error" style="display:none;color:rgba(224,90,90,.7);font-size:.85rem;padding:1rem 0;"></div>
-      </div>
+        
+        <div class="lc-bottom">
 
-      <div style="margin-top:1.2rem;text-align:right;">
-        <a href="https://github.com/kajalsanwalll" target="_blank" style="font-size:.85rem;color:rgba(232,224,212,.35);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .25s;cursor:none;">View GitHub profile ↗</a>
+          
+          <div class="lc-card reveal-item">
+            <p class="lc-label">Difficulty Breakdown</p>
+            <div style="margin-bottom:.8rem;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.78rem;color:rgba(232,224,212,.5);">Easy</span><span style="font-size:.78rem;font-weight:600;color:#e8e0d4;" id="bar-easy-lbl">—</span></div>
+              <div style="height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;"><div id="bar-easy" style="height:100%;border-radius:999px;background:#4ade80;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
+            </div>
+            <div style="margin-bottom:.8rem;">
+              <div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.78rem;color:rgba(232,224,212,.5);">Medium</span><span style="font-size:.78rem;font-weight:600;color:#e8e0d4;" id="bar-med-lbl">—</span></div>
+              <div style="height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;"><div id="bar-med" style="height:100%;border-radius:999px;background:#fbbf24;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
+            </div>
+            <div>
+              <div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.78rem;color:rgba(232,224,212,.5);">Hard</span><span style="font-size:.78rem;font-weight:600;color:#e8e0d4;" id="bar-hard-lbl">—</span></div>
+              <div style="height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;"><div id="bar-hard-bar" style="height:100%;border-radius:999px;background:#f87171;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
+            </div>
+            <div style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:rgba(232,224,212,.25);">Acceptance rate: <span id="lc-accept" style="color:rgba(232,224,212,.5);">—</span></div>
+          </div>
+
+          
+          <div class="lc-card reveal-item">
+            <p class="lc-label">Contest · Heatmap</p>
+            <div style="display:flex;gap:1.5rem;margin-bottom:1rem;">
+              <div><div style="font-size:1.5rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-contest-rating">—</div><div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-top:.1rem;">Rating</div></div>
+              <div><div style="font-size:1.5rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-contest-count">—</div><div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-top:.1rem;">Contests</div></div>
+              <div><div style="font-size:1.5rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-contest-rank">—</div><div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-top:.1rem;">Best rank</div></div>
+            </div>
+            <div style="overflow-x:auto;scrollbar-width:none;">
+              <div style="display:flex;gap:3px;align-items:flex-start;" id="lc-heatmap"></div>
+            </div>
+            <div style="font-size:.7rem;color:rgba(232,224,212,.25);margin-top:.9rem;">Full activity on <a href="https://codolio.com/profile/kajalsanwall" target="_blank" style="color:rgba(224,138,90,.5);text-decoration:none;">Codolio ↗</a></div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
   <div class="sect-separator"></div>
-</section>
+ </section>
+ 
+ -->
 
 <!-- RESUME -->
 <section class="sect" id="resume">
@@ -680,6 +792,7 @@ const techItems=[
   {name:'MongoDB',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#4DB33D"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.051-1.662-.197-2.218z"/></svg>`},
   {name:'JavaScript',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#F7DF1E"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>`},
   {name:'TypeScript',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#3178C6"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>`},
+  {name:'Express',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(232,224,212,0.7)"><path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.138-.666-.18-.407-.18-.816-.001-1.12zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/></svg>`},
   {name:'React',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 01-2.235 2.236 2.236 2.236 0 01-2.236-2.236 2.236 2.236 0 012.235-2.236 2.236 2.236 0 012.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.269-1.245.674-1.641 2.57-1.015 5.156.108.456.253.936.438 1.435-.667.273-1.313.6-1.921.989-1.327.839-2.145 1.851-2.145 2.938 0 1.088.816 2.1 2.142 2.939.624.394 1.269.71 1.934.979-.189.502-.335.985-.44 1.443-.617 2.64-.22 4.524 1.022 5.195.276.15.594.226.943.226 1.348 0 3.109-.96 4.888-2.622 1.78 1.653 3.542 2.602 4.887 2.602.41 0 .783-.093 1.106-.269 1.245-.674 1.641-2.57 1.015-5.156-.108-.456-.253-.936-.438-1.435.667-.273 1.313-.6 1.921-.989 1.327-.839 2.145-1.851 2.145-2.938 0-1.088-.818-2.1-2.142-2.939-.624-.394-1.269-.71-1.934-.979.189-.502.335-.985.44-1.443.617-2.64.22-4.524-1.022-5.195a2.636 2.636 0 00-.943-.226z"/></svg>`},
   {name:'Node.js',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#339933"><path d="M11.998.001a.886.886 0 00-.443.116L.543 6.307a.885.885 0 00-.44.771v12.384c0 .318.169.613.44.771l11.012 6.19a.883.883 0 00.886 0l11.012-6.19a.885.885 0 00.44-.771V7.078a.886.886 0 00-.44-.771L12.44.117a.886.886 0 00-.443-.116z"/></svg>`},
   {name:'Next.js',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(232,224,212,0.85)"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 01-.364.033C6.1.443 2.697 2.08.803 4.92-.588 7.027-.792 9.513.107 11.83c.768 1.97 2.354 3.574 4.34 4.437.485.21 1.006.37 1.556.483a16.13 16.13 0 003.994.006 11.72 11.72 0 003.186-.923l.005.002.033.018c.078.041.155.084.232.129l3.776 2.179a1.4 1.4 0 001.9-.496 1.4 1.4 0 00-.047-1.498l-3.398-4.696c1.077-1.334 1.736-3.018 1.736-4.857 0-4.418-3.582-8-8-8zm0 2.163c3.204 0 5.836 2.581 5.836 5.837 0 1.615-.65 3.078-1.7 4.15l-.044.042-2.02-2.79a1.4 1.4 0 00-1.137-.575 1.4 1.4 0 00-1.4 1.4c0 .386.158.737.413.993l2.034 2.81a9.34 9.34 0 01-2.982.486c-3.204 0-5.836-2.581-5.836-5.837 0-3.204 2.581-5.836 5.836-5.836z"/></svg>`},
@@ -702,102 +815,94 @@ if(tt){
   });
 }
 
-// ── GitHub Isometric Heatmap ───────────────────────────
-(async function ghHeatmap(){
-  function getColor(count){
-    if(!count)return null;
-    if(count<=1)return '#1a4a1a';
-    if(count<=3)return '#2d7a2d';
-    if(count<=6)return '#3ecf4a';
-    return '#5bff69';
-  }
+// ── LeetCode Stats via /api/leetcode ──────────────────
+/*
+(async function lcStats(){
+  try {
+    const res  = await fetch('/api/leetcode');
+    if(!res.ok) throw new Error('HTTP '+res.status);
+    const data = await res.json();
+    const u    = data?.data?.matchedUser;
+    const cr   = data?.data?.userContestRanking;
+    if(!u) throw new Error('no user data');
 
-  function drawIsometric(weeks){
-    const canvas=document.getElementById('gh-canvas');
-    const dpr=window.devicePixelRatio||1;
-    const cols=weeks.length,rows=7;
-    const cellW=14,cellH=14;
-    const isoW=cellW*0.866,isoH=cellH*0.5;
-    const totalW=(cols+rows)*isoW;
-    const totalH=(cols+rows)*isoH+60;
-    const containerW=canvas.parentElement.offsetWidth||800;
-    const displayW=Math.min(totalW,containerW);
-    const scale=displayW/totalW;
-    canvas.style.width=displayW+'px';
-    canvas.style.height=Math.ceil(totalH*scale)+'px';
-    canvas.width=Math.ceil(displayW*dpr);
-    canvas.height=Math.ceil(totalH*scale*dpr);
-    const ctx=canvas.getContext('2d');
-    ctx.scale(dpr*scale,dpr*scale);
-    const originX=rows*isoW,originY=30;
-    function toIso(col,row){return{x:originX+(col-row)*isoW,y:originY+(col+row)*isoH};}
-    function drawCell(col,row,count){
-      const color=getColor(count);
-      const pos=toIso(col,row);
-      const h=count>0?Math.min(2+count*2.5,20):0;
-      if(h>0){
-        const topY=pos.y-h;
-        const r=parseInt(color.slice(1,3),16),g=parseInt(color.slice(3,5),16),b=parseInt(color.slice(5,7),16);
-        ctx.beginPath();
-        ctx.moveTo(pos.x,topY);ctx.lineTo(pos.x+isoW,topY+isoH);ctx.lineTo(pos.x,topY+cellH);ctx.lineTo(pos.x-isoW,topY+isoH);ctx.closePath();
-        ctx.fillStyle=color;ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(pos.x+isoW,topY+isoH);ctx.lineTo(pos.x+isoW,pos.y+isoH);ctx.lineTo(pos.x,pos.y+cellH);ctx.lineTo(pos.x,topY+cellH);ctx.closePath();
-        ctx.fillStyle=`rgb(${Math.max(0,r-40)},${Math.max(0,g-40)},${Math.max(0,b-40)})`;ctx.fill();
-        ctx.beginPath();
-        ctx.moveTo(pos.x-isoW,topY+isoH);ctx.lineTo(pos.x,topY+cellH);ctx.lineTo(pos.x,pos.y+cellH);ctx.lineTo(pos.x-isoW,pos.y+isoH);ctx.closePath();
-        ctx.fillStyle=`rgb(${Math.max(0,r-60)},${Math.max(0,g-60)},${Math.max(0,b-60)})`;ctx.fill();
-      }
-      ctx.beginPath();
-      ctx.moveTo(pos.x,pos.y);ctx.lineTo(pos.x+isoW,pos.y+isoH);ctx.lineTo(pos.x,pos.y+cellH);ctx.lineTo(pos.x-isoW,pos.y+isoH);ctx.closePath();
-      ctx.fillStyle=h>0?getColor(count):'rgba(255,255,255,0.05)';ctx.fill();
-      ctx.strokeStyle='rgba(0,0,0,0.3)';ctx.lineWidth=0.5;ctx.stroke();
+    const stats  = u.submitStats.acSubmissionNum;
+    const all    = stats.find(s=>s.difficulty==='All')?.count    || 0;
+    const easy   = stats.find(s=>s.difficulty==='Easy')?.count   || 0;
+    const med    = stats.find(s=>s.difficulty==='Medium')?.count || 0;
+    const hard   = stats.find(s=>s.difficulty==='Hard')?.count   || 0;
+
+    document.getElementById('lc-ranking').textContent  = (u.profile.ranking||0).toLocaleString();
+    document.getElementById('lc-total').textContent    = all;
+    document.getElementById('lc-easy').textContent     = easy;
+    document.getElementById('lc-medium').textContent   = med;
+    document.getElementById('lc-hard').textContent     = hard;
+
+    // bars
+    const mx=Math.max(easy,med,hard)||1;
+    document.getElementById('bar-easy-lbl').textContent  = easy;
+    document.getElementById('bar-med-lbl').textContent   = med;
+    document.getElementById('bar-hard-lbl').textContent  = hard;
+    document.getElementById('lc-accept').textContent     = '—';
+    setTimeout(()=>{
+      document.getElementById('bar-easy').style.width      = (easy/mx*100)+'%';
+      document.getElementById('bar-med').style.width       = (med/mx*100)+'%';
+      document.getElementById('bar-hard-bar').style.width  = (hard/mx*100)+'%';
+    },200);
+
+    // donut
+    const circ=2*Math.PI*38; let off=0;
+    function seg(id,count){
+      if(!all)return;
+      const len=(count/all)*circ;
+      const el=document.getElementById(id);
+      el.setAttribute('stroke-dasharray',`${len.toFixed(1)} ${(circ-len).toFixed(1)}`);
+      el.setAttribute('stroke-dashoffset',-off);
+      el.setAttribute('transform',`rotate(${(off/circ)*360-90} 50 50)`);
+      off+=len;
     }
-    for(let col=0;col<cols;col++){
-      const week=weeks[col];
-      for(let row=0;row<rows;row++){
-        const day=week.contributionDays[row];
-        drawCell(col,row,day?day.contributionCount:0);
-      }
+    setTimeout(()=>{seg('donut-easy',easy);seg('donut-med',med);seg('donut-hard',hard);},150);
+
+    // streak
+    document.getElementById('lc-streak').textContent = u.userCalendar?.streak||0;
+
+    // badges
+    const badges=u.badges||[];
+    document.getElementById('lc-badges').innerHTML=
+      badges.slice(0,5).map(b=>`<span class="lc-badge">${b.displayName||b.name}</span>`).join('')+
+      (badges.length>5?`<span class="lc-badge">+${badges.length-5}</span>`:'');
+
+    // heatmap
+    const cal=JSON.parse(u.userCalendar?.submissionCalendar||'{}');
+    const now=Math.floor(Date.now()/1000),days=18*7;
+    const grid=document.getElementById('lc-heatmap');
+    let col;
+    for(let i=0;i<days;i++){
+      if(i%7===0){col=document.createElement('div');col.style.cssText='display:flex;flex-direction:column;gap:3px;';grid.appendChild(col);}
+      const ts=Math.floor((now-(days-i)*86400)/86400)*86400;
+      const v=cal[ts]||cal[String(ts)]||0;
+      const cell=document.createElement('div');
+      cell.style.cssText=`width:11px;height:11px;border-radius:2px;background:${v===0?'rgba(255,255,255,.06)':v<=1?'rgba(224,138,90,.25)':v<=3?'rgba(224,138,90,.5)':v<=6?'rgba(224,138,90,.75)':'#e08a5a'};`;
+      col.appendChild(cell);
     }
-  }
 
-  try{
-    const res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',
-      headers:{'Content-Type':'application/json'},
-      body:JSON.stringify({
-        model:'claude-sonnet-4-20250514',
-        max_tokens:1000,
-        messages:[{role:'user',content:`Generate realistic mock GitHub contribution data for kajalsanwalll for Apr 2025 to Apr 2026. Return ONLY valid JSON, no markdown fences, no explanation:
-{"totalContributions":487,"weeks":[<52 week objects, each: {"contributionDays":[<7 objects: {"contributionCount":<0-9>,"date":"<YYYY-MM-DD>"}]}>],"repos":14,"stars":7}
-Rules: weekdays more active than weekends, recent months more active, sparse Jan-Mar 2025, pick up Apr-Jun, active Jul-Dec, total ~450-550.`}]
-      })
-    });
-    const data=await res.json();
-    const text=data.content.filter(c=>c.type==='text').map(c=>c.text).join('');
-    const parsed=JSON.parse(text.replace(/```json|```/g,'').trim());
+    // contest
+    document.getElementById('lc-contest-rating').textContent = cr?Math.round(cr.rating):'N/A';
+    document.getElementById('lc-contest-count').textContent  = cr?.attendedContestsCount||0;
+    document.getElementById('lc-contest-rank').textContent   = cr?.topPercentage?`Top ${Math.round(cr.topPercentage)}%`:'—';
 
-    document.getElementById('gh-total').textContent=parsed.totalContributions.toLocaleString();
-    document.getElementById('gh-stars').textContent=parsed.stars;
-    document.getElementById('gh-repos').textContent=parsed.repos;
+    document.getElementById('lc-loading').style.display='none';
+    document.getElementById('lc-content').style.display='block';
 
-    const first=parsed.weeks[0]?.contributionDays[0]?.date||'2025-04-20';
-    const lastW=parsed.weeks[parsed.weeks.length-1];
-    const last=lastW?.contributionDays[lastW.contributionDays.length-1]?.date||'2026-04-20';
-    document.getElementById('gh-date-range').textContent=first+' / '+last;
-
-    drawIsometric(parsed.weeks);
-    document.getElementById('gh-loading').style.display='none';
-    document.getElementById('gh-content').style.display='block';
-  }catch(e){
-    console.error(e);
-    document.getElementById('gh-loading').style.display='none';
-    const err=document.getElementById('gh-error');
-    err.style.display='block';
-    err.textContent='Could not load contribution data.';
+  } catch(e){
+    console.error('LeetCode stats error:',e);
+    document.getElementById('lc-loading').style.display='none';
+    document.getElementById('lc-error').textContent='Stats unavailable — try refreshing.';
+    document.getElementById('lc-error').style.display='block';
   }
 })();
+
+*/
 </script>
 </body>
 </html>
