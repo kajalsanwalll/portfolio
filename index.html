@@ -181,6 +181,16 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .exp-tag:hover{color:#e8e0d4;}
 .exp-tag:hover::after{transform:scaleX(1);}
 
+/* Startup badge for SelfShft */
+.exp-startup-badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;padding:.3rem .8rem;border-radius:999px;background:rgba(224,138,90,.08);border:1px solid rgba(224,138,90,.2);font-size:.68rem;color:rgba(224,138,90,.85);letter-spacing:.06em;font-weight:500;}
+.exp-startup-badge svg{width:11px;height:11px;fill:#e08a5a;flex-shrink:0;}
+
+/* Full-width exp entry variant (no photo) */
+.exp-entry-full{display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.055);}
+.exp-entry-full .exp-bottom-full{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.exp-entry-full .exp-info-full{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;transition:border-color .5s ease;}
+.exp-entry-full .exp-info-full:hover{border-color:rgba(224,138,90,.1);}
+
 /* EDUCATION */
 #education{background:#000;}
 .edu-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
@@ -209,9 +219,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .edu-stat-lbl{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);}
 .edu-badge{position:absolute;top:1.1rem;right:1.3rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(224,138,90,.5);font-weight:500;background:rgba(224,138,90,.07);border:1px solid rgba(224,138,90,.12);border-radius:999px;padding:.22rem .7rem;}
 
-/* ══════════════════════
-   CODING STATS
-══════════════════════ */
+/* CODING STATS */
 #coding{background:#000;}
 .coding-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
 .coding-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
@@ -291,6 +299,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
   .home-inner{flex-direction:column-reverse;gap:2rem;padding-top:5rem;}
   .hero-img{width:100%;height:260px;}
   .exp-entry{grid-template-columns:1fr;}
+  .exp-entry-full .exp-bottom-full{grid-template-columns:1fr;}
   .exp-bottom{grid-template-columns:1fr;}
   .edu-grid{grid-template-columns:1fr;}
   .edu-card-featured{flex-direction:column;align-items:flex-start;gap:1rem;}
@@ -339,19 +348,19 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     </div>
     <div class="home-right fade-in-d2">
       <div class="hero-img-wrap">
-    <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
-    <div class="hero-reveal">
-      <div class="hero-reveal-dot"></div>
-      <span class="hero-reveal-text">open to work</span>
-    </div>
-  </div>
+        <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
+        <div class="hero-reveal">
+          <div class="hero-reveal-dot"></div>
+          <span class="hero-reveal-text">open to work</span>
+        </div>
+      </div>
     </div>
   </div>
   <div class="sect-separator"></div>
   <div class="scroll-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>scroll</div>
 </section>
 
-
+<!-- PROJECTS -->
 <section class="sect" id="projects">
   <div class="sect-inner" style="padding:5rem 4vw 3rem;min-height:100vh;">
     <div class="sec-head reveal-item">
@@ -368,7 +377,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
         </div>
 
         <div class="pcard pcard-2 reveal-item">
-          <a href="https://github.com/kajalsanwalll/saas-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://github.com/kajalsanwalll/saas-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
           <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="aii.png" alt="SaaS Platform"/></div></a>
           <div class="pcard-body"><p class="pcard-name">SaaS Platform</p><p class="pcard-desc">AI-powered SaaS with Next.js, Prisma &amp; NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript · Prisma</p></div>
         </div>
@@ -402,14 +411,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
           <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="habit.png" alt="My Dashboard"/></div></a>
           <div class="pcard-body"><p class="pcard-name">My Dashboard</p><p class="pcard-desc">Personal dashboard app demonstrating full-stack capability and clean UI design in a real-world context.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · JavaScript</p></div>
         </div>
-        
-        <!--
-        <div class="pcard pcard-8 reveal-item">
-          <a href="https://github.com/kajalsanwalll/bday" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
-          <a href="https://birthday-pcciuuw6n-kajal-sanwals-projects.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="birth.png" alt="Birthday Surprise"/></div></a>
-          <div class="pcard-body"><p class="pcard-name">Birthday Surprise</p><p class="pcard-desc">Delightful interactive birthday experience showcasing creative front-end work and interactive design.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · HTML/CSS/JS</p></div>
-        </div>
-        -->
+
       </div>
     </div>
     <div class="scroll-dots" id="sdots"><div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div></div>
@@ -429,6 +431,35 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     <div class="exp-wrap">
       <h1 class="exp-page-title reveal-item">Experience</h1>
 
+      <!-- SelfShft -->
+      <div class="exp-entry-full reveal-item">
+        <div class="exp-info-full">
+          <p class="exp-eyebrow">June 2026 – Present · IIT Madras Nirmaan Cohort</p>
+          <p class="exp-role-title">Co-founder &amp; Full-Stack Developer</p>
+          <p class="exp-subtitle">SelfShft — Stage 1 · IIT Madras Nirmaan</p>
+          <p class="exp-desc">Built a <b>full-stack web platform</b> using <b>Next.js</b>, <b>TypeScript</b>, and modern web technologies to connect students with <b>location-based part-time jobs</b> and short-term gigs. Designed and implemented features for <b>student onboarding</b>, employer profiles, job matching, and authentication. Collaborated on <b>product strategy and technical architecture</b> as part of the founding team, addressing financial accessibility for students relocating for higher education.</p>
+          <span class="exp-startup-badge">
+            <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            Selected · IIT Madras Nirmaan Stage 1 Cohort
+          </span>
+        </div>
+        <div class="exp-bottom-full">
+          <div class="exp-tech">
+            <p class="exp-tech-label">Tech Used</p>
+            <div class="exp-tags">
+              <span class="exp-tag">Next.js</span><span class="exp-tag">TypeScript</span><span class="exp-tag">React</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Prisma</span><span class="exp-tag">Tailwind CSS</span><span class="exp-tag">Authentication</span><span class="exp-tag">REST APIs</span><span class="exp-tag">Vercel</span>
+            </div>
+          </div>
+          <div class="exp-tech">
+            <p class="exp-tech-label">Highlights</p>
+            <div class="exp-tags">
+              <span class="exp-tag">Student–Employer Matching</span><span class="exp-tag">Location-Based Jobs</span><span class="exp-tag">Product Strategy</span><span class="exp-tag">System Architecture</span><span class="exp-tag">Financial Accessibility</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BluArmor -->
       <div class="exp-entry reveal-item">
         <div class="exp-info">
           <p class="exp-eyebrow">Aug – Oct 2025 · Pre-Placement Offer</p>
@@ -454,6 +485,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
         </div>
       </div>
 
+      <!-- Teaching Assistant -->
       <div class="exp-entry reveal-item">
         <div class="exp-info">
           <p class="exp-eyebrow">Ongoing · IIT Madras</p>
@@ -478,6 +510,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
           </div>
         </div>
       </div>
+
     </div>
   </div>
   <div class="sect-separator"></div>
@@ -540,118 +573,6 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
   </div>
   <div class="sect-separator"></div>
 </section>
-
-
-
-<!-- 
- <section class="sect" id="coding">
-  <div class="sect-inner">
-    <div class="coding-wrap">
-      <h1 class="coding-page-title reveal-item">Coding Stats</h1>
-
-      <div id="lc-loading" class="lc-loading reveal-item">
-        <div class="lc-spinner"></div>
-        <span>Fetching live stats from LeetCode…</span>
-      </div>
-      <div id="lc-error" style="display:none;color:rgba(224,90,90,.7);font-size:.85rem;padding:1rem 0;"></div>
-
-      <div id="lc-content" style="display:none;">
-        
-        <div class="lc-top">
-
-          
-          <div class="lc-card reveal-item">
-            <p class="lc-label">Profile</p>
-            <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-              <div style="width:44px;height:44px;border-radius:50%;background:rgba(224,138,90,.15);border:1px solid rgba(224,138,90,.25);display:flex;align-items:center;justify-content:center;font-size:1rem;font-weight:600;color:#e08a5a;flex-shrink:0;">KS</div>
-              <div>
-                <div style="font-size:.95rem;font-weight:600;color:#e8e0d4;">Kajal Sanwal</div>
-                <div style="font-size:.72rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;">@kajalsanwall</div>
-              </div>
-            </div>
-            <div style="display:flex;align-items:baseline;gap:.5rem;">
-              <span style="font-size:1.5rem;font-weight:700;color:#e8e0d4;" id="lc-ranking">—</span>
-              <span style="font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);">Global Rank</span>
-            </div>
-            <a href="https://leetcode.com/u/kajalsanwall/" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;margin-top:.7rem;font-size:.75rem;color:rgba(224,138,90,.6);text-decoration:none;cursor:none;">View on LeetCode ↗</a><br>
-            <a href="https://codolio.com/profile/kajalsanwall" target="_blank" style="display:inline-flex;align-items:center;gap:.3rem;margin-top:.3rem;font-size:.75rem;color:rgba(224,138,90,.6);text-decoration:none;cursor:none;">View on Codolio ↗</a>
-          </div>
-
-          
-          <div class="lc-card reveal-item">
-            <p class="lc-label">Problems Solved</p>
-            <div style="display:flex;align-items:center;gap:1.4rem;">
-              <div style="position:relative;width:100px;height:100px;flex-shrink:0;">
-                <svg width="100" height="100" viewBox="0 0 100 100">
-                  <circle cx="50" cy="50" r="38" fill="none" stroke="rgba(255,255,255,.07)" stroke-width="10"/>
-                  <circle id="donut-easy" cx="50" cy="50" r="38" fill="none" stroke="#4ade80" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 239" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"/>
-                  <circle id="donut-med"  cx="50" cy="50" r="38" fill="none" stroke="#fbbf24" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 239" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"/>
-                  <circle id="donut-hard" cx="50" cy="50" r="38" fill="none" stroke="#f87171" stroke-width="10" stroke-linecap="round" stroke-dasharray="0 239" transform="rotate(-90 50 50)" style="transition:stroke-dasharray 1s ease"/>
-                </svg>
-                <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;">
-                  <span style="font-size:1.6rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-total">—</span>
-                  <span style="font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);">solved</span>
-                </div>
-              </div>
-              <div style="display:flex;flex-direction:column;gap:.55rem;">
-                <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:7px;height:7px;border-radius:50%;background:#4ade80;flex-shrink:0;"></div><span style="font-size:.72rem;color:rgba(232,224,212,.45);flex:1;">Easy</span><span style="font-size:.8rem;font-weight:600;color:#e8e0d4;" id="lc-easy">—</span></div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:7px;height:7px;border-radius:50%;background:#fbbf24;flex-shrink:0;"></div><span style="font-size:.72rem;color:rgba(232,224,212,.45);flex:1;">Medium</span><span style="font-size:.8rem;font-weight:600;color:#e8e0d4;" id="lc-medium">—</span></div>
-                <div style="display:flex;align-items:center;gap:.5rem;"><div style="width:7px;height:7px;border-radius:50%;background:#f87171;flex-shrink:0;"></div><span style="font-size:.72rem;color:rgba(232,224,212,.45);flex:1;">Hard</span><span style="font-size:.8rem;font-weight:600;color:#e8e0d4;" id="lc-hard">—</span></div>
-              </div>
-            </div>
-          </div>
-
-          
-          <div class="lc-card reveal-item">
-            <p class="lc-label">Activity</p>
-            <div style="font-size:3rem;font-weight:700;color:#e8e0d4;line-height:1;margin-bottom:.2rem;" id="lc-streak">—</div>
-            <div style="font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-bottom:.9rem;">day streak</div>
-            <div style="display:flex;flex-wrap:wrap;gap:.4rem;" id="lc-badges"></div>
-          </div>
-        </div>
-
-        
-        <div class="lc-bottom">
-
-          
-          <div class="lc-card reveal-item">
-            <p class="lc-label">Difficulty Breakdown</p>
-            <div style="margin-bottom:.8rem;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.78rem;color:rgba(232,224,212,.5);">Easy</span><span style="font-size:.78rem;font-weight:600;color:#e8e0d4;" id="bar-easy-lbl">—</span></div>
-              <div style="height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;"><div id="bar-easy" style="height:100%;border-radius:999px;background:#4ade80;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
-            </div>
-            <div style="margin-bottom:.8rem;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.78rem;color:rgba(232,224,212,.5);">Medium</span><span style="font-size:.78rem;font-weight:600;color:#e8e0d4;" id="bar-med-lbl">—</span></div>
-              <div style="height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;"><div id="bar-med" style="height:100%;border-radius:999px;background:#fbbf24;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
-            </div>
-            <div>
-              <div style="display:flex;justify-content:space-between;margin-bottom:.3rem;"><span style="font-size:.78rem;color:rgba(232,224,212,.5);">Hard</span><span style="font-size:.78rem;font-weight:600;color:#e8e0d4;" id="bar-hard-lbl">—</span></div>
-              <div style="height:5px;border-radius:999px;background:rgba(255,255,255,.07);overflow:hidden;"><div id="bar-hard-bar" style="height:100%;border-radius:999px;background:#f87171;width:0%;transition:width 1s cubic-bezier(.4,0,.2,1);"></div></div>
-            </div>
-            <div style="margin-top:.8rem;padding-top:.8rem;border-top:1px solid rgba(255,255,255,.05);font-size:.7rem;color:rgba(232,224,212,.25);">Acceptance rate: <span id="lc-accept" style="color:rgba(232,224,212,.5);">—</span></div>
-          </div>
-
-          
-          <div class="lc-card reveal-item">
-            <p class="lc-label">Contest · Heatmap</p>
-            <div style="display:flex;gap:1.5rem;margin-bottom:1rem;">
-              <div><div style="font-size:1.5rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-contest-rating">—</div><div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-top:.1rem;">Rating</div></div>
-              <div><div style="font-size:1.5rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-contest-count">—</div><div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-top:.1rem;">Contests</div></div>
-              <div><div style="font-size:1.5rem;font-weight:700;color:#e8e0d4;line-height:1;" id="lc-contest-rank">—</div><div style="font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);margin-top:.1rem;">Best rank</div></div>
-            </div>
-            <div style="overflow-x:auto;scrollbar-width:none;">
-              <div style="display:flex;gap:3px;align-items:flex-start;" id="lc-heatmap"></div>
-            </div>
-            <div style="font-size:.7rem;color:rgba(232,224,212,.25);margin-top:.9rem;">Full activity on <a href="https://codolio.com/profile/kajalsanwall" target="_blank" style="color:rgba(224,138,90,.5);text-decoration:none;">Codolio ↗</a></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="sect-separator"></div>
- </section>
- 
- -->
 
 <!-- RESUME -->
 <section class="sect" id="resume">
@@ -815,95 +736,6 @@ if(tt){
     if(i<all.length-1){const s=document.createElement('div');s.className='tech-sep';tt.appendChild(s);}
   });
 }
-
-// ── LeetCode Stats via /api/leetcode ──────────────────
-/*
-(async function lcStats(){
-  try {
-    const res  = await fetch('/api/leetcode');
-    if(!res.ok) throw new Error('HTTP '+res.status);
-    const data = await res.json();
-    const u    = data?.data?.matchedUser;
-    const cr   = data?.data?.userContestRanking;
-    if(!u) throw new Error('no user data');
-
-    const stats  = u.submitStats.acSubmissionNum;
-    const all    = stats.find(s=>s.difficulty==='All')?.count    || 0;
-    const easy   = stats.find(s=>s.difficulty==='Easy')?.count   || 0;
-    const med    = stats.find(s=>s.difficulty==='Medium')?.count || 0;
-    const hard   = stats.find(s=>s.difficulty==='Hard')?.count   || 0;
-
-    document.getElementById('lc-ranking').textContent  = (u.profile.ranking||0).toLocaleString();
-    document.getElementById('lc-total').textContent    = all;
-    document.getElementById('lc-easy').textContent     = easy;
-    document.getElementById('lc-medium').textContent   = med;
-    document.getElementById('lc-hard').textContent     = hard;
-
-    // bars
-    const mx=Math.max(easy,med,hard)||1;
-    document.getElementById('bar-easy-lbl').textContent  = easy;
-    document.getElementById('bar-med-lbl').textContent   = med;
-    document.getElementById('bar-hard-lbl').textContent  = hard;
-    document.getElementById('lc-accept').textContent     = '—';
-    setTimeout(()=>{
-      document.getElementById('bar-easy').style.width      = (easy/mx*100)+'%';
-      document.getElementById('bar-med').style.width       = (med/mx*100)+'%';
-      document.getElementById('bar-hard-bar').style.width  = (hard/mx*100)+'%';
-    },200);
-
-    // donut
-    const circ=2*Math.PI*38; let off=0;
-    function seg(id,count){
-      if(!all)return;
-      const len=(count/all)*circ;
-      const el=document.getElementById(id);
-      el.setAttribute('stroke-dasharray',`${len.toFixed(1)} ${(circ-len).toFixed(1)}`);
-      el.setAttribute('stroke-dashoffset',-off);
-      el.setAttribute('transform',`rotate(${(off/circ)*360-90} 50 50)`);
-      off+=len;
-    }
-    setTimeout(()=>{seg('donut-easy',easy);seg('donut-med',med);seg('donut-hard',hard);},150);
-
-    // streak
-    document.getElementById('lc-streak').textContent = u.userCalendar?.streak||0;
-
-    // badges
-    const badges=u.badges||[];
-    document.getElementById('lc-badges').innerHTML=
-      badges.slice(0,5).map(b=>`<span class="lc-badge">${b.displayName||b.name}</span>`).join('')+
-      (badges.length>5?`<span class="lc-badge">+${badges.length-5}</span>`:'');
-
-    // heatmap
-    const cal=JSON.parse(u.userCalendar?.submissionCalendar||'{}');
-    const now=Math.floor(Date.now()/1000),days=18*7;
-    const grid=document.getElementById('lc-heatmap');
-    let col;
-    for(let i=0;i<days;i++){
-      if(i%7===0){col=document.createElement('div');col.style.cssText='display:flex;flex-direction:column;gap:3px;';grid.appendChild(col);}
-      const ts=Math.floor((now-(days-i)*86400)/86400)*86400;
-      const v=cal[ts]||cal[String(ts)]||0;
-      const cell=document.createElement('div');
-      cell.style.cssText=`width:11px;height:11px;border-radius:2px;background:${v===0?'rgba(255,255,255,.06)':v<=1?'rgba(224,138,90,.25)':v<=3?'rgba(224,138,90,.5)':v<=6?'rgba(224,138,90,.75)':'#e08a5a'};`;
-      col.appendChild(cell);
-    }
-
-    // contest
-    document.getElementById('lc-contest-rating').textContent = cr?Math.round(cr.rating):'N/A';
-    document.getElementById('lc-contest-count').textContent  = cr?.attendedContestsCount||0;
-    document.getElementById('lc-contest-rank').textContent   = cr?.topPercentage?`Top ${Math.round(cr.topPercentage)}%`:'—';
-
-    document.getElementById('lc-loading').style.display='none';
-    document.getElementById('lc-content').style.display='block';
-
-  } catch(e){
-    console.error('LeetCode stats error:',e);
-    document.getElementById('lc-loading').style.display='none';
-    document.getElementById('lc-error').textContent='Stats unavailable — try refreshing.';
-    document.getElementById('lc-error').style.display='block';
-  }
-})();
-
-*/
 </script>
 </body>
 </html>
