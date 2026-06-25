@@ -155,6 +155,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 #experience{background:#000;}
 .exp-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
 .exp-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
+
+/* Standard 2-col entry */
 .exp-entry{display:grid;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.055);}
 .exp-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
 .exp-info{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;transition:border-color .5s ease;}
@@ -181,15 +183,23 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .exp-tag:hover{color:#e8e0d4;}
 .exp-tag:hover::after{transform:scaleX(1);}
 
-/* Startup badge for SelfShft */
+/* Startup badge */
 .exp-startup-badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;padding:.3rem .8rem;border-radius:999px;background:rgba(224,138,90,.08);border:1px solid rgba(224,138,90,.2);font-size:.68rem;color:rgba(224,138,90,.85);letter-spacing:.06em;font-weight:500;}
 .exp-startup-badge svg{width:11px;height:11px;fill:#e08a5a;flex-shrink:0;}
 
-/* Full-width exp entry variant (no photo) */
-.exp-entry-full{display:grid;grid-template-columns:1fr;gap:.75rem;margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.055);}
-.exp-entry-full .exp-bottom-full{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
-.exp-entry-full .exp-info-full{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;transition:border-color .5s ease;}
-.exp-entry-full .exp-info-full:hover{border-color:rgba(224,138,90,.1);}
+/* SelfShft co-founder — same 2-col grid as other entries */
+.exp-entry-cofounder{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:.75rem;margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.055);}
+.exp-entry-cofounder .exp-info-main{grid-column:1/2;background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;transition:border-color .5s ease;}
+.exp-entry-cofounder .exp-info-main:hover{border-color:rgba(224,138,90,.1);}
+.exp-entry-cofounder .exp-side-card{grid-column:2/3;background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;transition:border-color .5s ease;}
+.exp-entry-cofounder .exp-side-card:hover{border-color:rgba(224,138,90,.1);}
+.exp-entry-cofounder .exp-bottom-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.exp-side-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.3rem;}
+.exp-side-highlight{font-size:.82rem;line-height:1.7;color:rgba(232,224,212,.55);}
+.exp-side-highlight b{color:#dba96a;font-weight:500;}
+.exp-side-stat{display:flex;align-items:baseline;gap:.4rem;margin-top:.4rem;}
+.exp-side-stat-num{font-size:1.4rem;font-weight:700;color:#e8e0d4;}
+.exp-side-stat-lbl{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(232,224,212,.3);}
 
 /* EDUCATION */
 #education{background:#000;}
@@ -222,24 +232,60 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 /* CODING STATS */
 #coding{background:#000;}
 .coding-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
-.coding-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
+.coding-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:.6rem;}
+.coding-subtitle{font-size:.92rem;color:rgba(232,224,212,.45);margin-bottom:2rem;line-height:1.6;}
 
-.lc-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.4rem 1.6rem;transition:border-color .4s;}
-.lc-card:hover{border-color:rgba(224,138,90,.18);}
-.lc-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.9rem;display:flex;align-items:center;gap:.5rem;}
-.lc-label::before{content:'';width:14px;height:1px;background:#e08a5a;}
-.lc-badge{font-size:.68rem;padding:.22rem .65rem;border-radius:999px;background:rgba(224,138,90,.1);border:1px solid rgba(224,138,90,.2);color:rgba(224,138,90,.8);}
+/* Profile link cards */
+.coding-profiles{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.profile-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1.2rem;text-decoration:none;transition:border-color .35s,transform .35s,box-shadow .35s;cursor:none;position:relative;overflow:hidden;}
+.profile-card::before{content:'';position:absolute;top:0;left:1.6rem;right:1.6rem;height:1px;background:linear-gradient(90deg,transparent,var(--accent,rgba(224,138,90,.35)),transparent);opacity:0;transition:opacity .35s;}
+.profile-card:hover{border-color:var(--accent-border,rgba(224,138,90,.25));transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.5);}
+.profile-card:hover::before{opacity:1;}
+.profile-card-lc{--accent:rgba(255,161,22,.4);--accent-border:rgba(255,161,22,.3);}
+.profile-card-cd{--accent:rgba(99,102,241,.4);--accent-border:rgba(99,102,241,.3);}
+.profile-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4rem;}
+.profile-icon-lc{background:rgba(255,161,22,.1);border:1px solid rgba(255,161,22,.2);}
+.profile-icon-cd{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);}
+.profile-body{flex:1;}
+.profile-name{font-size:1rem;font-weight:600;color:#e8e0d4;margin-bottom:.2rem;}
+.profile-handle{font-size:.72rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;letter-spacing:.04em;margin-bottom:.5rem;}
+.profile-desc{font-size:.78rem;color:rgba(232,224,212,.45);line-height:1.55;}
+.profile-arrow{margin-left:auto;color:rgba(232,224,212,.2);font-size:1rem;flex-shrink:0;transition:color .25s,transform .25s;}
+.profile-card:hover .profile-arrow{color:#e08a5a;transform:translate(3px,-3px);}
 
-.lc-top{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;margin-bottom:1rem;}
-.lc-bottom{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+/* Pattern repo card */
+.coding-repo{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.4rem 1.6rem;margin-bottom:1.5rem;transition:border-color .35s,transform .35s;cursor:none;text-decoration:none;display:block;}
+.coding-repo:hover{border-color:rgba(224,138,90,.2);transform:translateY(-2px);}
+.coding-repo-header{display:flex;align-items:center;gap:1rem;margin-bottom:1rem;}
+.coding-repo-icon{width:42px;height:42px;border-radius:10px;background:rgba(224,138,90,.1);border:1px solid rgba(224,138,90,.18);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;}
+.coding-repo-meta{flex:1;}
+.coding-repo-name{font-size:.95rem;font-weight:600;color:#e08a5a;margin-bottom:.1rem;}
+.coding-repo-sub{font-size:.72rem;color:rgba(232,224,212,.32);font-family:'Courier New',monospace;letter-spacing:.04em;}
+.coding-repo-desc{font-size:.82rem;line-height:1.7;color:rgba(232,224,212,.5);margin-bottom:1rem;}
+.coding-patterns{display:flex;flex-wrap:wrap;gap:.4rem;}
+.coding-pattern-tag{font-size:.7rem;padding:.26rem .72rem;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(232,224,212,.42);font-weight:400;transition:background .3s,color .3s,border-color .3s;}
+.coding-repo:hover .coding-pattern-tag{background:rgba(224,138,90,.07);border-color:rgba(224,138,90,.15);color:rgba(232,224,212,.65);}
 
-.lc-loading{display:flex;align-items:center;gap:.7rem;color:rgba(232,224,212,.35);font-size:.85rem;padding:3rem 0;}
-.lc-spinner{width:16px;height:16px;border:2px solid rgba(224,138,90,.2);border-top-color:#e08a5a;border-radius:50%;animation:spin .8s linear infinite;}
-@keyframes spin{to{transform:rotate(360deg);}}
+/* Stat grid */
+.coding-stats-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+.coding-stat-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:14px;padding:1.2rem 1.4rem;transition:border-color .35s;}
+.coding-stat-card:hover{border-color:rgba(224,138,90,.15);}
+.coding-stat-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;}
+.coding-stat-label::before{content:'';width:12px;height:1px;background:#e08a5a;flex-shrink:0;}
+.coding-stat-num{font-size:1.8rem;font-weight:700;color:#e8e0d4;line-height:1;margin-bottom:.25rem;}
+.coding-stat-sub{font-size:.72rem;color:rgba(232,224,212,.35);line-height:1.5;}
+.coding-stat-diff{font-size:.68rem;margin-top:.35rem;}
+.coding-stat-diff-easy{color:#3ecf4a;}
+.coding-stat-diff-med{color:#f5a623;}
+.coding-stat-diff-hard{color:#e05a5a;}
+.coding-diff-bar{display:flex;gap:.35rem;margin-top:.5rem;height:4px;border-radius:999px;overflow:hidden;}
+.coding-diff-bar-e{background:#3ecf4a;flex:3;}
+.coding-diff-bar-m{background:#f5a623;flex:5;}
+.coding-diff-bar-h{background:#e05a5a;flex:2;}
 
 @media(max-width:820px){
-  .lc-top{grid-template-columns:1fr;}
-  .lc-bottom{grid-template-columns:1fr;}
+  .coding-profiles{grid-template-columns:1fr;}
+  .coding-stats-grid{grid-template-columns:1fr;}
 }
 
 /* RESUME */
@@ -299,7 +345,9 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
   .home-inner{flex-direction:column-reverse;gap:2rem;padding-top:5rem;}
   .hero-img{width:100%;height:260px;}
   .exp-entry{grid-template-columns:1fr;}
-  .exp-entry-full .exp-bottom-full{grid-template-columns:1fr;}
+  .exp-entry-cofounder{grid-template-columns:1fr;}
+  .exp-entry-cofounder .exp-info-main,.exp-entry-cofounder .exp-side-card{grid-column:1/-1;}
+  .exp-entry-cofounder .exp-bottom-row{grid-template-columns:1fr;}
   .exp-bottom{grid-template-columns:1fr;}
   .edu-grid{grid-template-columns:1fr;}
   .edu-card-featured{flex-direction:column;align-items:flex-start;gap:1rem;}
@@ -324,7 +372,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
       <a href="#projects" data-target="projects">Projects</a>
       <a href="#experience" data-target="experience">Experience</a>
       <a href="#education" data-target="education">Education</a>
-      <!-- <a href="#coding" data-target="coding">Coding</a> -->
+      <a href="#coding" data-target="coding">Coding</a>
       <a href="#resume" data-target="resume">Resume</a>
       <a href="#contact" data-target="contact">Contact</a>
     </div>
@@ -431,9 +479,9 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     <div class="exp-wrap">
       <h1 class="exp-page-title reveal-item">Experience</h1>
 
-      <!-- SelfShft -->
-      <div class="exp-entry-full reveal-item">
-        <div class="exp-info-full">
+      <!-- SelfShft — 2-col layout matching other entries -->
+      <div class="exp-entry-cofounder reveal-item">
+        <div class="exp-info-main">
           <p class="exp-eyebrow">June 2026 – Present · IIT Madras Nirmaan Cohort</p>
           <p class="exp-role-title">Co-founder &amp; Full-Stack Developer</p>
           <p class="exp-subtitle">SelfShft — Stage 1 · IIT Madras Nirmaan</p>
@@ -443,7 +491,21 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
             Selected · IIT Madras Nirmaan Stage 1 Cohort
           </span>
         </div>
-        <div class="exp-bottom-full">
+        <div class="exp-side-card">
+          <div>
+            <p class="exp-side-label">What we're solving</p>
+            <p class="exp-side-highlight">Financial accessibility for students — connecting them with <b>local part-time jobs</b> tailored to their schedule and location as they relocate for college.</p>
+          </div>
+          <div class="exp-side-stat">
+            <span class="exp-side-stat-num">Stage 1</span>
+            <span class="exp-side-stat-lbl">Nirmaan Cohort</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:.5rem;margin-top:.2rem;">
+            <span style="width:7px;height:7px;border-radius:50%;background:#3ecf4a;box-shadow:0 0 0 0 rgba(62,207,74,.4);animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0;display:inline-block;"></span>
+            <span style="font-size:.72rem;color:rgba(232,224,212,.35);letter-spacing:.05em;">Active · June 2026</span>
+          </div>
+        </div>
+        <div class="exp-bottom-row">
           <div class="exp-tech">
             <p class="exp-tech-label">Tech Used</p>
             <div class="exp-tags">
@@ -569,6 +631,94 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
         </div>
 
       </div>
+    </div>
+  </div>
+  <div class="sect-separator"></div>
+</section>
+
+<!-- CODING -->
+<section class="sect" id="coding">
+  <div class="sect-inner">
+    <div class="coding-wrap">
+      <h1 class="coding-page-title reveal-item">Coding</h1>
+      <p class="coding-subtitle reveal-item">DSA practice, competitive coding, and pattern-based problem solving across platforms.</p>
+
+      <!-- Profile links -->
+      <div class="coding-profiles reveal-item">
+        <a href="https://leetcode.com/u/kajalsanwall/" target="_blank" class="profile-card profile-card-lc">
+          <div class="profile-icon profile-icon-lc">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#FFA116"><path d="M13.483 0a1.374 1.374 0 00-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 00-1.209 2.104 5.35 5.35 0 00-.125.513 5.527 5.527 0 00.062 2.362 5.83 5.83 0 00.349 1.017 5.938 5.938 0 00.537.944c.246.35.52.694.828.997l2.119 2.049a1.36 1.36 0 001.923 0 1.374 1.374 0 000-1.932l-2.119-2.049a3.17 3.17 0 01-.447-.54 3.49 3.49 0 01-.318-.568 3.53 3.53 0 01-.208-.609 3.48 3.48 0 01-.038-1.394 3.14 3.14 0 01.72-1.265l3.853-4.126 5.407-5.787a3.64 3.64 0 012.661-1.126 3.67 3.67 0 012.662 1.126l.253.271a1.374 1.374 0 001.941 0 1.374 1.374 0 000-1.932l-.253-.271A6.412 6.412 0 0013.483 0zm-2.866 12.815a1.374 1.374 0 00-.961.438 1.374 1.374 0 000 1.932l3.833 4.1a3.67 3.67 0 002.662 1.126 3.64 3.64 0 002.661-1.126l2.012-2.152a5.98 5.98 0 001.102-1.874 5.98 5.98 0 00.277-3.46 5.95 5.95 0 00-.53-1.533 6.03 6.03 0 00-.887-1.341l-2.43-2.6a1.374 1.374 0 00-1.941 0 1.374 1.374 0 000 1.932l2.43 2.6a3.23 3.23 0 01.476.72 3.18 3.18 0 01.284.82 3.18 3.18 0 01-.147 1.845 3.19 3.19 0 01-.588 1l-2.012 2.152a.914.914 0 01-.665.281.914.914 0 01-.665-.281l-3.833-4.1a1.374 1.374 0 00-.88-.438z"/></svg>
+          </div>
+          <div class="profile-body">
+            <p class="profile-name">LeetCode</p>
+            <p class="profile-handle">@kajalsanwall</p>
+            <p class="profile-desc">Consistent DSA practice — arrays, trees, graphs, DP, and more.</p>
+          </div>
+          <span class="profile-arrow">↗</span>
+        </a>
+
+        <a href="https://codolio.com/profile/kajalsanwall" target="_blank" class="profile-card profile-card-cd">
+          <div class="profile-icon profile-icon-cd">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="#6366F1"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14H9V8h2v8zm4 0h-2V8h2v8z"/></svg>
+          </div>
+          <div class="profile-body">
+            <p class="profile-name">Codolio</p>
+            <p class="profile-handle">@kajalsanwall</p>
+            <p class="profile-desc">Unified coding profile — track progress across all platforms.</p>
+          </div>
+          <span class="profile-arrow">↗</span>
+        </a>
+      </div>
+
+      <!-- Patterns repo -->
+      <a href="https://github.com/kajalsanwalll/leetcode_imp" target="_blank" class="coding-repo reveal-item">
+        <div class="coding-repo-header">
+          <div class="coding-repo-icon">📂</div>
+          <div class="coding-repo-meta">
+            <p class="coding-repo-name">leetcode_imp</p>
+            <p class="coding-repo-sub">github.com/kajalsanwalll/leetcode_imp · 180+ commits</p>
+          </div>
+          <span style="margin-left:auto;color:rgba(232,224,212,.2);font-size:1rem;transition:color .25s,transform .25s;" class="repo-arrow">↗</span>
+        </div>
+        <p class="coding-repo-desc">A personal reference repo of <b>important LeetCode problems organised by pattern</b> — not just solutions, but the intuition behind each pattern so you actually learn to recognise them in new problems.</p>
+        <div class="coding-patterns">
+          <span class="coding-pattern-tag">Sliding Window</span>
+          <span class="coding-pattern-tag">Two Pointers</span>
+          <span class="coding-pattern-tag">Binary Search</span>
+          <span class="coding-pattern-tag">BFS / DFS</span>
+          <span class="coding-pattern-tag">Graphs</span>
+          <span class="coding-pattern-tag">Trees</span>
+          <span class="coding-pattern-tag">Heaps</span>
+          <span class="coding-pattern-tag">Backtracking</span>
+          <span class="coding-pattern-tag">1D DP</span>
+          <span class="coding-pattern-tag">2D DP</span>
+          <span class="coding-pattern-tag">Hashing</span>
+          <span class="coding-pattern-tag">Greedy</span>
+          <span class="coding-pattern-tag">Intervals</span>
+          <span class="coding-pattern-tag">Linked List</span>
+          <span class="coding-pattern-tag">Stack</span>
+        </div>
+      </a>
+
+      <!-- Stats grid -->
+      <div class="coding-stats-grid reveal-item">
+        <div class="coding-stat-card">
+          <p class="coding-stat-label">Practice Focus</p>
+          <p class="coding-stat-num">DSA</p>
+          <p class="coding-stat-sub">Patterns · Problem solving · System thinking</p>
+        </div>
+        <div class="coding-stat-card">
+          <p class="coding-stat-label">Patterns Covered</p>
+          <p class="coding-stat-num">15+</p>
+          <p class="coding-stat-sub">Documented with intuition in the repo above</p>
+        </div>
+        <div class="coding-stat-card">
+          <p class="coding-stat-label">Questions solved</p>
+          <p class="coding-stat-num">300+</p>
+          <p class="coding-stat-sub">1k+ submissions — actively solving & growing</p>
+        </div>
+      </div>
+
     </div>
   </div>
   <div class="sect-separator"></div>
