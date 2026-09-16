@@ -151,6 +151,24 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .see-all a{font-size:.85rem;color:rgba(232,224,212,.35);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .25s;cursor:none;}
 .see-all a:hover{color:#e08a5a;}
 
+/* Fun nav link — deliberately quieter than the main nav items */
+.nav-fun-link{opacity:.6;font-size:.76rem;}
+.nav-fun-link.active{opacity:1;}
+
+/* FUN PROJECTS — intentionally smaller & quieter than Featured Projects */
+#fun{background:#000;}
+.sect.sect-fun{min-height:auto;}
+.fun-inner{padding:2.6rem 4vw 2.8rem;min-height:auto;}
+.fun-wrap{max-width:1100px;margin:0 auto;}
+.fun-head{margin-bottom:1.4rem;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;}
+.fun-head h2{font-size:1.3rem;font-weight:600;color:rgba(224,138,90,.7);letter-spacing:-.01em;}
+.fun-head p{font-size:.78rem;color:rgba(232,224,212,.38);line-height:1.6;max-width:520px;}
+.fun-cards-row{gap:1.1rem;}
+.fun-cards-row .pcard{width:230px;}
+.fun-cards-row .pcard-img-wrap{height:150px;}
+.fun-cards-row .pcard-name{font-size:.95rem;}
+.fun-cards-row .pcard-desc{font-size:.74rem;}
+
 /* EXPERIENCE */
 #experience{background:#000;}
 .exp-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
@@ -370,6 +388,7 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     <div class="nav-right">
       <a href="#home" class="active" data-target="home">Home</a>
       <a href="#projects" data-target="projects">Projects</a>
+      <a href="#fun" data-target="fun" class="nav-fun-link">Fun</a>
       <a href="#experience" data-target="experience">Experience</a>
       <a href="#education" data-target="education">Education</a>
       <a href="#coding" data-target="coding">Coding</a>
@@ -461,6 +480,41 @@ footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
     <div class="see-all"><a href="https://github.com/kajalsanwalll" target="_blank">See all projects ↗</a></div>
   </div>
   <div class="sect-separator"></div>
+</section>
+
+<!-- FUN PROJECTS -->
+<section class="sect sect-fun" id="fun">
+  <div class="sect-inner fun-inner">
+    <div class="fun-wrap">
+      <div class="fun-head reveal-item">
+        <h2>Fun Projects</h2>
+        <p>Smaller side builds &amp; experiments — made for fun, not the main event.</p>
+      </div>
+      <div class="proj-scroll-wrap">
+        <div class="proj-cards-row fun-cards-row">
+
+          <div class="pcard pcard-5 reveal-item">
+            <a href="https://github.com/kajalsanwalll/my-dashboard" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="dashboard.png" alt="My Dashboard"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">My Dashboard</p><p class="pcard-desc">A personal dashboard built for fun — quick widgets &amp; utilities in one place.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+          <div class="pcard pcard-5 reveal-item">
+            <a href="https://github.com/kajalsanwalll/holi-pen" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <div class="pcard-img-wrap"><img src="holi.png" alt="holi pen"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">Holi Pen</p><p class="pcard-desc">A holi pen for letting your creativity take the first seat.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+          <div class="pcard pcard-7 reveal-item">
+            <a href="https://github.com/kajalsanwalll/bday" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://birthday-flax-three.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="bday.png" alt="Birthday Website"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">Birthday Website</p><p class="pcard-desc">A little birthday surprise site built with Next.js for a friend - animations &amp; a personal touch.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- TECH STACK MARQUEE -->
