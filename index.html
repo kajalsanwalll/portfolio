@@ -233,7 +233,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content
 .exp-slide[data-o="2"]{transform:translateY(-44px) scale(.9);opacity:.35;filter:brightness(.45);z-index:8;pointer-events:none;}
 .exp-slide[data-o="3"]{transform:translateY(-66px) scale(.85);opacity:0;filter:brightness(.35);z-index:7;pointer-events:none;}
 /* the front card swings out in an arc, then tucks in at the back */
-.exp-slide.leaving{animation:swingBack 1.1s cubic-bezier(.45,.05,.25,1) both;}
+.exp-slide.leaving{animation:swingBack 1.0s cubic-bezier(.45,.05,.25,1) both;}
 @keyframes swingBack{
   0%  {transform:translate(0,0) scale(1) rotate(0);opacity:1;filter:none;z-index:20;}
   35% {transform:translate(30%,-4%) scale(.97) rotate(6deg);opacity:1;filter:brightness(.9);z-index:20;}
