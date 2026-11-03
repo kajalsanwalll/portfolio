@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Kajal Sanwal</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{background:#000;color:#e8e0d4;font-family:'Inter',sans-serif;font-weight:300;overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+
+#cdot{position:fixed;pointer-events:none;z-index:9999;width:8px;height:8px;background:#e08a5a;border-radius:50%;transform:translate(-50%,-50%);transition:width .15s,height .15s;}
+#cring{position:fixed;pointer-events:none;z-index:9998;width:30px;height:30px;border:1px solid rgba(224,138,90,.3);border-radius:50%;transform:translate(-50%,-50%);transition:width .2s,height .2s;}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:500;display:flex;justify-content:center;padding:1.2rem 0;pointer-events:none;}
+.nav-pill{display:flex;align-items:center;background:rgba(20,14,10,.88);border:1px solid rgba(255,255,255,.08);border-radius:999px;backdrop-filter:blur(24px);padding:.55rem 1.4rem;min-width:760px;justify-content:space-between;pointer-events:all;}
+.nav-time{display:flex;align-items:center;gap:.5rem;font-size:.8rem;color:rgba(232,224,212,.5);font-weight:400;}
+.nav-right{display:flex;gap:.3rem;}
+.nav-right a{padding:.4rem .9rem;border-radius:999px;font-size:.82rem;color:rgba(232,224,212,.5);text-decoration:none;font-weight:400;transition:color .25s;cursor:none;}
+.nav-right a:hover{color:#e8e0d4;}
+.nav-right a.active{color:#e08a5a;font-weight:500;}
+
+
+.sect{min-height:100vh;scroll-snap-align:start;scroll-snap-stop:normal;position:relative;overflow:hidden;}
+#experience{overflow-y:auto;}
+#resume{overflow-y:auto;}
+#coding{overflow-y:auto;}
+
+.sect:not(#home)::before{content:'';display:block;height:2.5rem;}
+
+.sect-inner{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease;}
+.sect.in-view .sect-inner{opacity:1;transform:none;}
+.reveal-item{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease;}
+.reveal-item.revealed{opacity:1;transform:none;}
+
+.tech-marquee{overflow:hidden;position:relative;padding:1.4rem 0;border-top:1px solid rgba(255,255,255,.055);}
+.tech-marquee::before,.tech-marquee::after{content:'';position:absolute;top:0;bottom:0;width:80px;z-index:2;pointer-events:none;}
+.tech-marquee::before{left:0;background:linear-gradient(to right,#000,transparent);}
+.tech-marquee::after{right:0;background:linear-gradient(to left,#000,transparent);}
+.tech-track{display:flex;gap:0;width:max-content;animation:marquee 30s linear infinite;}
+.tech-track:hover{animation-play-state:paused;}
+.tech-item{display:flex;align-items:center;gap:9px;padding:0 1.8rem;white-space:nowrap;font-size:.8rem;font-weight:400;color:rgba(232,224,212,.4);letter-spacing:.03em;transition:color .3s;cursor:default;}
+.tech-item:hover{color:rgba(232,224,212,.85);}
+.tech-item svg{flex-shrink:0;opacity:.5;transition:opacity .3s;}
+.tech-item:hover svg{opacity:1;}
+.tech-sep{width:1px;height:14px;background:rgba(255,255,255,.09);align-self:center;flex-shrink:0;}
+@keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+
+/* HOME */
+#home{background:#000;}
+.map-bg{position:absolute;inset:0;z-index:0;background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);background-size:48px 48px;opacity:.7;}
+.map-bg::after{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.055) 1px,transparent 1px);background-size:192px 192px;}
+.home-inner{position:relative;z-index:2;max-width:1100px;margin:0 auto;padding:7rem 4vw 4rem;min-height:100vh;display:flex;align-items:center;gap:5rem;}
+.home-left{flex:1;}
+.sparkle{font-size:2.8rem;display:block;margin-bottom:1.2rem;line-height:1;}
+.home-name{font-size:clamp(2.4rem,4.4vw,4rem);font-weight:600;color:#e08a5a;line-height:1.05;margin-bottom:.5rem;letter-spacing:-.01em;}
+.home-role{font-size:1rem;color:rgba(232,224,212,.45);margin-bottom:2rem;font-weight:300;}
+.home-para{font-size:.95rem;line-height:1.85;color:rgba(232,224,212,.65);margin-bottom:1rem;max-width:700px;}
+.home-para b{color:#e8e0d4;font-weight:500;}
+.connect-link{display:inline-flex;align-items:center;gap:.4rem;color:rgba(232,224,212,.4);font-size:.88rem;text-decoration:none;margin-top:.5rem;transition:color .25s;cursor:none;}
+.connect-link:hover{color:#e08a5a;}
+.home-right{flex-shrink:0;}
+.hero-img-wrap {
+  position: relative;
+  width: 250px;
+  height: 300px;
+  border-radius: 20px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.hero-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 20px;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
+  border: 1px solid rgba(255,255,255,.08);
+  transition: transform .5s cubic-bezier(.2,.6,0,1), box-shadow .5s ease;
+}
+.hero-img-wrap:hover .hero-img {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 24px 50px rgba(224,138,90,.14);
+}
+.hero-reveal {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 36px;
+  background: rgba(20,12,7,.82);
+  border-top: 1px solid rgba(224,138,90,.35);
+  border-radius: 0 0 20px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transform: translateY(100%);
+  transition: transform .4s cubic-bezier(.2,.6,0,1);
+  backdrop-filter: blur(8px);
+}
+.hero-img-wrap:hover .hero-reveal { transform: translateY(0); }
+.hero-reveal-dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: #3ecf4a;
+  flex-shrink: 0;
+}
+.hero-reveal-text {
+  font-size: .72rem;
+  color: rgba(232,224,212,.75);
+  letter-spacing: .06em;
+}
+
+.sect-separator{position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,transparent,rgba(224,138,90,.15),transparent);z-index:3;}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;color:rgba(232,224,212,.18);font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;animation:bob 2.5s ease-in-out infinite;}
+.scroll-hint svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
+@keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(4px);}}
+
+/* PROJECTS */
+#projects{background:#000;}
+.sec-head{max-width:1100px;margin:0 auto 2.5rem;}
+.sec-head h1{font-size:clamp(2rem,4vw,3rem);font-weight:600;color:#e08a5a;margin-bottom:.8rem;}
+.sec-head p{font-size:.92rem;color:rgba(232,224,212,.5);line-height:1.7;max-width:760px;}
+.proj-scroll-wrap{max-width:1100px;margin:0 auto;overflow-x:auto;scrollbar-width:none;}
+.proj-scroll-wrap::-webkit-scrollbar{display:none;}
+.proj-cards-row{display:flex;gap:1.4rem;width:max-content;padding-bottom:1.5rem;}
+.pcard-img-link{display:block;text-decoration:none;cursor:none;}
+.pcard{width:280px;flex-shrink:0;border-radius:22px;display:flex;flex-direction:column;position:relative;overflow:hidden;cursor:none;border:1px solid rgba(255,255,255,.09);background:#0d0d14;--rx:0deg;--ry:0deg;transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(0);transition:transform .65s cubic-bezier(.2,.6,0,1),box-shadow .6s ease,border-color .5s ease;will-change:transform;}
+.pcard:hover{transform:perspective(1000px) rotateX(var(--rx)) rotateY(var(--ry)) translateZ(18px) translateY(-10px);box-shadow:0 28px 60px rgba(0,0,0,.75),0 0 0 1px rgba(224,138,90,.22),0 0 40px var(--glow,rgba(224,138,90,.07));border-color:rgba(224,138,90,.28);}
+.pcard-img-wrap{width:100%;height:200px;overflow:hidden;position:relative;flex-shrink:0;}
+.pcard-img-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s cubic-bezier(.2,.6,0,1),filter .5s ease;filter:brightness(.9) saturate(1.05);}
+.pcard:hover .pcard-img-wrap img{transform:scale(1.07);filter:brightness(1.04) saturate(1.15);}
+.pcard-img-wrap::before{content:'';position:absolute;bottom:0;left:0;right:0;height:55px;background:linear-gradient(transparent,#0d0d14);z-index:1;pointer-events:none;}
+.pcard-body{padding:1rem 1.3rem 1.3rem;display:flex;flex-direction:column;flex:1;}
+.pcard-1:hover{--glow:rgba(200,120,220,.1);}.pcard-2:hover{--glow:rgba(80,120,255,.1);}.pcard-3:hover{--glow:rgba(60,220,150,.08);}.pcard-4:hover{--glow:rgba(150,80,255,.1);}.pcard-5:hover{--glow:rgba(255,160,60,.08);}.pcard-6:hover{--glow:rgba(60,180,255,.08);}.pcard-7:hover{--glow:rgba(255,120,80,.08);}.pcard-8:hover{--glow:rgba(180,80,255,.08);}
+.pcard-gh{position:absolute;top:.9rem;right:.9rem;z-index:10;width:28px;height:28px;border-radius:50%;background:rgba(0,0,0,.5);border:1px solid rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;text-decoration:none;transition:background .25s,transform .25s;cursor:none;backdrop-filter:blur(8px);}
+.pcard-gh:hover{background:rgba(224,138,90,.28);transform:scale(1.12);}
+.pcard-gh svg{width:13px;height:13px;fill:#e8e0d4;opacity:.8;}
+.pcard-name{font-size:1.05rem;font-weight:600;color:#e08a5a;margin-bottom:.45rem;line-height:1.2;transition:color .3s;}
+.pcard:hover .pcard-name{color:#f4aa7a;}
+.pcard-desc{font-size:.78rem;line-height:1.68;color:rgba(232,224,212,.5);flex:1;}
+.pcard-meta{margin-top:.9rem;font-size:.72rem;color:rgba(232,224,212,.28);display:flex;align-items:center;gap:.4rem;border-top:1px solid rgba(255,255,255,.05);padding-top:.7rem;}
+.pcard-meta-dot{width:5px;height:5px;border-radius:50%;background:rgba(224,138,90,.55);flex-shrink:0;}
+.scroll-dots{display:flex;justify-content:center;gap:.5rem;margin-top:1.2rem;max-width:1100px;margin-left:auto;margin-right:auto;}
+.sdot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.14);transition:background .3s,transform .3s;}
+.sdot.active{background:#e08a5a;transform:scale(1.3);}
+.see-all{max-width:1100px;margin:1.5rem auto 0;text-align:right;}
+.see-all a{font-size:.85rem;color:rgba(232,224,212,.35);text-decoration:none;display:inline-flex;align-items:center;gap:.3rem;transition:color .25s;cursor:none;}
+.see-all a:hover{color:#e08a5a;}
+
+/* Fun nav link — deliberately quieter than the main nav items */
+.nav-fun-link{opacity:.6;font-size:.76rem;}
+.nav-fun-link.active{opacity:1;}
+
+/* FUN PROJECTS — intentionally smaller & quieter than Featured Projects */
+#fun{background:#000;}
+.sect.sect-fun{min-height:auto;}
+.fun-inner{padding:2.6rem 4vw 2.8rem;min-height:auto;}
+.fun-wrap{max-width:1100px;margin:0 auto;}
+.fun-head{margin-bottom:1.4rem;display:flex;align-items:baseline;gap:.7rem;flex-wrap:wrap;}
+.fun-head h2{font-size:1.3rem;font-weight:600;color:rgba(224,138,90,.7);letter-spacing:-.01em;}
+.fun-head p{font-size:.78rem;color:rgba(232,224,212,.38);line-height:1.6;max-width:520px;}
+.fun-cards-row{gap:1.1rem;}
+.fun-cards-row .pcard{width:230px;}
+.fun-cards-row .pcard-img-wrap{height:150px;}
+.fun-cards-row .pcard-name{font-size:.95rem;}
+.fun-cards-row .pcard-desc{font-size:.74rem;}
+
+/* EXPERIENCE */
+#experience{background:#000;}
+.exp-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
+.exp-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
+
+/* Standard 2-col entry */
+.exp-entry{display:grid;grid-template-rows:auto auto;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.055);}
+.exp-entry:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.exp-info{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;transition:border-color .5s ease;}
+.exp-info:hover{border-color:rgba(224,138,90,.1);}
+.exp-eyebrow{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#e08a5a;margin-bottom:.6rem;display:flex;align-items:center;gap:.55rem;}
+.exp-eyebrow::before{content:'';width:14px;height:1px;background:#e08a5a;flex-shrink:0;}
+.exp-role-title{font-size:1.1rem;font-weight:600;color:#e8e0d4;margin-bottom:.15rem;line-height:1.2;}
+.exp-subtitle{font-size:.72rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;margin-bottom:.7rem;letter-spacing:.04em;}
+.exp-desc{font-size:.82rem;line-height:1.75;color:rgba(232,224,212,.56);}
+.exp-desc b{color:#dba96a;font-weight:500;}
+.exp-photo,.exp-photo2{border-radius:16px;overflow:hidden;position:relative;background:#0c0c0c;}
+.exp-photo img,.exp-photo2 img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;transition:transform .85s cubic-bezier(.2,.55,0,1),filter .7s ease;filter:brightness(.82) saturate(.9);min-height:200px;}
+.exp-photo:hover img,.exp-photo2:hover img{transform:scale(1.05);filter:brightness(.95) saturate(1.0);}
+.stat-chip{position:absolute;bottom:.9rem;left:.9rem;background:rgba(8,6,4,.8);border:1px solid rgba(255,255,255,.1);border-radius:9px;padding:.45rem .8rem;backdrop-filter:blur(14px);}
+.stat-chip-num{font-size:1.25rem;font-weight:700;color:#e8e0d4;line-height:1;}
+.stat-chip-lbl{font-size:.58rem;letter-spacing:.09em;text-transform:uppercase;color:rgba(232,224,212,.38);margin-top:.1rem;}
+.exp-bottom{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.exp-tech{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1rem 1.4rem;display:flex;flex-direction:column;justify-content:center;transition:border-color .5s ease;}
+.exp-tech:hover{border-color:rgba(224,138,90,.08);}
+.exp-tech-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.7rem;}
+.exp-tags{display:flex;flex-wrap:wrap;gap:.35rem .75rem;align-items:center;}
+.exp-tag{font-size:.83rem;font-weight:300;color:rgba(232,224,212,.5);position:relative;transition:color .35s ease;cursor:default;white-space:nowrap;padding:.1rem 0;}
+.exp-tag::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:rgba(224,138,90,.5);transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
+.exp-tag:hover{color:#e8e0d4;}
+.exp-tag:hover::after{transform:scaleX(1);}
+
+/* Startup badge */
+.exp-startup-badge{display:inline-flex;align-items:center;gap:.4rem;margin-top:.8rem;padding:.3rem .8rem;border-radius:999px;background:rgba(224,138,90,.08);border:1px solid rgba(224,138,90,.2);font-size:.68rem;color:rgba(224,138,90,.85);letter-spacing:.06em;font-weight:500;}
+.exp-startup-badge svg{width:11px;height:11px;fill:#e08a5a;flex-shrink:0;}
+
+/* SelfShft co-founder — same 2-col grid as other entries */
+.exp-entry-cofounder{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:auto auto;gap:.75rem;margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid rgba(255,255,255,.055);}
+.exp-entry-cofounder .exp-info-main{grid-column:1/2;background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;transition:border-color .5s ease;}
+.exp-entry-cofounder .exp-info-main:hover{border-color:rgba(224,138,90,.1);}
+.exp-entry-cofounder .exp-side-card{grid-column:2/3;background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.2rem 1.4rem;display:flex;flex-direction:column;justify-content:center;gap:.7rem;transition:border-color .5s ease;}
+.exp-entry-cofounder .exp-side-card:hover{border-color:rgba(224,138,90,.1);}
+.exp-entry-cofounder .exp-bottom-row{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:.75rem;}
+.exp-side-label{font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.28);margin-bottom:.3rem;}
+.exp-side-highlight{font-size:.82rem;line-height:1.7;color:rgba(232,224,212,.55);}
+.exp-side-highlight b{color:#dba96a;font-weight:500;}
+.exp-side-stat{display:flex;align-items:baseline;gap:.4rem;margin-top:.4rem;}
+.exp-side-stat-num{font-size:1.4rem;font-weight:700;color:#e8e0d4;}
+.exp-side-stat-lbl{font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(232,224,212,.3);}
+
+/* EXPERIENCE — rotating carousel */
+.exp-carousel{position:relative;}
+.exp-carousel-topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.1rem;}
+.exp-carousel-counter{font-family:'Courier New',monospace;font-size:.72rem;color:rgba(232,224,212,.32);letter-spacing:.08em;}
+.exp-carousel-controls{display:flex;gap:.5rem;}
+.exp-arrow{width:34px;height:34px;flex-shrink:0;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.04);color:rgba(232,224,212,.55);font-size:1.05rem;line-height:1;display:flex;align-items:center;justify-content:center;cursor:none;transition:background .25s,border-color .25s,color .25s,transform .2s;}
+.exp-arrow:hover{background:rgba(224,138,90,.15);border-color:rgba(224,138,90,.3);color:#e8e0d4;transform:translateY(-1px);}
+.exp-frame{position:relative;overflow:hidden;border-radius:20px;}
+.exp-track{display:flex;transition:transform .65s cubic-bezier(.2,.6,0,1);}
+.exp-track.notransition{transition:none;}
+.exp-slide{flex:0 0 100%;max-width:100%;padding:3px 2px;}
+.exp-slide[aria-hidden="true"]{pointer-events:none;}
+/* remove the stacked-list separators — each entry is now a standalone slide */
+.exp-slide .exp-entry,.exp-slide .exp-entry-cofounder{margin-bottom:0;padding-bottom:0;border-bottom:none;}
+.exp-carousel-bottom{display:flex;align-items:center;gap:1.1rem;margin-top:1.3rem;}
+.exp-progress-track{flex:1;height:2px;background:rgba(255,255,255,.08);border-radius:2px;overflow:hidden;}
+.exp-progress-fill{height:100%;width:0%;background:#e08a5a;border-radius:2px;}
+.exp-dots{display:flex;gap:.5rem;flex-shrink:0;}
+.exp-dot{width:7px;height:7px;padding:0;border-radius:50%;border:none;background:rgba(255,255,255,.15);cursor:none;transition:background .3s,transform .3s;}
+.exp-dot.active{background:#e08a5a;transform:scale(1.35);}
+
+/* EDUCATION */
+#education{background:#000;}
+.edu-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
+.edu-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;}
+.edu-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:18px;padding:1.6rem 1.8rem;position:relative;overflow:hidden;transition:border-color .4s ease,transform .4s ease,box-shadow .4s ease;display:flex;flex-direction:column;gap:.6rem;}
+.edu-card:hover{border-color:rgba(224,138,90,.2);transform:translateY(-3px);box-shadow:0 16px 40px rgba(0,0,0,.5),0 0 0 1px rgba(224,138,90,.08);}
+.edu-card::before{content:'';position:absolute;top:0;left:1.8rem;right:1.8rem;height:1px;background:linear-gradient(90deg,transparent,rgba(224,138,90,.35),transparent);opacity:0;transition:opacity .4s ease;}
+.edu-card:hover::before{opacity:1;}
+.edu-card-featured{grid-column:1/-1;flex-direction:row;align-items:center;gap:2.5rem;}
+.edu-card-featured .edu-body{flex:1;}
+.edu-icon{width:56px;height:56px;border-radius:14px;background:rgba(224,138,90,.1);border:1px solid rgba(224,138,90,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.6rem;}
+.edu-card-featured .edu-icon{width:64px;height:64px;border-radius:16px;font-size:2rem;}
+.edu-eyebrow{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:#e08a5a;display:flex;align-items:center;gap:.55rem;}
+.edu-eyebrow::before{content:'';width:14px;height:1px;background:#e08a5a;flex-shrink:0;}
+.edu-title{font-size:1.12rem;font-weight:600;color:#e8e0d4;line-height:1.25;}
+.edu-card-featured .edu-title{font-size:1.28rem;}
+.edu-sub{font-size:.73rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;letter-spacing:.04em;margin-top:.1rem;}
+.edu-desc{font-size:.81rem;line-height:1.75;color:rgba(232,224,212,.5);margin-top:.3rem;}
+.edu-desc b{color:#dba96a;font-weight:500;}
+.edu-pills{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:.6rem;}
+.edu-pill{font-size:.7rem;padding:.28rem .75rem;border-radius:999px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);color:rgba(232,224,212,.45);font-weight:400;transition:background .3s,color .3s,border-color .3s;}
+.edu-card:hover .edu-pill{background:rgba(224,138,90,.07);border-color:rgba(224,138,90,.15);color:rgba(232,224,212,.65);}
+.edu-stat{margin-top:auto;padding-top:.9rem;border-top:1px solid rgba(255,255,255,.05);display:flex;align-items:baseline;gap:.4rem;}
+.edu-stat-num{font-size:1.55rem;font-weight:700;color:#e8e0d4;line-height:1;}
+.edu-stat-lbl{font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(232,224,212,.3);}
+.edu-badge{position:absolute;top:1.1rem;right:1.3rem;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(224,138,90,.5);font-weight:500;background:rgba(224,138,90,.07);border:1px solid rgba(224,138,90,.12);border-radius:999px;padding:.22rem .7rem;}
+
+/* EDUCATION — compact accordion for certificates */
+.edu-compact{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:18px;overflow:hidden;}
+.edu-compact-label{font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(232,224,212,.3);padding:1.1rem 1.4rem .7rem;}
+.edu-row{border-top:1px solid rgba(255,255,255,.055);transition:background .3s ease;}
+.edu-row:hover{background:rgba(224,138,90,.03);}
+.edu-row summary{list-style:none;cursor:none;display:flex;align-items:center;gap:.95rem;padding:.9rem 1.4rem;}
+.edu-row summary::-webkit-details-marker{display:none;}
+.edu-row-icon{width:34px;height:34px;border-radius:9px;background:rgba(224,138,90,.08);border:1px solid rgba(224,138,90,.15);display:flex;align-items:center;justify-content:center;font-size:1rem;flex-shrink:0;}
+.edu-row-main{flex:1;min-width:0;display:flex;flex-direction:column;gap:.18rem;}
+.edu-row-title{font-size:.87rem;font-weight:500;color:#e8e0d4;line-height:1.3;transition:color .3s ease;}
+.edu-row:hover .edu-row-title{color:#dba96a;}
+.edu-row-sub{font-size:.68rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;letter-spacing:.02em;}
+.edu-row-chevron{font-size:.78rem;color:rgba(232,224,212,.3);transition:transform .3s ease;flex-shrink:0;}
+.edu-row[open] .edu-row-chevron{transform:rotate(180deg);}
+.edu-row-body{padding:0 1.4rem 1.15rem 3.7rem;}
+.edu-row-body p{font-size:.79rem;line-height:1.7;color:rgba(232,224,212,.5);margin-bottom:.65rem;}
+.edu-row-body p b{color:#dba96a;font-weight:500;}
+.edu-row-body .edu-pills{margin-top:0;}
+.edu-row-body .edu-pill{font-size:.66rem;padding:.22rem .65rem;}
+
+/* CODING STATS */
+#coding{background:#000;}
+.coding-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
+.coding-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:.6rem;}
+.coding-subtitle{font-size:.92rem;color:rgba(232,224,212,.45);margin-bottom:2rem;line-height:1.6;}
+
+/* Profile link cards */
+.coding-profiles{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.profile-card{background:rgba(16,11,7,.95);border:1px solid rgba(255,255,255,.065);border-radius:16px;padding:1.4rem 1.6rem;display:flex;align-items:center;gap:1.2rem;text-decoration:none;transition:border-color .35s,transform .35s,box-shadow .35s;cursor:none;position:relative;overflow:hidden;}
+.profile-card::before{content:'';position:absolute;top:0;left:1.6rem;right:1.6rem;height:1px;background:linear-gradient(90deg,transparent,var(--accent,rgba(224,138,90,.35)),transparent);opacity:0;transition:opacity .35s;}
+.profile-card:hover{border-color:var(--accent-border,rgba(224,138,90,.25));transform:translateY(-3px);box-shadow:0 14px 36px rgba(0,0,0,.5);}
+.profile-card:hover::before{opacity:1;}
+.profile-card-lc{--accent:rgba(255,161,22,.4);--accent-border:rgba(255,161,22,.3);}
+.profile-card-cd{--accent:rgba(99,102,241,.4);--accent-border:rgba(99,102,241,.3);}
+.profile-icon{width:48px;height:48px;border-radius:12px;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1.4rem;}
+.profile-icon-lc{background:rgba(255,161,22,.1);border:1px solid rgba(255,161,22,.2);}
+.profile-icon-cd{background:rgba(99,102,241,.1);border:1px solid rgba(99,102,241,.2);}
+.profile-body{flex:1;}
+.profile-name{font-size:1rem;font-weight:600;color:#e8e0d4;margin-bottom:.2rem;}
+.profile-handle{font-size:.72rem;color:rgba(232,224,212,.35);font-family:'Courier New',monospace;letter-spacing:.04em;margin-bottom:.5rem;}
+.profile-desc{font-size:.78rem;color:rgba(232,224,212,.45);line-height:1.55;}
+.profile-arrow{margin-left:auto;color:rgba(232,224,212,.2);font-size:1rem;flex-shrink:0;transition:color .25s,transform .25s;}
+.profile-card:hover .profile-arrow{color:#e08a5a;transform:translate(3px,-3px);}
+
+
+/* RESUME */
+#resume{background:#000;}
+.resume-wrap{max-width:1100px;margin:0 auto;padding:3rem 4vw 3rem;}
+.resume-page-title{font-size:clamp(1.9rem,3.8vw,2.8rem);font-weight:600;color:#e08a5a;margin-bottom:2rem;}
+.resume-stage{background:rgba(14,10,7,.98);border:1px solid rgba(255,255,255,.07);border-radius:20px;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 0 1px rgba(224,138,90,.04);transition:border-color .5s ease,box-shadow .5s ease;}
+.resume-stage:hover{border-color:rgba(224,138,90,.14);box-shadow:0 32px 80px rgba(0,0,0,.7),0 0 60px rgba(224,138,90,.04),0 0 0 1px rgba(224,138,90,.1);}
+.resume-topbar{display:flex;align-items:center;padding:.7rem 1.2rem;background:rgba(18,13,9,.95);border-bottom:1px solid rgba(255,255,255,.06);gap:1rem;}
+.resume-dots{display:flex;gap:.45rem;align-items:center;flex-shrink:0;}
+.resume-dot{width:11px;height:11px;border-radius:50%;}
+.resume-dot-r{background:rgba(255,94,86,.55);}
+.resume-dot-y{background:rgba(255,188,46,.55);}
+.resume-dot-g{background:rgba(39,201,63,.55);}
+.resume-filename{font-family:'Courier New',monospace;font-size:.72rem;color:rgba(232,224,212,.3);letter-spacing:.06em;flex:1;text-align:center;}
+.resume-actions{display:flex;gap:.5rem;flex-shrink:0;}
+.resume-btn{display:inline-flex;align-items:center;gap:.4rem;padding:.32rem .85rem;border-radius:999px;font-size:.72rem;font-weight:500;letter-spacing:.04em;text-decoration:none;border:1px solid rgba(255,255,255,.1);color:rgba(232,224,212,.6);background:rgba(255,255,255,.05);transition:background .25s,color .25s,border-color .25s,transform .2s;cursor:none;}
+.resume-btn:hover{background:rgba(224,138,90,.15);border-color:rgba(224,138,90,.3);color:#e8e0d4;transform:translateY(-1px);}
+.resume-btn svg{width:11px;height:11px;stroke:currentColor;fill:none;stroke-width:2.2;flex-shrink:0;}
+.resume-btn-label{display:inline;}
+.resume-embed-wrap{width:100%;height:82vh;min-height:640px;position:relative;background:#111;}
+.resume-embed-wrap iframe{width:100%;height:100%;border:none;display:block;}
+.resume-fallback{display:none;position:absolute;inset:0;flex-direction:column;align-items:center;justify-content:center;gap:1rem;background:rgba(10,7,5,.95);text-align:center;padding:2rem;}
+.resume-fallback svg{width:40px;height:40px;stroke:rgba(224,138,90,.4);fill:none;stroke-width:1.5;}
+.resume-fallback p{font-size:.85rem;color:rgba(232,224,212,.4);line-height:1.7;max-width:300px;}
+.resume-fallback a{display:inline-flex;align-items:center;gap:.45rem;margin-top:.5rem;padding:.5rem 1.4rem;border-radius:999px;background:rgba(224,138,90,.12);border:1px solid rgba(224,138,90,.25);color:#e08a5a;font-size:.82rem;text-decoration:none;transition:background .25s,transform .25s;cursor:none;}
+.resume-fallback a:hover{background:rgba(224,138,90,.2);transform:translateY(-2px);}
+.resume-bottombar{display:flex;align-items:center;justify-content:space-between;padding:.6rem 1.2rem;background:rgba(18,13,9,.95);border-top:1px solid rgba(255,255,255,.06);}
+.resume-meta{font-family:'Courier New',monospace;font-size:.68rem;color:rgba(232,224,212,.22);letter-spacing:.05em;}
+.resume-status{display:flex;align-items:center;gap:.5rem;font-size:.7rem;color:rgba(232,224,212,.3);letter-spacing:.05em;}
+.resume-pulse{width:7px;height:7px;border-radius:50%;background:#3ecf4a;box-shadow:0 0 0 0 rgba(62,207,74,.4);animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0;}
+@keyframes pulse-dot{0%{box-shadow:0 0 0 0 rgba(62,207,74,.4);}70%{box-shadow:0 0 0 6px rgba(62,207,74,0);}100%{box-shadow:0 0 0 0 rgba(62,207,74,0);}}
+
+/* CONTACT */
+#contact{background:#000;}
+.contact-inner{max-width:600px;margin:0 auto;display:flex;flex-direction:column;align-items:center;text-align:center;padding:2rem 2vw;}
+.contact-avatar{width:80px;height:80px;border-radius:50%;object-fit:cover;object-position:center top;margin-bottom:2.5rem;border:1px solid rgba(255,255,255,.1);transition:transform .45s ease,box-shadow .45s ease;}
+.contact-avatar:hover{transform:scale(1.05);box-shadow:0 0 20px rgba(224,138,90,.16);}
+.contact-text{font-size:.95rem;line-height:1.8;color:rgba(232,224,212,.5);max-width:480px;margin-bottom:2.5rem;}
+.contact-icons{display:flex;gap:1.2rem;align-items:center;flex-wrap:wrap;justify-content:center;}
+.cicon-btn{display:flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.09);border-radius:999px;padding:.6rem 1.3rem;text-decoration:none;color:#e8e0d4;font-size:.85rem;font-weight:400;transition:background .25s,transform .3s,border-color .25s;cursor:none;}
+.cicon-btn:hover{background:rgba(255,255,255,.12);transform:translateY(-2px);border-color:rgba(224,138,90,.18);}
+.cicon-btn svg{width:18px;height:18px;flex-shrink:0;}
+.contact-divider{width:100%;height:1px;background:rgba(255,255,255,.07);margin:3rem 0 1.5rem;}
+footer{display:flex;justify-content:space-between;align-items:center;padding:0 4vw 1.5rem;max-width:1100px;margin:0 auto;width:100%;}
+footer p{font-size:.75rem;color:rgba(232,224,212,.22);}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:none;}}
+.fade-in{animation:fadeUp .6s ease forwards;}
+.fade-in-d1{animation:fadeUp .6s .1s ease both;}
+.fade-in-d2{animation:fadeUp .6s .2s ease both;}
+.fade-in-d3{animation:fadeUp .6s .3s ease both;}
+.fade-in-d4{animation:fadeUp .6s .4s ease both;}
+
+@media(max-width:820px){
+  .nav-pill{min-width:unset;width:92vw;}
+  .home-inner{flex-direction:column-reverse;gap:2rem;padding-top:5rem;}
+  .hero-img{width:100%;height:260px;}
+  .exp-entry{grid-template-columns:1fr;}
+  .exp-entry-cofounder{grid-template-columns:1fr;}
+  .exp-entry-cofounder .exp-info-main,.exp-entry-cofounder .exp-side-card{grid-column:1/-1;}
+  .exp-entry-cofounder .exp-bottom-row{grid-template-columns:1fr;}
+  .exp-bottom{grid-template-columns:1fr;}
+  .edu-grid{grid-template-columns:1fr;}
+  .edu-card-featured{flex-direction:column;align-items:flex-start;gap:1rem;}
+  .pcard{width:250px;}
+  .resume-embed-wrap{height:65vh;min-height:480px;}
+  .resume-btn-label{display:none;}
+  .resume-btn{padding:.32rem .6rem;}
+  .resume-filename{font-size:.65rem;}
+  footer{flex-direction:column;gap:.5rem;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div id="cdot"></div>
+<div id="cring"></div>
+
+<nav>
+  <div class="nav-pill">
+    <div class="nav-time"><span style="font-size:1rem">🌙</span><span id="navtime"></span></div>
+    <div class="nav-right">
+      <a href="#home" class="active" data-target="home">Home</a>
+      <a href="#projects" data-target="projects">Projects</a>
+      <a href="#experience" data-target="experience">Experience</a>
+      <a href="#education" data-target="education">Education</a>
+      <a href="#resume" data-target="resume">Resume</a>
+      <a href="#contact" data-target="contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<div id="scroll-root">
+
+<!-- HOME -->
+<section class="sect" id="home">
+  <div class="map-bg"></div>
+  <div class="home-inner sect-inner">
+    <div class="home-left">
+      <span class="sparkle fade-in">✦</span>
+      <h1 class="home-name fade-in-d1">Kajal Sanwal</h1>
+      <p class="home-role fade-in-d2">Full-Stack Developer · Software Engineer</p>
+      <p class="home-para fade-in-d3">Hey there! I'm an undergrad at <b>IIT Madras</b> studying Electronic Systems, interested in <b>software engineering</b> and <b>systems-oriented problem solving</b></p>
+      <p class="home-para fade-in-d3">I focus on <b>backend development</b>, <b>data structures &amp; algorithms</b>, and <b>system design</b>, building scalable applications and well-structured APIs using <b>Node.js</b>, <b>Next.js</b>, and <b>PostgreSQL</b>.</p>
+      <p class="home-para fade-in-d4">My work spans <b>full-stack development</b> with <b>React</b> and <b>Tailwind CSS</b>, along with <b>database design</b>, <b>authentication systems</b>, and <b>SaaS-style architectures</b>.</p>
+      <p class="home-para fade-in-d4">I'm also the <b>co-founder</b> and <b>Full Stack Developer</b> behind <b>SelfShft </b>,a startup selected for the <b>IIT Madras Nirmaan Stage 1 cohort</b>,building technology that connects students with location-based part-time work opportunities.</p>
+      <a href="#contact" class="connect-link fade-in-d4">Connect with me ↗</a>
+    </div>
+    <div class="home-right fade-in-d2">
+      <div class="hero-img-wrap">
+        <img src="/kajal.png" alt="Kajal Sanwal" class="hero-img"/>
+        <div class="hero-reveal">
+          <div class="hero-reveal-dot"></div>
+          <span class="hero-reveal-text">open to work</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sect-separator"></div>
+  <div class="scroll-hint"><svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg>scroll</div>
+</section>
+
+<!-- PROJECTS -->
+<section class="sect" id="projects">
+  <div class="sect-inner" style="padding:5rem 4vw 3rem;min-height:100vh;">
+    <div class="sec-head reveal-item">
+      <h1>Featured Projects</h1>
+      <p>I build things to solve real problems - not just for show. I care about shipping projects that do something and have an impact on those who use them.</p>
+    </div>
+    <div class="proj-scroll-wrap">
+      <div class="proj-cards-row">
+
+        <div class="pcard pcard-1 reveal-item">
+          <a href="https://github.com/kajalsanwalll/fullstack-auth-nextjs" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://notesphere-kohl.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="note.png" alt="Notesphere"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">Notesphere</p><p class="pcard-desc">Full-stack Notes app with Next.js 14 App Router, MongoDB &amp; JWT auth. Admin approval workflow for public notes.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript</p></div>
+        </div>
+
+        <div class="pcard pcard-8 reveal-item">
+          <a href="https://github.com/kajalsanwalll/skillsetu" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://skillsetu-one.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="skillsetu.png" alt="SkillSetu"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">SkillSetu</p><p class="pcard-desc">Evidence-aware skill intelligence &amp; opportunity-matching platform — builds a "Skill DNA" from claimed skills + verified evidence to explain job/internship fit.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js · Prisma · PostgreSQL</p></div>
+        </div>
+
+        <div class="pcard pcard-2 reveal-item">
+          <a href="https://github.com/kajalsanwalll/saas-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://saas-project-indol-six.vercel.app/home" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="aii.png" alt="SaaS Platform"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">SaaS Platform</p><p class="pcard-desc">AI-powered SaaS with Next.js, Prisma &amp; NeonDB. Clerk auth, Cloudinary uploads, scalable serverless architecture.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · TypeScript · Prisma</p></div>
+        </div>
+
+        <div class="pcard pcard-3 reveal-item">
+          <a href="https://github.com/kajalsanwalll/vibecode-editor" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://github.com/kajalsanwalll/vibecode-editor" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="vibecodee.png" alt="vibecode-editor"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">vibecode-editor</p><p class="pcard-desc">Browser-based code editor with file explorer &amp; live playground. Next.js + Appwrite + Zustand.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · TypeScript</p></div>
+        </div>
+
+        <div class="pcard pcard-4 reveal-item">
+          <a href="https://github.com/kajalsanwalll/backend-project" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://github.com/kajalsanwalll/backend-project" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="backend.png" alt="backend-project"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">backend-project</p><p class="pcard-desc">RESTful API for collaborative project management — tasks, subtasks, notes, team coordination.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span>GitHub · JavaScript · Node.js</p></div>
+        </div>
+
+        <div class="pcard pcard-6 reveal-item">
+          <a href="https://github.com/kajalsanwalll/fastify-thumbnailing" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+          <a href="https://fastify-thumbnailing.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="thumbb.png" alt="fastify-thumbnailing"/></div></a>
+          <div class="pcard-body"><p class="pcard-name">fastify-thumbnailing</p><p class="pcard-desc">High-performance Fastify backend — plugin architecture, auth, file handling with Node.js streams.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · JavaScript · Fastify</p></div>
+        </div>
+
+      </div>
+    </div>
+    <div class="scroll-dots" id="sdots"><div class="sdot active"></div><div class="sdot"></div><div class="sdot"></div></div>
+    <div class="see-all"><a href="https://github.com/kajalsanwalll" target="_blank">See all projects ↗</a></div>
+  </div>
+  <div class="sect-separator"></div>
+</section>
+
+<!-- FUN PROJECTS -->
+<section class="sect sect-fun" id="fun">
+  <div class="sect-inner fun-inner">
+    <div class="fun-wrap">
+      <div class="fun-head reveal-item">
+        <h2>Fun Projects</h2>
+        <p>Smaller side builds &amp; experiments made for fun, not the main event.</p>
+      </div>
+      <div class="proj-scroll-wrap">
+        <div class="proj-cards-row fun-cards-row">
+
+          <div class="pcard pcard-7 reveal-item">
+            <a href="https://github.com/kajalsanwalll/find-shyt" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://find-shyt-three.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="tarot.png" alt="Tarot Website"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">find shyt</p><p class="pcard-desc">find shyt going on in your life by pulling a tarot card. </p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+          <div class="pcard pcard-5 reveal-item">
+            <a href="https://github.com/kajalsanwalll/boyf_portal" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://boyf-portal.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="boyf.png" alt="boyf Website"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">boyfriend.co</p><p class="pcard-desc">Applications currently open to be the one.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+          <div class="pcard pcard-7 reveal-item">
+            <a href="https://github.com/kajalsanwalll/bday" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://birthday-flax-three.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="bday.png" alt="Birthday Website"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">Birthday Website</p><p class="pcard-desc">A little birthday surprise site built with Next.js for a friend.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+          <div class="pcard pcard-5 reveal-item">
+            <a href="https://github.com/kajalsanwalll/my-dashboard" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <a href="https://my-dashboard-beta-beryl.vercel.app" target="_blank" class="pcard-img-link"><div class="pcard-img-wrap"><img src="dashboard.png" alt="My Dashboard"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">My Dashboard</p><p class="pcard-desc">A personal dashboard built for fun with utilities in one place.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> Live · Next.js</p></div>
+          </div>
+
+          <div class="pcard pcard-5 reveal-item">
+            <a href="https://github.com/kajalsanwalll/holi-pen" target="_blank" class="pcard-gh"><svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg></a>
+            <div class="pcard-img-wrap"><img src="holi.png" alt="holi pen"/></div></a>
+            <div class="pcard-body"><p class="pcard-name">Holi Pen</p><p class="pcard-desc">A holi pen for letting your creativity take the first seat.</p><p class="pcard-meta"><span class="pcard-meta-dot"></span> side thingy </p></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TECH STACK MARQUEE -->
+<div class="tech-marquee">
+  <div class="tech-track" id="tech-track"></div>
+</div>
+
+<!-- EXPERIENCE -->
+<section class="sect" id="experience">
+  <div class="sect-inner">
+    <div class="exp-wrap">
+      <h1 class="exp-page-title reveal-item">Experience</h1>
+
+      <div class="exp-carousel reveal-item" id="expCarousel">
+        <div class="exp-carousel-topbar">
+          <span class="exp-carousel-counter" id="expCounter">01 / 03</span>
+          <div class="exp-carousel-controls">
+            <button class="exp-arrow" id="expPrev" type="button" aria-label="Previous experience">‹</button>
+            <button class="exp-arrow" id="expNext" type="button" aria-label="Next experience">›</button>
+          </div>
+        </div>
+
+        <div class="exp-frame">
+          <div class="exp-track" id="expTrack">
+
+            <!-- clone of last slide (Teaching Assistant), for seamless prev-loop -->
+            <div class="exp-slide" aria-hidden="true" inert>
+              <div class="exp-entry">
+                <div class="exp-info">
+                  <p class="exp-eyebrow">Ongoing · IIT Madras</p>
+                  <p class="exp-role-title">Teaching Assistant</p>
+                  <p class="exp-subtitle">Embedded C &amp; Electronic Systems Labs</p>
+                  <p class="exp-desc">Mentored <b>60+ students</b> in embedded C programming, microcontroller debugging, and low-level memory optimisation. Guided hands-on circuit design and system-level troubleshooting, improving lab performance and debugging efficiency across batches.</p>
+                </div>
+                <div class="exp-photo">
+                  <img src="/ta.png" alt=""/>
+                  <div class="stat-chip"><div class="stat-chip-num">60+</div><div class="stat-chip-lbl">Students Mentored</div></div>
+                </div>
+                <div class="exp-bottom">
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Subjects Covered</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Embedded C</span><span class="exp-tag">Microcontrollers</span><span class="exp-tag">Circuit Design</span><span class="exp-tag">Memory Optimisation</span><span class="exp-tag">Debugging</span><span class="exp-tag">Hardware Systems</span><span class="exp-tag">Electronic Systems</span>
+                    </div>
+                  </div>
+                  <div class="exp-photo2">
+                    <img src="/ta22.png" alt=""/>
+                    <div class="stat-chip"><div class="stat-chip-num">8.32</div><div class="stat-chip-lbl">GPA / 10</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 1 — SelfShft -->
+            <div class="exp-slide">
+              <div class="exp-entry-cofounder">
+                <div class="exp-info-main">
+                  <p class="exp-eyebrow">June 2026 – Present · IIT Madras Nirmaan Cohort</p>
+                  <p class="exp-role-title">Co-founder &amp; Full-Stack Developer</p>
+                  <p class="exp-subtitle">SelfShft — Stage 1 · IIT Madras Nirmaan</p>
+                  <p class="exp-desc">Built a <b>full-stack web platform</b> using <b>Next.js</b>, <b>TypeScript</b>, and modern web technologies to connect students with <b>location-based part-time jobs</b> and short-term gigs. Designed and implemented features for <b>student onboarding</b>, employer profiles, job matching, and authentication. Collaborated on <b>product strategy and technical architecture</b> as part of the founding team, addressing financial accessibility for students relocating for higher education.</p>
+                  <span class="exp-startup-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Selected · IIT Madras Nirmaan Stage 1 Cohort
+                  </span>
+                </div>
+                <div class="exp-side-card">
+                  <div>
+                    <p class="exp-side-label">What we're solving</p>
+                    <p class="exp-side-highlight">Financial accessibility for students — connecting them with <b>local part-time jobs</b> tailored to their schedule and location as they relocate for college.</p>
+                  </div>
+                  <div class="exp-side-stat">
+                    <span class="exp-side-stat-num">Stage 1</span>
+                    <span class="exp-side-stat-lbl">Nirmaan Cohort</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:.5rem;margin-top:.2rem;">
+                    <span style="width:7px;height:7px;border-radius:50%;background:#3ecf4a;box-shadow:0 0 0 0 rgba(62,207,74,.4);animation:pulse-dot 2s ease-in-out infinite;flex-shrink:0;display:inline-block;"></span>
+                    <span style="font-size:.72rem;color:rgba(232,224,212,.35);letter-spacing:.05em;">Active · June 2026</span>
+                  </div>
+                </div>
+                <div class="exp-bottom-row">
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Tech Used</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Next.js</span><span class="exp-tag">TypeScript</span><span class="exp-tag">React</span><span class="exp-tag">PostgreSQL</span><span class="exp-tag">Prisma</span><span class="exp-tag">Tailwind CSS</span><span class="exp-tag">Authentication</span><span class="exp-tag">REST APIs</span><span class="exp-tag">Vercel</span>
+                    </div>
+                  </div>
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Highlights</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Student–Employer Matching</span><span class="exp-tag">Location-Based Jobs</span><span class="exp-tag">Product Strategy</span><span class="exp-tag">System Architecture</span><span class="exp-tag">Financial Accessibility</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 2 — BluArmor -->
+            <div class="exp-slide">
+              <div class="exp-entry">
+                <div class="exp-info">
+                  <p class="exp-eyebrow">Aug – Oct 2025 · Pre-Placement Offer</p>
+                  <p class="exp-role-title">Project Intern</p>
+                  <p class="exp-subtitle">BluArmor — Instrumentation Team</p>
+                  <p class="exp-desc">Designed <b>automated RF/Bluetooth characterisation systems</b> using STM32 firmware, relay matrices, and ADC acquisition, reducing manual testing time by <b>15%</b>. Built Python-based calibration workflows improving measurement accuracy by <b>33%</b>. Developed GUI tools for RSSI testing, scaling throughput to <b>500 devices/day</b>. Improved RSSI stability by <b>55%</b> using RF shielding and EMA filtering. Automated headset pairing on Raspberry Pi 5 and nRF52840.</p>
+                </div>
+                <div class="exp-photo">
+                  <img src="/bluarmorr.png" alt="BluArmor internship"/>
+                  <div class="stat-chip"><div class="stat-chip-num">500+</div><div class="stat-chip-lbl">Devices / Day</div></div>
+                </div>
+                <div class="exp-bottom">
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Tech Used</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Python</span><span class="exp-tag">STM32</span><span class="exp-tag">Raspberry Pi 5</span><span class="exp-tag">nRF52840</span><span class="exp-tag">Bluetooth / RF</span><span class="exp-tag">ADC Acquisition</span><span class="exp-tag">Relay Matrix</span><span class="exp-tag">Tkinter GUI</span><span class="exp-tag">EMA Filtering</span>
+                    </div>
+                  </div>
+                  <div class="exp-photo2">
+                    <img src="/blu.jpeg" alt="BluArmor lab work"/>
+                    <div class="stat-chip"><div class="stat-chip-num">↑55%</div><div class="stat-chip-lbl">RSSI Stability</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 3 — Teaching Assistant -->
+            <div class="exp-slide">
+              <div class="exp-entry">
+                <div class="exp-info">
+                  <p class="exp-eyebrow">Ongoing · IIT Madras</p>
+                  <p class="exp-role-title">Teaching Assistant</p>
+                  <p class="exp-subtitle">Embedded C &amp; Electronic Systems Labs</p>
+                  <p class="exp-desc">Mentored <b>60+ students</b> in embedded C programming, microcontroller debugging, and low-level memory optimisation. Guided hands-on circuit design and system-level troubleshooting, improving lab performance and debugging efficiency across batches.</p>
+                </div>
+                <div class="exp-photo">
+                  <img src="/ta.png" alt="IIT Madras teaching"/>
+                  <div class="stat-chip"><div class="stat-chip-num">60+</div><div class="stat-chip-lbl">Students Mentored</div></div>
+                </div>
+                <div class="exp-bottom">
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Subjects Covered</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Embedded C</span><span class="exp-tag">Microcontrollers</span><span class="exp-tag">Circuit Design</span><span class="exp-tag">Memory Optimisation</span><span class="exp-tag">Debugging</span><span class="exp-tag">Hardware Systems</span><span class="exp-tag">Electronic Systems</span>
+                    </div>
+                  </div>
+                  <div class="exp-photo2">
+                    <img src="/ta22.png" alt="IIT Madras campus"/>
+                    <div class="stat-chip"><div class="stat-chip-num">8.32</div><div class="stat-chip-lbl">GPA / 10</div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- clone of first slide (SelfShft), for seamless next-loop -->
+            <div class="exp-slide" aria-hidden="true" inert>
+              <div class="exp-entry-cofounder">
+                <div class="exp-info-main">
+                  <p class="exp-eyebrow">June 2026 – Present · IIT Madras Nirmaan Cohort</p>
+                  <p class="exp-role-title">Co-founder &amp; Full-Stack Developer</p>
+                  <p class="exp-subtitle">SelfShft — Stage 1 · IIT Madras Nirmaan</p>
+                  <p class="exp-desc">Built a full-stack web platform connecting students with location-based part-time jobs and short-term gigs.</p>
+                  <span class="exp-startup-badge">
+                    <svg viewBox="0 0 24 24"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                    Selected · IIT Madras Nirmaan Stage 1 Cohort
+                  </span>
+                </div>
+                <div class="exp-side-card">
+                  <div>
+                    <p class="exp-side-label">What we're solving</p>
+                    <p class="exp-side-highlight">Financial accessibility for students relocating for college.</p>
+                  </div>
+                  <div class="exp-side-stat">
+                    <span class="exp-side-stat-num">Stage 1</span>
+                    <span class="exp-side-stat-lbl">Nirmaan Cohort</span>
+                  </div>
+                </div>
+                <div class="exp-bottom-row">
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Tech Used</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Next.js</span><span class="exp-tag">TypeScript</span><span class="exp-tag">Prisma</span>
+                    </div>
+                  </div>
+                  <div class="exp-tech">
+                    <p class="exp-tech-label">Highlights</p>
+                    <div class="exp-tags">
+                      <span class="exp-tag">Product Strategy</span><span class="exp-tag">System Architecture</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <div class="exp-carousel-bottom">
+          <div class="exp-progress-track"><div class="exp-progress-fill" id="expProgressFill"></div></div>
+          <div class="exp-dots" id="expDots">
+            <button class="exp-dot active" type="button" data-goto="0" aria-label="Go to slide 1"></button>
+            <button class="exp-dot" type="button" data-goto="1" aria-label="Go to slide 2"></button>
+            <button class="exp-dot" type="button" data-goto="2" aria-label="Go to slide 3"></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="sect-separator"></div>
+</section>
+
+<!-- EDUCATION -->
+<section class="sect" id="education">
+  <div class="sect-inner">
+    <div class="edu-wrap">
+      <h1 class="edu-page-title reveal-item">Education</h1>
+      <div class="edu-grid">
+
+        <div class="edu-card edu-card-featured reveal-item">
+          <div class="edu-icon">🎓</div>
+          <div class="edu-body">
+            <p class="edu-eyebrow">2023 – 2027 · Chennai, India</p>
+            <p class="edu-title">Electronic Systems</p>
+            <p class="edu-sub">Indian Institute of Technology Madras</p>
+            <p class="edu-desc">Studied core electronic systems, embedded programming, signals &amp; systems, and computer architecture — a foundation in <b>hardware-software co-design</b> that informs how I approach software engineering today.</p>
+            <div class="edu-pills">
+              <span class="edu-pill">Embedded Systems</span><span class="edu-pill">Computer Architecture</span><span class="edu-pill">Data Structures</span>
+            </div>
+          </div>
+          <div class="edu-stat" style="margin-top:0;padding-top:0;border-top:none;align-self:flex-end;flex-direction:column;align-items:flex-end;">
+            <div class="edu-stat-num">8.32</div>
+            <div class="edu-stat-lbl">GPA / 10</div>
+          </div>
+        </div>
+
+        <div class="edu-compact reveal-item" style="grid-column:1/-1;">
+          <p class="edu-compact-label">Certificates &amp; Courses</p>
+
+          <details class="edu-row">
+            <summary>
+              <span class="edu-row-icon">🌐</span>
+              <span class="edu-row-main">
+                <span class="edu-row-title">The Complete Web Development Course</span>
+                <span class="edu-row-sub">Hitesh Choudhary / ChaiCode · Udemy</span>
+              </span>
+              <span class="edu-row-chevron">⌄</span>
+            </summary>
+            <div class="edu-row-body">
+              <p>End-to-end full-stack web development — from HTML/CSS/JS fundamentals to <b>Node.js, Express, React</b>, databases, REST APIs, and deployment.</p>
+              <div class="edu-pills">
+                <span class="edu-pill">React</span><span class="edu-pill">Node.js</span><span class="edu-pill">Express</span><span class="edu-pill">MongoDB</span><span class="edu-pill">Next.js</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="edu-row">
+            <summary>
+              <span class="edu-row-icon">⚙️</span>
+              <span class="edu-row-main">
+                <span class="edu-row-title">Data Structures &amp; Algorithms Master Course</span>
+                <span class="edu-row-sub">Abdul Bari · Udemy</span>
+              </span>
+              <span class="edu-row-chevron">⌄</span>
+            </summary>
+            <div class="edu-row-body">
+              <p>Comprehensive DSA course covering <b>sorting, searching, trees, graphs, dynamic programming</b>, and Big O analysis with JavaScript implementations.</p>
+              <div class="edu-pills">
+                <span class="edu-pill">Trees &amp; Graphs</span><span class="edu-pill">Dynamic Programming</span><span class="edu-pill">Big O Notation</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="edu-row">
+            <summary>
+              <span class="edu-row-icon">🏗️</span>
+              <span class="edu-row-main">
+                <span class="edu-row-title">System Design Mastery Series</span>
+                <span class="edu-row-sub">Shivansh Vasu · theshivanshvasu.com</span>
+              </span>
+              <span class="edu-row-chevron">⌄</span>
+            </summary>
+            <div class="edu-row-body">
+              <p>In-depth course on building <b>large-scale distributed systems</b> — scalability patterns, load balancing, caching, and database sharding, with real-world case studies.</p>
+              <div class="edu-pills">
+                <span class="edu-pill">Distributed Systems</span><span class="edu-pill">Caching</span><span class="edu-pill">Database Sharding</span>
+              </div>
+            </div>
+          </details>
+
+          <details class="edu-row">
+            <summary>
+              <span class="edu-row-icon">🤖</span>
+              <span class="edu-row-main">
+                <span class="edu-row-title">Complete Generative AI Course With Langchain and Huggingface</span>
+                <span class="edu-row-sub">Udemy</span>
+              </span>
+              <span class="edu-row-chevron">⌄</span>
+            </summary>
+            <div class="edu-row-body">
+              <p>Hands-on course covering <b>LLM application development</b> — RAG pipelines, prompt engineering, vector databases, and end-to-end AI apps with LangChain and HuggingFace.</p>
+              <div class="edu-pills">
+                <span class="edu-pill">LangChain</span><span class="edu-pill">RAG</span><span class="edu-pill">Vector Databases</span>
+              </div>
+            </div>
+          </details>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <div class="sect-separator"></div>
+</section>
+
+<!-- RESUME -->
+<section class="sect" id="resume">
+  <div class="sect-inner">
+    <div class="resume-wrap">
+      <h1 class="resume-page-title reveal-item">Resume</h1>
+      <div class="resume-stage reveal-item">
+        <div class="resume-topbar">
+          <div class="resume-dots">
+            <span class="resume-dot resume-dot-r"></span>
+            <span class="resume-dot resume-dot-y"></span>
+            <span class="resume-dot resume-dot-g"></span>
+          </div>
+          <span class="resume-filename">Kajal_Sanwal_Resume.pdf</span>
+          <div class="resume-actions">
+            <a href="/Kajal_Sanwal_Resume.pdf" target="_blank" class="resume-btn">
+              <svg viewBox="0 0 24 24"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              <span class="resume-btn-label">Open</span>
+            </a>
+            <a href="/Kajal_Sanwal_Resume.pdf" download="Kajal_Sanwal_Resume.pdf" class="resume-btn">
+              <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              <span class="resume-btn-label">Download</span>
+            </a>
+          </div>
+        </div>
+        <div class="resume-embed-wrap">
+          <iframe id="resume-iframe" src="/Kajal_Sanwal_Resume.pdf#toolbar=0&navpanes=0&scrollbar=0&view=FitH" title="Kajal Sanwal Resume" loading="lazy"></iframe>
+          <div class="resume-fallback" id="resume-fallback">
+            <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+            <p>Unable to display the PDF inline. Click below to view it directly.</p>
+            <a href="/Kajal_Sanwal_Resume.pdf" target="_blank">
+              <svg viewBox="0 0 24 24" style="width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+              View Resume
+            </a>
+          </div>
+        </div>
+        <div class="resume-bottombar">
+          <span class="resume-meta">PDF · 1 page · Last updated Nov 2026</span>
+          <div class="resume-status"><span class="resume-pulse"></span>Available for opportunities</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="sect-separator"></div>
+</section>
+
+<!-- CONTACT -->
+<section class="sect" id="contact">
+  <div class="sect-inner" style="min-height:100vh;display:flex;flex-direction:column;justify-content:center;padding:5rem 4vw 2rem;">
+    <div class="contact-inner">
+      <img src="/photo.jpeg" alt="Kajal Sanwal" class="contact-avatar reveal-item"/>
+      <p class="contact-text reveal-item">Follow me on LinkedIn and GitHub to stay updated with my latest work, projects, and posts — feel free to reach out via email for collaboration or inquiries.</p>
+      <div class="contact-icons reveal-item">
+        <a href="mailto:kajalsanwal777@gmail.com" class="cicon-btn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>Mail</a>
+        <a href="https://linkedin.com/in/kajalsanwall" target="_blank" class="cicon-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+        <a href="https://github.com/kajalsanwalll" target="_blank" class="cicon-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577v-2.165c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23A11.509 11.509 0 0112 5.803c1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576C20.566 21.797 24 17.3 24 12c0-6.63-5.37-12-12-12z"/></svg>GitHub</a>
+        <a href="https://instagram.com/kajalsanwall" target="_blank" class="cicon-btn"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram</a>
+        <a href="https://leetcode.com/u/kajalsanwall/" target="_blank" class="cicon-btn">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+        <path d="M13.483 0a1.374 1.374 0 00-.973.401L4.196 8.716a1.375 1.375 0 000 1.944l8.314 8.315a1.375 1.375 0 101.944-1.945L7.11 9.688l7.344-7.343A1.375 1.375 0 0013.483 0z"/>
+        <path d="M8.62 11.313h11.254a1.375 1.375 0 010 2.75H8.62a1.375 1.375 0 010-2.75z"/>
+        <path d="M15.816 4.196a1.375 1.375 0 011.944 0l2.044 2.044a1.375 1.375 0 11-1.944 1.944L15.816 6.14a1.375 1.375 0 010-1.944z"/>
+    </svg>
+    LeetCode
+</a>
+      </div>
+      <div class="contact-divider"></div>
+    </div>
+    <footer><p>© 2026 Kajal Sanwal</p><span style="font-size:1.1rem;opacity:.2;">✦</span></footer>
+  </div>
+</section>
+
+</div>
+
+<script>
+// ── Clock ──────────────────────────────────────────────
+function tick(){const now=new Date();let h=now.getHours(),m=now.getMinutes(),ap=h>=12?'PM':'AM';h=h%12||12;document.getElementById('navtime').textContent=h+':'+(m<10?'0'+m:m)+' '+ap+' IST';}
+tick();setInterval(tick,10000);
+
+// ── Custom cursor ──────────────────────────────────────
+const dot=document.getElementById('cdot'),ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;dot.style.left=mx+'px';dot.style.top=my+'px';});
+(function loop(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(loop);})();
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{dot.style.width='13px';dot.style.height='13px';ring.style.width='38px';ring.style.height='38px';});
+  el.addEventListener('mouseleave',()=>{dot.style.width='8px';dot.style.height='8px';ring.style.width='30px';ring.style.height='30px';});
+});
+
+// ── Section observer ───────────────────────────────────
+const sectObs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in-view');
+      const id=e.target.id;
+      document.querySelectorAll('.nav-right a').forEach(a=>a.classList.toggle('active',a.dataset.target===id));
+      e.target.querySelectorAll('.reveal-item').forEach((el,i)=>setTimeout(()=>el.classList.add('revealed'),i*90));
+    }
+  });
+},{threshold:0.12});
+document.querySelectorAll('.sect').forEach(s=>sectObs.observe(s));
+
+// ── Nav links ──────────────────────────────────────────
+document.querySelectorAll('.nav-right a').forEach(a=>{
+  a.addEventListener('click',e=>{
+    e.preventDefault();
+    document.getElementById(a.dataset.target)?.scrollIntoView({behavior:'smooth'});
+  });
+});
+document.querySelector('.connect-link').addEventListener('click',e=>{
+  e.preventDefault();
+  document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+});
+
+// ── Project scroll dots ────────────────────────────────
+const sw=document.querySelector('.proj-scroll-wrap');
+if(sw){sw.addEventListener('scroll',()=>{
+  const pct=sw.scrollLeft/(sw.scrollWidth-sw.clientWidth);
+  document.querySelectorAll('.sdot').forEach((d,i)=>d.classList.toggle('active',Math.round(pct*2)===i));
+});}
+
+// ── Project card tilt ──────────────────────────────────
+document.querySelectorAll('.pcard').forEach(card=>{
+  card.addEventListener('mousemove',e=>{
+    const r=card.getBoundingClientRect();
+    card.style.setProperty('--rx',(-(e.clientY-r.top)/r.height-.5)*5+'deg');
+    card.style.setProperty('--ry',((e.clientX-r.left)/r.width-.5)*5+'deg');
+  });
+  card.addEventListener('mouseleave',()=>{
+    card.style.setProperty('--rx','0deg');
+    card.style.setProperty('--ry','0deg');
+  });
+});
+
+// ── Resume iframe fallback ─────────────────────────────
+const resumeIframe=document.getElementById('resume-iframe');
+const resumeFallback=document.getElementById('resume-fallback');
+if(resumeIframe&&resumeFallback){
+  resumeIframe.addEventListener('error',()=>{
+    resumeIframe.style.display='none';
+    resumeFallback.style.display='flex';
+  });
+}
+
+// ── Tech marquee ───────────────────────────────────────
+const techItems=[
+  {name:'MongoDB',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#4DB33D"><path d="M17.193 9.555c-1.264-5.58-4.252-7.414-4.573-8.115-.28-.394-.53-.954-.735-1.44-.036.495-.055.685-.523 1.184-.723.566-4.438 3.682-4.74 10.02-.282 5.912 4.27 9.435 4.888 9.884l.07.05A73.49 73.49 0 0111.91 24h.481c.114-1.032.284-2.056.51-3.07.417-.296.604-.463.85-.693a11.342 11.342 0 003.639-8.464c.01-.814-.051-1.662-.197-2.218z"/></svg>`},
+  {name:'JavaScript',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#F7DF1E"><path d="M0 0h24v24H0V0zm22.034 18.276c-.175-1.095-.888-2.015-3.003-2.873-.736-.345-1.554-.585-1.797-1.14-.091-.33-.105-.51-.046-.705.15-.646.915-.84 1.515-.66.39.12.75.42.976.9 1.034-.676 1.034-.676 1.755-1.125-.27-.42-.404-.601-.586-.78-.63-.705-1.469-1.065-2.834-1.034l-.705.089c-.676.165-1.32.525-1.71 1.005-1.14 1.291-.811 3.541.569 4.471 1.365 1.02 3.361 1.244 3.616 2.205.24 1.17-.87 1.545-1.966 1.41-.811-.18-1.26-.586-1.755-1.336l-1.83 1.051c.21.48.45.689.81 1.109 1.74 1.756 6.09 1.666 6.871-1.004.029-.09.24-.705.074-1.65l.046.067zm-8.983-7.245h-2.248c0 1.938-.009 3.864-.009 5.805 0 1.232.063 2.363-.138 2.711-.33.689-1.18.601-1.566.48-.396-.196-.597-.466-.83-.855-.063-.105-.11-.196-.127-.196l-1.825 1.125c.305.63.75 1.172 1.324 1.517.855.51 2.004.675 3.207.405.783-.226 1.458-.691 1.811-1.411.51-.93.402-2.07.397-3.346.012-2.054 0-4.109 0-6.179l.004-.056z"/></svg>`},
+  {name:'TypeScript',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#3178C6"><path d="M1.125 0C.502 0 0 .502 0 1.125v21.75C0 23.498.502 24 1.125 24h21.75c.623 0 1.125-.502 1.125-1.125V1.125C24 .502 23.498 0 22.875 0zm17.363 9.75c.612 0 1.154.037 1.627.111a6.38 6.38 0 0 1 1.306.34v2.458a3.95 3.95 0 0 0-.643-.361 5.093 5.093 0 0 0-.717-.26 5.453 5.453 0 0 0-1.426-.2c-.3 0-.573.028-.819.086a2.1 2.1 0 0 0-.623.242c-.17.104-.3.229-.393.374a.888.888 0 0 0-.14.49c0 .196.053.373.156.529.104.156.252.304.443.444s.423.276.696.41c.273.135.582.274.926.416.47.197.892.407 1.266.628.374.222.695.473.963.753.268.279.472.598.614.957.142.359.214.776.214 1.253 0 .657-.125 1.21-.373 1.656a3.033 3.033 0 0 1-1.012 1.085 4.38 4.38 0 0 1-1.487.596c-.566.12-1.163.18-1.79.18a9.916 9.916 0 0 1-1.84-.164 5.544 5.544 0 0 1-1.512-.493v-2.63a5.033 5.033 0 0 0 3.237 1.2c.333 0 .624-.03.872-.09.249-.06.456-.144.623-.25.166-.108.29-.234.373-.38a1.023 1.023 0 0 0-.074-1.089 2.12 2.12 0 0 0-.537-.5 5.597 5.597 0 0 0-.807-.444 27.72 27.72 0 0 0-1.007-.436c-.918-.383-1.602-.852-2.053-1.405-.45-.553-.676-1.222-.676-2.005 0-.614.123-1.141.369-1.582.246-.441.58-.804 1.004-1.089a4.494 4.494 0 0 1 1.47-.629 7.536 7.536 0 0 1 1.77-.201zm-15.113.188h9.563v2.166H9.506v9.646H6.789v-9.646H3.375z"/></svg>`},
+  {name:'Express',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(232,224,212,0.7)"><path d="M24 18.588a1.529 1.529 0 01-1.895-.72l-3.45-4.771-.5-.667-4.003 5.444a1.466 1.466 0 01-1.802.708l5.158-6.92-4.798-6.251a1.595 1.595 0 011.9.666l3.576 4.83 3.596-4.81a1.435 1.435 0 011.788-.668L21.708 7.9l-2.522 3.283a.666.666 0 000 .994l4.804 6.412zM.002 11.576l.42-2.075c1.154-4.103 5.858-5.81 9.094-3.27 1.895 1.489 2.368 3.597 2.275 5.973H1.116C.943 16.447 4.005 19.009 7.92 17.7a4.078 4.078 0 002.582-2.876c.207-.666.548-.78 1.174-.588a5.417 5.417 0 01-2.589 3.957 6.272 6.272 0 01-7.306-.933 6.575 6.575 0 01-1.64-3.858c0-.235-.08-.455-.138-.666-.18-.407-.18-.816-.001-1.12zm1.127-.286h9.654c-.06-3.076-2.001-5.258-4.59-5.278-2.882-.04-4.944 2.094-5.071 5.264z"/></svg>`},
+  {name:'React',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#61DAFB"><path d="M14.23 12.004a2.236 2.236 0 01-2.235 2.236 2.236 2.236 0 01-2.236-2.236 2.236 2.236 0 012.235-2.236 2.236 2.236 0 012.236 2.236zm2.648-10.69c-1.346 0-3.107.96-4.888 2.622-1.78-1.653-3.542-2.602-4.887-2.602-.41 0-.783.093-1.106.269-1.245.674-1.641 2.57-1.015 5.156.108.456.253.936.438 1.435-.667.273-1.313.6-1.921.989-1.327.839-2.145 1.851-2.145 2.938 0 1.088.816 2.1 2.142 2.939.624.394 1.269.71 1.934.979-.189.502-.335.985-.44 1.443-.617 2.64-.22 4.524 1.022 5.195.276.15.594.226.943.226 1.348 0 3.109-.96 4.888-2.622 1.78 1.653 3.542 2.602 4.887 2.602.41 0 .783-.093 1.106-.269 1.245-.674 1.641-2.57 1.015-5.156-.108-.456-.253-.936-.438-1.435.667-.273 1.313-.6 1.921-.989 1.327-.839 2.145-1.851 2.145-2.938 0-1.088-.818-2.1-2.142-2.939-.624-.394-1.269-.71-1.934-.979.189-.502.335-.985.44-1.443.617-2.64.22-4.524-1.022-5.195a2.636 2.636 0 00-.943-.226z"/></svg>`},
+  {name:'Node.js',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#339933"><path d="M11.998.001a.886.886 0 00-.443.116L.543 6.307a.885.885 0 00-.44.771v12.384c0 .318.169.613.44.771l11.012 6.19a.883.883 0 00.886 0l11.012-6.19a.885.885 0 00.44-.771V7.078a.886.886 0 00-.44-.771L12.44.117a.886.886 0 00-.443-.116z"/></svg>`},
+  {name:'Next.js',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(232,224,212,0.85)"><path d="M11.572 0c-.176 0-.31.001-.358.007a19.76 19.76 0 01-.364.033C6.1.443 2.697 2.08.803 4.92-.588 7.027-.792 9.513.107 11.83c.768 1.97 2.354 3.574 4.34 4.437.485.21 1.006.37 1.556.483a16.13 16.13 0 003.994.006 11.72 11.72 0 003.186-.923l.005.002.033.018c.078.041.155.084.232.129l3.776 2.179a1.4 1.4 0 001.9-.496 1.4 1.4 0 00-.047-1.498l-3.398-4.696c1.077-1.334 1.736-3.018 1.736-4.857 0-4.418-3.582-8-8-8zm0 2.163c3.204 0 5.836 2.581 5.836 5.837 0 1.615-.65 3.078-1.7 4.15l-.044.042-2.02-2.79a1.4 1.4 0 00-1.137-.575 1.4 1.4 0 00-1.4 1.4c0 .386.158.737.413.993l2.034 2.81a9.34 9.34 0 01-2.982.486c-3.204 0-5.836-2.581-5.836-5.837 0-3.204 2.581-5.836 5.836-5.836z"/></svg>`},
+  {name:'PostgreSQL',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#336791"><path d="M17.128 0a10.134 10.134 0 00-2.755.403A8.026 8.026 0 0011.91.87a9.26 9.26 0 00-1.44 2.167A8.404 8.404 0 008.949 2.8c-1.06.08-2.123.208-3.117.485-.994.277-1.913.706-2.674 1.326C2.18 5.298 1.572 6.244 1.38 7.344 1.019 9.382 1.726 11.41 2.744 13.084a16.178 16.178 0 001.292 1.792c.3.354.616.699.946 1.028.35.35.71.688 1.075 1.014l.003-.003a6.863 6.863 0 001.29 2.95c.686.936 1.554 1.576 2.55 1.73a4.022 4.022 0 003.207-1.19 3.624 3.624 0 001.033-2.527c0-1.293-.7-2.35-1.755-2.754-.83-.315-1.777-.28-2.64-.272-.17.001-.34.003-.508.003-.17 0-.34-.002-.508-.003-.374-.003-.748 0-1.12-.003C7.82 15.12 7.437 15.1 7.1 15.007c-.337-.094-.636-.26-.885-.5-.56-.544-.786-1.395-.64-2.28.104-.617.376-1.209.791-1.708-.115-.097-.225-.2-.33-.308C5.044 9.25 4.5 7.95 4.5 6.5c0-3.038 2.462-5.5 5.5-5.5 2.96 0 5.383 2.352 5.495 5.286.039 1.022-.2 1.986-.67 2.823.313.298.576.644.77 1.028 1.08-1.18 1.74-2.765 1.74-4.5C17.335 2.462 14.873 0 11.835 0z"/></svg>`},
+  {name:'Tailwind',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#06B6D4"><path d="M12.001 4.8c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624C13.666 10.618 15.027 12 18.001 12c3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C16.337 6.182 14.976 4.8 12.001 4.8zm-6 7.2c-3.2 0-5.2 1.6-6 4.8 1.2-1.6 2.6-2.2 4.2-1.8.913.228 1.565.89 2.288 1.624 1.177 1.194 2.538 2.576 5.512 2.576 3.2 0 5.2-1.6 6-4.8-1.2 1.6-2.6 2.2-4.2 1.8-.913-.228-1.565-.89-2.288-1.624C10.337 13.382 8.976 12 6.001 12z"/></svg>`},
+  {name:'Prisma',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="rgba(232,224,212,0.7)"><path d="M21.807 18.285L13.553.756a1.324 1.324 0 00-1.185-.756 1.324 1.324 0 00-1.089.573L2.225 13.37a1.324 1.324 0 00-.166 1.189l2.217 6.616a1.324 1.324 0 001.522.88l15.386-3.096a1.324 1.324 0 00.623-2.674zM4.29 19.926l-1.87-5.587 8.005-11.25 7.58 16.828-13.715-1.99z"/></svg>`},
+  {name:'Fastify',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#e08a5a"><path d="M12 0L1.605 6v12L12 24l10.395-6V6L12 0zm0 1.404L21.39 6.936 12 12.469 2.61 6.936 12 1.404zM2.094 7.836l9.297 5.368v10.656L2.094 18.492V7.836zm10.515 16.024V12.204l9.297-5.368v10.656l-9.297 5.368z"/></svg>`},
+  {name:'Appwrite',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#FD366E"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 4.8c3.973 0 7.2 3.227 7.2 7.2 0 3.973-3.227 7.2-7.2 7.2C8.027 19.2 4.8 15.973 4.8 12c0-3.973 3.227-7.2 7.2-7.2zm0 2.4c-2.652 0-4.8 2.148-4.8 4.8s2.148 4.8 4.8 4.8 4.8-2.148 4.8-4.8-2.148-4.8-4.8-4.8zm0 2.4c1.325 0 2.4 1.075 2.4 2.4s-1.075 2.4-2.4 2.4S9.6 13.325 9.6 12s1.075-2.4 2.4-2.4z"/></svg>`},
+  {name:'Zustand',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#e08a5a"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="5" fill="#000" opacity=".4"/><circle cx="12" cy="12" r="2.5" fill="#e08a5a"/></svg>`},
+  {name:'Clerk',svg:`<svg width="16" height="16" viewBox="0 0 24 24" fill="#6C47FF"><circle cx="12" cy="12" r="11"/><circle cx="12" cy="12" r="5" fill="#000" opacity=".35"/><circle cx="12" cy="12" r="2" fill="#6C47FF"/></svg>`},
+];
+const tt=document.getElementById('tech-track');
+if(tt){
+  const all=[...techItems,...techItems];
+  all.forEach((item,i)=>{
+    const el=document.createElement('div');
+    el.className='tech-item';
+    el.innerHTML=item.svg+'<span>'+item.name+'</span>';
+    tt.appendChild(el);
+    if(i<all.length-1){const s=document.createElement('div');s.className='tech-sep';tt.appendChild(s);}
+  });
+}
+
+// ── Experience carousel (rotating loop) ────────────────
+(function(){
+  const carousel=document.getElementById('expCarousel');
+  const track=document.getElementById('expTrack');
+  if(!carousel||!track) return;
+  const slides=Array.from(track.children);
+  const real=3; // real slide count (clones sit at index 0 and last)
+  const progressFill=document.getElementById('expProgressFill');
+  const counter=document.getElementById('expCounter');
+  const dots=Array.from(document.querySelectorAll('.exp-dot'));
+  const prevBtn=document.getElementById('expPrev');
+  const nextBtn=document.getElementById('expNext');
+  const AUTOPLAY_MS=6000;
+  let trackIndex=1; // 1..real map to the real slides; 0 and real+1 are clones
+  let timer=null;
+
+  function applyTransform(instant){
+    if(instant) track.classList.add('notransition');
+    track.style.transform='translateX(-'+(trackIndex*100)+'%)';
+    if(instant){
+      void track.offsetWidth;
+      track.classList.remove('notransition');
+    }
+  }
+  function currentReal(){ return ((trackIndex-1)%real+real)%real; }
+  function updateUI(){
+    const ri=currentReal();
+    if(counter) counter.textContent='0'+(ri+1)+' / 0'+real;
+    dots.forEach((d,i)=>d.classList.toggle('active',i===ri));
+  }
+  function next(){ trackIndex++; applyTransform(false); updateUI(); }
+  function prev(){ trackIndex--; applyTransform(false); updateUI(); }
+  function goTo(ri){ trackIndex=ri+1; applyTransform(false); updateUI(); restart(); }
+
+  track.addEventListener('transitionend',()=>{
+    if(trackIndex===real+1){ trackIndex=1; applyTransform(true); }
+    else if(trackIndex===0){ trackIndex=real; applyTransform(true); }
+  });
+
+  if(nextBtn) nextBtn.addEventListener('click',()=>{ next(); restart(); });
+  if(prevBtn) prevBtn.addEventListener('click',()=>{ prev(); restart(); });
+  dots.forEach((d,i)=>d.addEventListener('click',()=>goTo(i)));
+
+  function startProgress(){
+    if(!progressFill) return;
+    progressFill.style.transition='none';
+    progressFill.style.width='0%';
+    void progressFill.offsetWidth;
+    progressFill.style.transition='width '+AUTOPLAY_MS+'ms linear';
+    progressFill.style.width='100%';
+  }
+  function pauseProgress(){
+    if(!progressFill) return;
+    const w=getComputedStyle(progressFill).width;
+    progressFill.style.transition='none';
+    progressFill.style.width=w;
+  }
+  function start(){ startProgress(); timer=setInterval(()=>{ next(); startProgress(); },AUTOPLAY_MS); }
+  function restart(){ clearInterval(timer); start(); }
+
+  carousel.addEventListener('mouseenter',()=>{ clearInterval(timer); pauseProgress(); });
+  carousel.addEventListener('mouseleave',()=>{ start(); });
+
+  applyTransform(true);
+  updateUI();
+  start();
+})();
+</script>
+</body>
+</html>
